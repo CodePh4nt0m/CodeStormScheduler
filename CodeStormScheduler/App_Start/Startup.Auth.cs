@@ -59,9 +59,9 @@ namespace CodeStormScheduler
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1408629229464493",
+               appSecret: "1e57927d3e36ea5d8a88d416f61ba0da");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="main">
 <head>
     <meta charset="UTF-8">
     <title>CODESTORM</title>
@@ -7,16 +7,16 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/plugincss")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/AdminLTE/skins/skin-blue.min.css" rel="stylesheet"/>
+    <link href="~/Content/AdminLTE/skins/skin-blue.min.css" rel="stylesheet" />
     @RenderSection("headscripts", required: false)
     @RenderSection("styles", required: false)
 </head>
-<body class="skin-blue sidebar-mini">
+<body class="skin-blue sidebar-mini" ng-controller="MainController">
     <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">
             <!-- Logo -->
-            <a href="index2.html" class="logo">
+            <a href="/" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>CS</b></span>
                 <!-- logo for regular state and mobile devices -->
@@ -159,7 +159,7 @@
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        <a class="btn btn-default btn-flat" ng-click="logout()">Sign out</a>
                                     </div>
                                 </li>
                             </ul>
@@ -292,7 +292,9 @@
     </div><!-- ./wrapper -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
     <script src="~/Scripts/AdminLTE/app.min.js"></script>
+    <script src="~/App/App.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

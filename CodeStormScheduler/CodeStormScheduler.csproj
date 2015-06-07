@@ -16,7 +16,7 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -180,6 +180,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\App.js" />
     <Content Include="Content\AdminLTE\AdminLTE.css" />
     <Content Include="Content\AdminLTE\AdminLTE.min.css" />
     <Content Include="Content\AdminLTE\skins\skin-black-light.css" />
@@ -237,6 +238,10 @@
     <Content Include="img\photo2.png" />
     <Content Include="img\site\login1.png" />
     <Content Include="img\site\textonly.png" />
+    <Content Include="img\social\facebook.png" />
+    <Content Include="img\social\googleplus.png" />
+    <Content Include="img\social\linkedin.png" />
+    <Content Include="img\social\twitter.png" />
     <Content Include="img\temp\user2-160x160.jpg" />
     <Content Include="img\user1-128x128.jpg" />
     <Content Include="img\user2-160x160.jpg" />
@@ -2261,6 +2266,12 @@
     <Content Include="Scripts\AdminLTE\demo.js" />
     <Content Include="Scripts\AdminLTE\pages\dashboard.js" />
     <Content Include="Scripts\AdminLTE\pages\dashboard2.js" />
+    <Content Include="Scripts\angular-cookies.js" />
+    <Content Include="Scripts\angular-cookies.min.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="plugins\ckeditor\CHANGES.md" />
@@ -2586,7 +2597,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1913</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1913/</IISUrl>
+          <IISUrl>https://localhost:44300/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

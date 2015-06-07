@@ -4360,3 +4360,21 @@ fieldset[disabled] .btn-vk.active {
     white-space: normal!important;
   }
 }
+
+
+/* CodeStorm Styles*/
+
+.btn-eco {
+    background: #44b6ae;
+    border-color: #44b6ae;
+    color: #fff;
+}
+
+
+.btn-eco:hover,
+.btn-eco:active,
+.btn-eco.hover {
+  background-color: #3fa79f;
+  color: #fff;
+}
+/*End Styles*/

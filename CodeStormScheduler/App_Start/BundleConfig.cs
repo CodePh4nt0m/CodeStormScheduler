@@ -32,6 +32,11 @@ namespace CodeStormScheduler
             bundles.Add(new StyleBundle("~/Content/plugincss").Include(
                       "~/plugins/font-awesome/css/font-awesome.min.css",
                       "~/plugins/ionicons/css/ionicons.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                      "~/Scripts/angular.js",
+                      "~/Scripts/angular-route.js",
+                      "~/Scripts/angular-cookies.js"));
         }
     }
 }

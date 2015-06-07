@@ -16,8 +16,8 @@
 
     <link href="~/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="~/Content/animate.css" rel="stylesheet" />
-    <link href="~/Content/AdminLTE/AdminLTE.min.css" rel="stylesheet"/>
-    <link href="~/plugins/iCheck/square/blue.css" rel="stylesheet"/>
+    <link href="~/Content/AdminLTE/AdminLTE.css" rel="stylesheet"/>
+    <link href="~/plugins/iCheck/flat/green.css" rel="stylesheet" />
     <link href="~/Content/login.css" rel="stylesheet" />
     <style>
         
@@ -29,7 +29,9 @@
             <img src="~/img/site/textonly.png" />
         </div><!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+            <div class="signin-text">
+                <span>Sign In to your account</span>
+            </div>
             @using (Html.BeginForm("Login", "Account", FormMethod.Post, new {role = "form", id = "loginForm"}))
             {
                 @Html.AntiForgeryToken()
@@ -42,21 +44,16 @@
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="row">
-                    <div class="col-xs-8">
+                    <div class="col-xs-7">
                         <div class="checkbox icheck">
                             <label>
                                 @Html.CheckBoxFor(m => m.RememberMe) Remember Me
                             </label>
                         </div>
                     </div><!-- /.col -->
-                    <div class="col-xs-4">
-
+                    <div class="col-xs-5">
+                        <button type="submit" class="btn btn-eco btn-block btn-flat" id="btnSignIn">SIGN IN</button>
                     </div><!-- /.col -->
-                </div>
-                <div class="row login-submit">
-                    <div class="col-xs-12">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat" id="btnSignIn">SIGN IN</button>
-                    </div>
                 </div>
             }
             @*<div class="social-auth-links text-center">
@@ -65,12 +62,39 @@
                 <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i> Sign in using Google+</a>
             </div>*@
             <div class="row forgotpass-container">
-                <div class="col-xs-12">
-                    <a href="#" id="forgotpass">Forgot password ?</a>
+                <div class="col-xs-12 text-right">
+                    <a href="#" class="forgot-password" id="forgot-password-link">Forgot your password</a>
                 </div>
             </div>
             @*<a href="register.html" class="text-center">Register a new membership</a>*@
+            <div class="login-options">
+                @*<p class="social-login-text">Or login with</p>*@
+                <ul class="social-icons">
+                    <li>
+                        <a class="facebook" data-original-title="facebook" href="javascript:;">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="googleplus" data-original-title="Goole Plus" href="javascript:;">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="twitter" data-original-title="Twitter" href="javascript:;">
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="create-account">
+                <p>
+                    Don't have an account yet ?&nbsp; <a href="javascript:;" id="register-btn">
+                        Create an account
+                    </a>
+                </p>
+            </div>
         </div><!-- /.login-box-body -->
+        
+        
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -79,9 +103,8 @@
     <script>
     $(function () {
         $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '20%' // optional
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green'
         });
     });
     $(document).ready(function () {
