@@ -1,3 +1,18 @@
-﻿.login-box, .register-box {
-    margin: 6% auto !important;
+﻿#btn-fb-signin {
+    background: rgba(79, 111, 170, .8);
+    border-radius: 2px;
+    padding: 10px 0;
+    color: #fff;
+    line-height: inherit;
+    border: none;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+#btn-fb-signin:hover {
+    background: #444 !important;
+}
+
+#btn-fb-signin span {
+    font-weight: 600;
 }

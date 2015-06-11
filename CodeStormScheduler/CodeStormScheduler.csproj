@@ -181,43 +181,45 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\App.js" />
-    <Content Include="Content\AdminLTE\AdminLTE.css" />
-    <Content Include="Content\AdminLTE\AdminLTE.min.css" />
-    <Content Include="Content\AdminLTE\skins\skin-black-light.css" />
-    <Content Include="Content\AdminLTE\skins\skin-black-light.min.css" />
-    <Content Include="Content\AdminLTE\skins\skin-black.css" />
-    <Content Include="Content\AdminLTE\skins\skin-black.min.css" />
-    <Content Include="Content\AdminLTE\skins\skin-blue-light.css" />
-    <Content Include="Content\AdminLTE\skins\skin-blue-light.min.css" />
-    <Content Include="Content\AdminLTE\skins\skin-blue.css" />
-    <Content Include="Content\AdminLTE\skins\skin-blue.min.css" />
-    <Content Include="Content\AdminLTE\skins\skin-green-light.css" />
-    <Content Include="Content\AdminLTE\skins\skin-green-light.min.css" />
-    <Content Include="Content\AdminLTE\skins\skin-green.css" />
-    <Content Include="Content\AdminLTE\skins\skin-green.min.css" />
-    <Content Include="Content\AdminLTE\skins\skin-purple-light.css" />
-    <Content Include="Content\AdminLTE\skins\skin-purple-light.min.css" />
-    <Content Include="Content\AdminLTE\skins\skin-purple.css" />
-    <Content Include="Content\AdminLTE\skins\skin-purple.min.css" />
-    <Content Include="Content\AdminLTE\skins\skin-red-light.css" />
-    <Content Include="Content\AdminLTE\skins\skin-red-light.min.css" />
-    <Content Include="Content\AdminLTE\skins\skin-red.css" />
-    <Content Include="Content\AdminLTE\skins\skin-red.min.css" />
-    <Content Include="Content\AdminLTE\skins\skin-yellow-light.css" />
-    <Content Include="Content\AdminLTE\skins\skin-yellow-light.min.css" />
-    <Content Include="Content\AdminLTE\skins\skin-yellow.css" />
-    <Content Include="Content\AdminLTE\skins\skin-yellow.min.css" />
-    <Content Include="Content\AdminLTE\skins\_all-skins.css" />
-    <Content Include="Content\AdminLTE\skins\_all-skins.min.css" />
-    <Content Include="Content\animate.css" />
+    <Content Include="assets\demo\avatars\1.jpg" />
+    <Content Include="assets\demo\avatars\2.jpg" />
+    <Content Include="assets\demo\avatars\3.jpg" />
+    <Content Include="assets\demo\avatars\4.jpg" />
+    <Content Include="assets\demo\avatars\5.jpg" />
+    <Content Include="assets\demo\signin-bg-1.jpg" />
+    <Content Include="assets\demo\signin-bg-2.jpg" />
+    <Content Include="assets\demo\signin-bg-3.jpg" />
+    <Content Include="assets\demo\signin-bg-4.jpg" />
+    <Content Include="assets\demo\signin-bg-5.jpg" />
+    <Content Include="assets\demo\signin-bg-6.jpg" />
+    <Content Include="assets\demo\signin-bg-7.jpg" />
+    <Content Include="assets\demo\signin-bg-8.jpg" />
+    <Content Include="assets\demo\signin-bg-9.jpg" />
+    <Content Include="assets\demo\themes\adminflare.png" />
+    <Content Include="assets\demo\themes\asphalt.png" />
+    <Content Include="assets\demo\themes\default.png" />
+    <Content Include="assets\demo\themes\dust.png" />
+    <Content Include="assets\demo\themes\fresh.png" />
+    <Content Include="assets\demo\themes\frost.png" />
+    <Content Include="assets\demo\themes\purple-hills.png" />
+    <Content Include="assets\demo\themes\silver.png" />
+    <Content Include="assets\images\main-navbar-logo.png" />
+    <Content Include="assets\demo\logo-big.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\login.css" />
-    <Content Include="Content\themes.css" />
+    <Content Include="Content\PixelAdmin\bootstrap.min.css" />
+    <Content Include="Content\PixelAdmin\pages.min.css" />
+    <Content Include="Content\PixelAdmin\pixel-admin.min.css" />
+    <Content Include="Content\PixelAdmin\rtl.min.css" />
+    <Content Include="Content\PixelAdmin\themes.min.css" />
+    <Content Include="Content\PixelAdmin\widgets.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\font-awesome\css\font-awesome.css" />
+    <Content Include="fonts\font-awesome\css\font-awesome.min.css" />
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="img\avatar.png" />
     <Content Include="img\avatar04.png" />
     <Content Include="img\avatar2.png" />
@@ -2261,11 +2263,6 @@
     <Content Include="plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.js" />
-    <Content Include="Scripts\AdminLTE\app.js" />
-    <Content Include="Scripts\AdminLTE\app.min.js" />
-    <Content Include="Scripts\AdminLTE\demo.js" />
-    <Content Include="Scripts\AdminLTE\pages\dashboard.js" />
-    <Content Include="Scripts\AdminLTE\pages\dashboard2.js" />
     <Content Include="Scripts\angular-cookies.js" />
     <Content Include="Scripts\angular-cookies.min.js" />
     <Content Include="Scripts\angular-route.js" />
@@ -2326,8 +2323,6 @@
     <Content Include="plugins\font-awesome\scss\_rotated-flipped.scss" />
     <Content Include="plugins\font-awesome\scss\_stacked.scss" />
     <Content Include="plugins\font-awesome\scss\_variables.scss" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="plugins\ionicons\fonts\ionicons.eot" />
     <Content Include="plugins\ionicons\fonts\ionicons.ttf" />
     <Content Include="plugins\ionicons\fonts\ionicons.woff" />
@@ -2335,6 +2330,40 @@
     <Content Include="plugins\ionicons\scss\_ionicons-font.scss" />
     <Content Include="plugins\ionicons\scss\_ionicons-icons.scss" />
     <Content Include="plugins\ionicons\scss\_ionicons-variables.scss" />
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="fonts\font-awesome\less\animated.less" />
+    <Content Include="fonts\font-awesome\less\bordered-pulled.less" />
+    <Content Include="fonts\font-awesome\less\core.less" />
+    <Content Include="fonts\font-awesome\less\fixed-width.less" />
+    <Content Include="fonts\font-awesome\less\font-awesome.less" />
+    <Content Include="fonts\font-awesome\less\icons.less" />
+    <Content Include="fonts\font-awesome\less\larger.less" />
+    <Content Include="fonts\font-awesome\less\list.less" />
+    <Content Include="fonts\font-awesome\less\mixins.less" />
+    <Content Include="fonts\font-awesome\less\path.less" />
+    <Content Include="fonts\font-awesome\less\rotated-flipped.less" />
+    <Content Include="fonts\font-awesome\less\stacked.less" />
+    <Content Include="fonts\font-awesome\less\variables.less" />
+    <Content Include="fonts\font-awesome\scss\font-awesome.scss" />
+    <Content Include="fonts\font-awesome\scss\_animated.scss" />
+    <Content Include="fonts\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="fonts\font-awesome\scss\_core.scss" />
+    <Content Include="fonts\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="fonts\font-awesome\scss\_icons.scss" />
+    <Content Include="fonts\font-awesome\scss\_larger.scss" />
+    <Content Include="fonts\font-awesome\scss\_list.scss" />
+    <Content Include="fonts\font-awesome\scss\_mixins.scss" />
+    <Content Include="fonts\font-awesome\scss\_path.scss" />
+    <Content Include="fonts\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="fonts\font-awesome\scss\_stacked.scss" />
+    <Content Include="fonts\font-awesome\scss\_variables.scss" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler.css" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler.js" />
@@ -2522,10 +2551,16 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\PixelAdmin\bootstrap.min.js" />
+    <Content Include="Scripts\PixelAdmin\demo.js" />
+    <Content Include="Scripts\PixelAdmin\jquery.slimscroll.min.js" />
+    <Content Include="Scripts\PixelAdmin\pixel-admin.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -2561,16 +2596,13 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Scheduler\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
