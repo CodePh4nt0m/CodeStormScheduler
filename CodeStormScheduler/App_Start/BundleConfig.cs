@@ -14,7 +14,7 @@ namespace CodeStormScheduler
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/jquery.validate.min.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -31,7 +31,10 @@ namespace CodeStormScheduler
                       "~/Content/PixelAdmin/widgets.min.css",
                       "~/Content/PixelAdmin/pages.min.css",
                       "~/Content/PixelAdmin/rtl.min.css",
-                      "~/Content/PixelAdmin/themes.min.css"));
+                      "~/Content/PixelAdmin/themes.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Plugins").Include(
+                      "~/Content/animate.css"));
 
             bundles.Add(new StyleBundle("~/Content/Custom").Include(
                       "~/Content/Site.css"));

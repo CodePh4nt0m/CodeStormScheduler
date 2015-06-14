@@ -1,41 +1,267 @@
-﻿@model CodeStormScheduler.Models.RegisterViewModel
+﻿@using CodeStormScheduler.Models
+@model CodeStormScheduler.Models.RegisterViewModel
+
 @{
-    ViewBag.Title = "Register";
+    Layout = null;
 }
 
-<h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="ie8"> <![endif]-->
+<!--[if IE 9]>         <html class="ie9 gt-ie8"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="gt-ie8 gt-ie9 not-ie">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <base href="/">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-@section Scripts {
+    <!-- Open Sans font from Google CDN -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
+
+    <!-- Pixel Admin's stylesheets -->
+    @Styles.Render("~/Content/PixelAdmin")
+    @Styles.Render("~/Content/Custom")
+
+    <!--[if lt IE 9]>
+        <script src="assets/javascripts/ie.min.js"></script>
+    <![endif]-->
+    <!-- $DEMO =========================================================================================
+
+        Remove this section on production
+    -->
+    <style>
+        #signup-demo {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            z-index: 10000;
+            background: rgba(0,0,0,.6);
+            padding: 6px;
+            border-radius: 3px;
+        }
+
+            #signup-demo img {
+                cursor: pointer;
+                height: 40px;
+            }
+
+                #signup-demo img:hover {
+                    opacity: .5;
+                }
+
+            #signup-demo div {
+                color: #fff;
+                font-size: 10px;
+                font-weight: 600;
+                padding-bottom: 6px;
+            }
+
+        .has-feedback .form-control-feedback {
+            top: 10px;
+            line-height: initial;
+        }
+
+        .has-info .form-control-feedback {
+            color: #24A1DB;
+        }
+
+        .has-error input {
+            border-color: #d8687a;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        .has-error input:focus {
+                border-color: #d8687a !important;
+                -webkit-box-shadow: none !important;
+                box-shadow: none !important;
+            }
+
+        .has-error .jquery-validate-error {
+            color: #b94a48 !important;
+            font-size: 12px;
+            font-family: 'Open Sans';
+            display: inline;
+        }
+    </style>
+    <!-- / $DEMO -->
+
+</head>
+
+
+<!-- 1. $BODY ======================================================================================
+
+    Body
+
+    Classes:
+    * 'theme-{THEME NAME}'
+    * 'right-to-left'     - Sets text direction to right-to-left
+-->
+<body class="theme-default page-signup">
+
+    <script>
+        var init = [];
+    </script>
+    <!-- Demo script -->
+    <script src="~/Scripts/PixelAdmin/demo.js"></script>
+    <!-- Page background -->
+    <div id="page-signup-bg">
+        <!-- Background overlay -->
+        <div class="overlay"></div>
+        <!-- Replace this with your bg image -->
+        <img src="assets/demo/signin-bg-1.jpg" alt="">
+    </div>
+    <!-- / Page background -->
+    <!-- Container -->
+    <div class="signup-container">
+        <!-- Header -->
+        <div class="signup-header">
+            <a href="index.html" class="logo">
+                <img src="assets/demo/logo-big.png" alt="" style="margin-top: -5px;">&nbsp;
+                CodeStorm
+            </a> <!-- / .logo -->
+            <div class="slogan">
+                Simple. Flexible. Powerful.
+            </div> <!-- / .slogan -->
+        </div>
+        <!-- / Header -->
+        <!-- Form -->
+        <div class="signup-form">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form", id = "signup-form_id" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="signup-text">
+                    <span>Create an account</span>
+                </div>
+                <div class="form-group w-icon has-info has-feedback">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "E-mail" })
+                    @*<input type="text" name="signup_email" id="email_id" class="form-control input-lg" placeholder="E-mail">*@
+                    <span class="fa fa-envelope signup-form-icon"></span>
+                </div>
+
+                <div class="form-group w-icon has-info has-feedback">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                    @*<input type="password" name="signup_password" id="password_id" class="form-control input-lg" placeholder="Password">*@
+                    <span class="fa fa-lock signup-form-icon"></span>
+                </div>
+
+                <div class="form-group w-icon has-info has-feedback">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = " Confirm Password" })
+                    @*<input type="password" name="signup_retype_password" id="password_retype_id" class="form-control input-lg" placeholder=" Confirm Password">*@
+                    <span class="fa fa-lock signup-form-icon"></span>
+                </div>
+
+                <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="signup_confirm" class="px" id="signup_confirm">
+                        <span class="lbl">I agree with the <a href="#" target="_blank">Terms and Conditions</a></span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="signup-btn bg-primary" id="btnSignUp">SIGN UP</button>
+                </div>
+            }
+            <!-- / Form -->
+            <!-- "Sign In with" block -->
+            <div class="signup-with">
+                <!-- Facebook -->
+                @Html.Partial("_ExternalSignUpPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </div>
+            <!-- / "Sign In with" block -->
+        </div>
+        <!-- Right side -->
+    </div>
+
+    <div class="have-account">
+        Already have an account? <a href="/Account/Login">Sign In</a>
+    </div>
+
+
+    <!-- Get jQuery from Google CDN -->
+    <!--[if !IE]> -->
+    <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">' + "<" + "/script>"); </script>
+    <!-- <![endif]-->
+    <!--[if lte IE 9]>
+        <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">'+"<"+"/script>"); </script>
+    <![endif]-->
+    <!-- Pixel Admin's javascripts -->
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
-}
+    @Scripts.Render("~/bundles/pixeladmin")
+    @Scripts.Render("~/bundles/plugins")
+
+    <script type="text/javascript">
+        // Resize BG
+        init.push(function () {
+            var $ph = $('#page-signup-bg'),
+                $img = $ph.find('> img');
+
+            $(window).on('resize', function () {
+                $img.attr('style', '');
+                if ($img.height() < $ph.height()) {
+                    $img.css({
+                        height: '100%',
+                        width: 'auto'
+                    });
+                }
+            });
+        });
+
+        window.PixelAdmin.start(init);
+    </script>
+        <script>
+            //$('#signup_confirm').change(function () {
+            //    if($(this).prop('checked')){
+            //        $('#btnSignUp').removeAttr('disabled');
+            //    } else {
+            //        $('#btnSignUp').attr('disabled','disabled');
+            //    }
+            //});
+            $('#btnSignUp').click(function () {
+                var form = $("#signup-form_id");
+                if (!form.valid()) {
+                    return false;
+                }
+                return true;
+            });
+            $('#signup-form_id').validate({
+                rules: {
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    Password: {
+                        required: true,
+                        minlength: 5
+                    },
+                    ConfirmPassword: {
+                        equalTo: "#Password"
+                    },
+                    signup_confirm: "required"
+                },
+                messages: {
+                    Email: {
+                        required: "Email is required",
+                        email: "Invalid Email address"
+                    },
+                    Password: {
+                        required: "Password is required",
+                        minlength: "Require at least 5 characters"
+                    },
+                    ConfirmPassword: {
+                        equalTo: "Passwords does not match"
+                    },
+                    signup_confirm: ""
+                },
+                errorPlacement: function (error, element) {
+                    element.parent().append(error);
+                }
+            });
+        </script>
+</body>
+</html>

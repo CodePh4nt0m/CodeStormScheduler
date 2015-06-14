@@ -16,3 +16,49 @@
 #btn-fb-signin span {
     font-weight: 600;
 }
+
+.signin-info a > img {
+    width: 28px;
+}
+
+#main-navbar .navbar-brand div, #main-navbar .navbar-brand div img {
+    height: 23px !important;
+    width: 23px !important;
+}
+
+#main-navbar .navbar-brand div {
+    top: 7px !important;
+}
+
+@media (min-width: 480px) {
+    .page-signup .signup-container {
+        margin: 30px auto !important;
+    }
+    .page-signup .have-account {
+        margin: -35px 0 20px;
+    }
+}
+
+.page-signup .form-group.w-icon input[type=password], .page-signup .form-group.w-icon input[type=text] {
+    font-size: 13px !important;
+}
+
+.page-signup .form-group.w-icon .signup-form-icon {
+    line-height: initial;
+    font-size: 13px !important;
+    bottom: inherit !important;
+}
+
+.page-signin .form-group.w-icon .signin-form-icon {
+    bottom: inherit !important;
+}
+
+.login-alert {
+    padding: 5px 5px !important;
+    margin-bottom: 5px !important;
+    margin-top: 8px !important;
+}
+
+.page-404 .header .demo-logo, .page-500 .header .demo-logo {
+    background: none !important;
+}

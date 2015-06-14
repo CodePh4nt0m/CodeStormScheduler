@@ -1,0 +1,10 @@
+﻿@model CodeStormScheduler.Models.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+
+
+@using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    <button type="submit" id="btn-fb-signin" class="btn btn-default btn-block" id="Facebook" name="provider" value="Facebook">Sign Up with <span>Facebook</span></button>
+}
+
