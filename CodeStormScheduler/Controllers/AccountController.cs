@@ -25,7 +25,7 @@ namespace CodeStormScheduler.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -37,9 +37,9 @@ namespace CodeStormScheduler.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -76,15 +76,7 @@ namespace CodeStormScheduler.Controllers
                 return View(model);
             }
 
-            var user = await UserManager.FindByNameAsync(model.Email);
-            if (user != null)
-            {
-                if (!await UserManager.IsEmailConfirmedAsync(user.Id))
-                {
-                    ViewBag.Message = "You must have a confirmed email to log on.";
-                    return View("EmailConfirmInfo");
-                }
-            }
+
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -92,6 +84,15 @@ namespace CodeStormScheduler.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    var user = await UserManager.FindByNameAsync(model.Email);
+                    if (user != null)
+                    {
+                        if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+                        {
+                            ViewBag.Message = "You must have a confirmed email to log on.";
+                            return View("EmailConfirmInfo");
+                        }
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -134,7 +135,7 @@ namespace CodeStormScheduler.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -169,25 +170,38 @@ namespace CodeStormScheduler.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+
+                    //Create custom user profile
+                    UserProfile userProfile = new UserProfile() { FirstName = model.FirstName, LastName = model.LastName, Id = user.Id };
+                    CreateUserProfile(userProfile);
+
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code },
+                        protocol: Request.Url.Scheme);
                     //await UserManager.SendEmailAsync(user.Id, "Confirm your account", callbackUrl);
                     //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     //return RedirectToAction("Index", "Home");
                     string mail = MailBuilder.GenerateEmailConfirmation(callbackUrl);
                     CSEmailService mailService = new CSEmailService();
 
-                    mailService.SendGridEmail(mail,model.Email,"[Code Storm] Email Confirmation");
+                    mailService.SendGridEmail(mail, model.Email, "[Code Storm] Email Confirmation");
                     ViewBag.Message = "Check your email and confirm your account, you must be confirmed "
-                         + "before you can log in.";
+                                      + "before you can log in.";
 
                     return View("EmailConfirmInfo");
                 }
-                
+                else
+                {
+                    foreach (var s in result.Errors)
+                    {
+                        if (s.StartsWith("Email"))
+                            ViewBag.ErrorMessage = "Email";
+                    }
+                }
                 AddErrors(result);
             }
 
@@ -424,6 +438,16 @@ namespace CodeStormScheduler.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
+        }
+
+        [Authorize]
+        public void CreateUserProfile(UserProfile userProfile)
+        {
+            using (CodeStormDbContext db = new CodeStormDbContext())
+            {
+                db.UserProfiles.Add(userProfile);
+                db.SaveChanges();
+            }
         }
 
         protected override void Dispose(bool disposing)

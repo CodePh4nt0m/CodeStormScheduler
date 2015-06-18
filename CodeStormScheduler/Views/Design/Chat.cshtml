@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "Chat";
+}
+
+@section styles{
+    <style>
+        .ibox {
+            clear: both;
+            margin-bottom: 25px;
+            margin-top: 0;
+            padding: 0;
+        }
+
+        .ibox-content {
+            clear: both;
+        }
+
+        .ibox-content {
+            background-color: #ffffff;
+            color: inherit;
+            padding: 15px 20px 20px 20px;
+            border-color: #e7eaec;
+            border-image: none;
+            border-style: solid solid none;
+            border-width: 1px 0px;
+        }
+
+        .chat-element:first-child {
+            margin-top: 0;
+        }
+
+        .chat-activity-list .chat-element {
+            border-bottom: 1px solid #e7eaec;
+        }
+
+        .chat-element, .media-body {
+            overflow: hidden;
+        }
+
+        .chat-element {
+            padding-bottom: 15px;
+        }
+
+            .chat-element, .chat-element .media {
+                margin-top: 15px;
+            }
+
+        .right.chat-element > .pull-right {
+            margin-left: 10px;
+        }
+
+        .chat-element img.img-circle, .dropdown-messages-box img.img-circle {
+            width: 38px;
+            height: 38px;
+        }
+
+        .img-circle {
+            border-radius: 50%;
+        }
+
+        .feed-element, .media-body {
+            overflow: hidden;
+        }
+
+        .sidebard-panel .feed-element, .media-body, .sidebard-panel p {
+            font-size: 12px;
+        }
+
+        .media-body {
+            display: block;
+            width: auto;
+        }
+
+        .m-b-xs {
+            margin-bottom: 5px;
+        }
+
+        .text-muted {
+            color: #888888;
+        }
+
+        .text-navy {
+            color: #1ab394;
+        }
+    </style>
+}
+
+<div class="col-lg-6">
+    <div class="ibox float-e-margins">
+
+        <div class="ibox-content">
+
+            <div>
+                <div class="chat-activity-list">
+
+                    <div class="chat-element">
+                        <a href="#" class="pull-left">
+                            <img alt="image" class="img-circle" src="assets/demo/avatars/a2.jpg">
+                        </a>
+                        <div class="media-body ">
+                            <small class="pull-right text-navy">1m ago</small>
+                            <strong>Mike Smith</strong>
+                            <p class="m-b-xs">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                            </p>
+                            <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
+                        </div>
+                    </div>
+
+                    <div class="chat-element right">
+                        <a href="#" class="pull-right">
+                            <img alt="image" class="img-circle" src="assets/demo/avatars/a4.jpg">
+                        </a>
+                        <div class="media-body text-right ">
+                            <small class="pull-left">5m ago</small>
+                            <strong>John Smith</strong>
+                            <p class="m-b-xs">
+                                Lorem Ipsum is simply dummy text of the printing.
+                            </p>
+                            <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
+                        </div>
+                    </div>
+
+                    <div class="chat-element ">
+                        <a href="#" class="pull-left">
+                            <img alt="image" class="img-circle" src="assets/demo/avatars/a2.jpg">
+                        </a>
+                        <div class="media-body ">
+                            <small class="pull-right">2h ago</small>
+                            <strong>Mike Smith</strong>
+                            <p class="m-b-xs">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                            </p>
+                            <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-form">
+                <form role="form">
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Message"></textarea>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-sm btn-primary m-t-n-xs"><strong>Send message</strong></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

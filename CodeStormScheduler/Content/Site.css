@@ -62,3 +62,8 @@
 .page-404 .header .demo-logo, .page-500 .header .demo-logo {
     background: none !important;
 }
+
+.alert-sm {
+    padding: 8px 10px !important;
+    font-size: 12px !important;
+}

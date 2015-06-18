@@ -9,6 +9,8 @@ namespace CodeStormScheduler.Services
 {
     public class MailBuilder
     {
+
+        //Generate email confirmation mail body
         public static string GenerateEmailConfirmation(string confirmlnk)
         {
             string html = "";

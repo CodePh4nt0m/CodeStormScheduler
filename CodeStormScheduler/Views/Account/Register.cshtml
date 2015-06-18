@@ -25,7 +25,7 @@
     <!-- Pixel Admin's stylesheets -->
     @Styles.Render("~/Content/PixelAdmin")
     @Styles.Render("~/Content/Custom")
-
+    <link href="~/Content/Register.css" rel="stylesheet" />
     <!--[if lt IE 9]>
         <script src="assets/javascripts/ie.min.js"></script>
     <![endif]-->
@@ -75,7 +75,7 @@
             box-shadow: none;
         }
 
-        .has-error input:focus {
+            .has-error input:focus {
                 border-color: #d8687a !important;
                 -webkit-box-shadow: none !important;
                 box-shadow: none !important;
@@ -115,6 +115,12 @@
         <!-- Replace this with your bg image -->
         <img src="assets/demo/signin-bg-1.jpg" alt="">
     </div>
+    <div class="news-caption hidden-xs hidden-sm">
+        <h4 class="caption-title">CodeStorm Scheduler</h4>
+        <p>
+            As a Color Admin Apps administrator, you use the Color Admin console to manage your organization’s account, such as add new users, manage security settings, and turn on the services you want your team to access.
+        </p>
+    </div>
     <!-- / Page background -->
     <!-- Container -->
     <div class="signup-container">
@@ -137,8 +143,29 @@
                 <div class="signup-text">
                     <span>Create an account</span>
                 </div>
+                <div id="email-error" style="display: none">
+                    <div class="alert alert-danger alert-sm">
+                        Email address already exists.!<br />
+                        <span class="text-warning">Do you alreay have a account ? </span> <a href="/Account/Login"><strong>Sign In Here</strong></a>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-xs-12 col-md-6 signup-fname">
+                        <div class="form-group w-icon has-info has-feedback">
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control cs_userfname", placeholder = "First Name" })
+                            @*<input type="text" name="signup_email" id="email_id" class="form-control input-lg" placeholder="E-mail">*@
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 signup-lname">
+                        <div class="form-group w-icon has-info has-feedback">
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control cs_userlname", placeholder = "Last Name" })
+                            @*<input type="text" name="signup_email" id="email_id" class="form-control input-lg" placeholder="E-mail">*@
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group w-icon has-info has-feedback">
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "E-mail" })
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control cs_useremail", placeholder = "E-mail" })
                     @*<input type="text" name="signup_email" id="email_id" class="form-control input-lg" placeholder="E-mail">*@
                     <span class="fa fa-envelope signup-form-icon"></span>
                 </div>
@@ -175,11 +202,14 @@
             <!-- / "Sign In with" block -->
         </div>
         <!-- Right side -->
+        <div class="existing-member">
+            Already a member? Click <a href="/Account/Login">here</a> to login.
+        </div>
     </div>
 
-    <div class="have-account">
-        Already have an account? <a href="/Account/Login">Sign In</a>
-    </div>
+    @*<div class="have-account">
+            Already have an account? <a href="/Account/Login">Sign In</a>
+        </div>*@
 
 
     <!-- Get jQuery from Google CDN -->
@@ -214,54 +244,88 @@
 
         window.PixelAdmin.start(init);
     </script>
-        <script>
-            //$('#signup_confirm').change(function () {
-            //    if($(this).prop('checked')){
-            //        $('#btnSignUp').removeAttr('disabled');
-            //    } else {
-            //        $('#btnSignUp').attr('disabled','disabled');
+    <script>
+        $('#signup-form_id').validate({
+            onsubmit: false,
+            rules: {
+                FirstName: {
+                    required: true
+                },
+                LastName: {
+                    required: true
+                },
+                Email: {
+                    required: true,
+                    email: true
+                },
+                Password: {
+                    required: true,
+                    minlength: 5
+                },
+                ConfirmPassword: {
+                    equalTo: "#Password"
+                },
+                signup_confirm: "required"
+            },
+            messages: {
+                FirstName: {
+                    required: "First Name is required"
+                },
+                LastName: {
+                    required: "Last Name is required"
+                },
+                Email: {
+                    required: "Email is required",
+                    email: "Invalid Email address"
+                },
+                Password: {
+                    required: "Password is required",
+                    minlength: "Require at least 5 characters"
+                },
+                ConfirmPassword: {
+                    equalTo: "Passwords does not match"
+                },
+                signup_confirm: ""
+            },
+            errorPlacement: function (error, element) {
+                element.parent().append(error);
+            }
+        });
+
+        $('#btnSignUp').click(function () {
+            var form = $("#signup-form_id");
+            if (!form.valid()) {
+                return false;
+            }
+            return true;
+        });
+
+        $('#Email').on('input', function (e) {
+            //$('#Email').validate({
+            //    rules: {
+            //        Email: {
+            //            email: true
+            //        }
             //    }
             //});
-            $('#btnSignUp').click(function () {
-                var form = $("#signup-form_id");
-                if (!form.valid()) {
-                    return false;
-                }
-                return true;
-            });
-            $('#signup-form_id').validate({
-                rules: {
-                    Email: {
-                        required: true,
-                        email: true
-                    },
-                    Password: {
-                        required: true,
-                        minlength: 5
-                    },
-                    ConfirmPassword: {
-                        equalTo: "#Password"
-                    },
-                    signup_confirm: "required"
-                },
-                messages: {
-                    Email: {
-                        required: "Email is required",
-                        email: "Invalid Email address"
-                    },
-                    Password: {
-                        required: "Password is required",
-                        minlength: "Require at least 5 characters"
-                    },
-                    ConfirmPassword: {
-                        equalTo: "Passwords does not match"
-                    },
-                    signup_confirm: ""
-                },
-                errorPlacement: function (error, element) {
-                    element.parent().append(error);
-                }
-            });
-        </script>
+            //var email = $("#Email");
+            //if (email.valid()) {
+            //    alert('valid');
+            //}
+            //if ($("#signup-form_id").validate().element($("#Email"))) {
+
+            //    if ($("#Email").valid()) {
+            //        alert('valid');
+            //    }
+            //}
+        });
+        $(document).ready(function () {
+            var msg = '@ViewBag.ErrorMessage';
+            if (msg == "Email") {
+                $('#email-error').show();
+                $('#email-error').addClass('animated fadeIn');
+            }
+        });
+    </script>
 </body>
 </html>

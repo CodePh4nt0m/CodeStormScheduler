@@ -10,6 +10,8 @@ namespace CodeStormScheduler.Controllers
     {
         public ActionResult Index()
         {
+            if (!User.Identity.IsAuthenticated)
+                return View("Landing");
             return View();
         }
 

@@ -17,6 +17,8 @@ namespace CodeStormScheduler.Services
             
         }
 
+
+        // Sends email using smtp
         public void SendEmail(string body,string receiver,string subject)
         {
             var fromAddress = new MailAddress("ucdcodestorm@gmail.com", "CodeStorm");
@@ -43,6 +45,8 @@ namespace CodeStormScheduler.Services
             
         }
 
+
+        //Sends email using SendGrid
         public void SendGridEmail(string body, string receiver, string subject)
         {
             var mail = new SendGridMessage();

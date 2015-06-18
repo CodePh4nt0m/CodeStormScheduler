@@ -173,8 +173,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomErrorController.cs" />
+    <Compile Include="Controllers\DesignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SchedulerController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
@@ -184,10 +186,15 @@
     <Compile Include="Migrations\201506042137005_initial.Designer.cs">
       <DependentUpon>201506042137005_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506171656017_User Profile.cs" />
+    <Compile Include="Migrations\201506171656017_User Profile.Designer.cs">
+      <DependentUpon>201506171656017_User Profile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CSEmailService.cs" />
     <Compile Include="Services\MailBuilder.cs" />
@@ -195,11 +202,29 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\App.js" />
+    <Content Include="App\codestorm\calendar\controllers\calendarController.js" />
+    <Content Include="App\codestorm\calendar\model\calendar-meta.js" />
+    <Content Include="App\codestorm\calendar\views\calendar.html" />
+    <Content Include="App\codestorm\events\controllers\eventsController.js" />
+    <Content Include="App\codestorm\events\model\events-meta.js" />
+    <Content Include="App\codestorm\events\views\events.html" />
+    <Content Include="App\codestorm\recommendations\controllers\recommendationsController.js" />
+    <Content Include="App\codestorm\recommendations\model\recommendations-meta.js" />
+    <Content Include="App\codestorm\recommendations\views\recommendations.html" />
+    <Content Include="App\codestorm\settings\controllers\settingsController.js" />
+    <Content Include="App\codestorm\settings\model\settings-meta.js" />
+    <Content Include="App\codestorm\settings\views\settings.html" />
+    <Content Include="App\codestorm\user-profile\controllers\profileController.js" />
+    <Content Include="App\codestorm\user-profile\model\profile-meta.js" />
+    <Content Include="App\codestorm\user-profile\views\profile.html" />
+    <Content Include="App\index.html" />
     <Content Include="assets\demo\avatars\1.jpg" />
     <Content Include="assets\demo\avatars\2.jpg" />
     <Content Include="assets\demo\avatars\3.jpg" />
     <Content Include="assets\demo\avatars\4.jpg" />
     <Content Include="assets\demo\avatars\5.jpg" />
+    <Content Include="assets\demo\avatars\a2.jpg" />
+    <Content Include="assets\demo\avatars\a4.jpg" />
     <Content Include="assets\demo\logo-big.png" />
     <Content Include="assets\demo\signin-bg-1.jpg" />
     <Content Include="assets\demo\signin-bg-2.jpg" />
@@ -219,6 +244,19 @@
     <Content Include="assets\demo\themes\main-navbar-logo8.png" />
     <Content Include="assets\demo\themes\purple-hills.png" />
     <Content Include="assets\demo\themes\silver.png" />
+    <Content Include="assets\images\bg-8.jpg" />
+    <Content Include="assets\images\Landing\avatar1.jpg" />
+    <Content Include="assets\images\Landing\avatar2.jpg" />
+    <Content Include="assets\images\Landing\avatar3.jpg" />
+    <Content Include="assets\images\Landing\dashboard.png" />
+    <Content Include="assets\images\Landing\header-profile-skin-1.png" />
+    <Content Include="assets\images\Landing\header-profile-skin-3.png" />
+    <Content Include="assets\images\Landing\header_one.jpg" />
+    <Content Include="assets\images\Landing\header_two.jpg" />
+    <Content Include="assets\images\Landing\iphone.jpg" />
+    <Content Include="assets\images\Landing\laptop.png" />
+    <Content Include="assets\images\Landing\perspective.png" />
+    <Content Include="assets\images\Landing\word_map.png" />
     <Content Include="assets\images\main-navbar-logo.png" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\animate.min.css" />
@@ -230,7 +268,13 @@
     <Content Include="Content\PixelAdmin\rtl.min.css" />
     <Content Include="Content\PixelAdmin\themes.css" />
     <Content Include="Content\PixelAdmin\widgets.min.css" />
+    <Content Include="Content\Register.css" />
+    <Content Include="Content\scheduler.css" />
+    <Content Include="Content\SignUp\default.css" />
+    <Content Include="Content\SignUp\style-responsive.min.css" />
+    <Content Include="Content\SignUp\style.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Landing\style.css" />
     <Content Include="favicon-32x32.png" />
     <Content Include="fonts\font-awesome\css\font-awesome.css" />
     <Content Include="fonts\font-awesome\css\font-awesome.min.css" />
@@ -276,6 +320,8 @@
     <Content Include="plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.css" />
     <Content Include="plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.js" />
     <Content Include="plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.min.css" />
+    <Content Include="plugins\bootstrap\bootstrap.min.css" />
+    <Content Include="plugins\bootstrap\bootstrap.min.js" />
     <Content Include="plugins\chartjs\Chart.js" />
     <Content Include="plugins\chartjs\Chart.min.js" />
     <Content Include="plugins\ckeditor\adapters\jquery.js" />
@@ -796,6 +842,75 @@
     <Content Include="plugins\fullcalendar\fullcalendar.min.css" />
     <Content Include="plugins\fullcalendar\fullcalendar.min.js" />
     <Content Include="plugins\fullcalendar\fullcalendar.print.css" />
+    <Content Include="plugins\fullcalendar\gcal.js" />
+    <Content Include="plugins\fullcalendar\lang-all.js" />
+    <Content Include="plugins\fullcalendar\lang\ar-ma.js" />
+    <Content Include="plugins\fullcalendar\lang\ar-sa.js" />
+    <Content Include="plugins\fullcalendar\lang\ar-tn.js" />
+    <Content Include="plugins\fullcalendar\lang\ar.js" />
+    <Content Include="plugins\fullcalendar\lang\bg.js" />
+    <Content Include="plugins\fullcalendar\lang\ca.js" />
+    <Content Include="plugins\fullcalendar\lang\cs.js" />
+    <Content Include="plugins\fullcalendar\lang\da.js" />
+    <Content Include="plugins\fullcalendar\lang\de-at.js" />
+    <Content Include="plugins\fullcalendar\lang\de.js" />
+    <Content Include="plugins\fullcalendar\lang\el.js" />
+    <Content Include="plugins\fullcalendar\lang\en-au.js" />
+    <Content Include="plugins\fullcalendar\lang\en-ca.js" />
+    <Content Include="plugins\fullcalendar\lang\en-gb.js" />
+    <Content Include="plugins\fullcalendar\lang\es.js" />
+    <Content Include="plugins\fullcalendar\lang\fa.js" />
+    <Content Include="plugins\fullcalendar\lang\fi.js" />
+    <Content Include="plugins\fullcalendar\lang\fr-ca.js" />
+    <Content Include="plugins\fullcalendar\lang\fr.js" />
+    <Content Include="plugins\fullcalendar\lang\he.js" />
+    <Content Include="plugins\fullcalendar\lang\hi.js" />
+    <Content Include="plugins\fullcalendar\lang\hr.js" />
+    <Content Include="plugins\fullcalendar\lang\hu.js" />
+    <Content Include="plugins\fullcalendar\lang\id.js" />
+    <Content Include="plugins\fullcalendar\lang\is.js" />
+    <Content Include="plugins\fullcalendar\lang\it.js" />
+    <Content Include="plugins\fullcalendar\lang\ja.js" />
+    <Content Include="plugins\fullcalendar\lang\ko.js" />
+    <Content Include="plugins\fullcalendar\lang\lt.js" />
+    <Content Include="plugins\fullcalendar\lang\lv.js" />
+    <Content Include="plugins\fullcalendar\lang\nb.js" />
+    <Content Include="plugins\fullcalendar\lang\nl.js" />
+    <Content Include="plugins\fullcalendar\lang\pl.js" />
+    <Content Include="plugins\fullcalendar\lang\pt-br.js" />
+    <Content Include="plugins\fullcalendar\lang\pt.js" />
+    <Content Include="plugins\fullcalendar\lang\ro.js" />
+    <Content Include="plugins\fullcalendar\lang\ru.js" />
+    <Content Include="plugins\fullcalendar\lang\sk.js" />
+    <Content Include="plugins\fullcalendar\lang\sl.js" />
+    <Content Include="plugins\fullcalendar\lang\sr-cyrl.js" />
+    <Content Include="plugins\fullcalendar\lang\sr.js" />
+    <Content Include="plugins\fullcalendar\lang\sv.js" />
+    <Content Include="plugins\fullcalendar\lang\th.js" />
+    <Content Include="plugins\fullcalendar\lang\tr.js" />
+    <Content Include="plugins\fullcalendar\lang\uk.js" />
+    <Content Include="plugins\fullcalendar\lang\vi.js" />
+    <Content Include="plugins\fullcalendar\lang\zh-cn.js" />
+    <Content Include="plugins\fullcalendar\lang\zh-tw.js" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\images\animated-overlay.gif" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\images\ui-bg_flat_15_cd0a0a_40x100.png" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\images\ui-bg_glass_50_3baae3_1x400.png" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\images\ui-icons_2694e8_256x240.png" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\images\ui-icons_72a7cf_256x240.png" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="plugins\fullcalendar\lib\cupertino\jquery-ui.min.css" />
+    <Content Include="plugins\fullcalendar\lib\jquery-ui.custom.min.js" />
+    <Content Include="plugins\fullcalendar\lib\jquery.min.js" />
+    <Content Include="plugins\fullcalendar\lib\moment.min.js" />
     <Content Include="plugins\iCheck\all.css" />
     <Content Include="plugins\iCheck\flat\aero%402x.png" />
     <Content Include="plugins\iCheck\flat\aero.css" />
@@ -2261,8 +2376,9 @@
     <Content Include="plugins\ionslider\ion.rangeSlider.min.js" />
     <Content Include="plugins\ionslider\ion.rangeSlider.skinFlat.css" />
     <Content Include="plugins\ionslider\ion.rangeSlider.skinNice.css" />
-    <Content Include="plugins\jQueryUI\jquery-ui-1.10.3.js" />
-    <Content Include="plugins\jQueryUI\jquery-ui-1.10.3.min.js" />
+    <Content Include="plugins\jquery-ui\jquery-ui-1.10.3.js" />
+    <Content Include="plugins\jquery-ui\jquery-ui-1.10.3.min.js" />
+    <Content Include="plugins\jquery-ui\jquery-ui.min.css" />
     <Content Include="plugins\jQuery\jQuery-2.1.4.min.js" />
     <Content Include="plugins\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="plugins\jvectormap\jquery-jvectormap-1.2.2.min.js" />
@@ -2381,7 +2497,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Content\scheduler.min.css" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler.css" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler.js" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_classic.css" />
@@ -2560,13 +2676,20 @@
     <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_ro.html" />
     <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_ru.html" />
     <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_sk.html" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Landing\inspinia.js" />
+    <Content Include="Scripts\Landing\jquery.metisMenu.js" />
+    <Content Include="Scripts\Landing\jquery.slimscroll.min.js" />
+    <Content Include="Scripts\Landing\pace.min.js" />
+    <Content Include="Scripts\Landing\wow.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\PixelAdmin\bootstrap.min.js" />
     <Content Include="Scripts\PixelAdmin\demo.js" />
@@ -2574,6 +2697,12 @@
     <Content Include="Scripts\PixelAdmin\pixel-admin.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\scheduler.js" />
+    <Content Include="Scripts\SignUp\apps.min.js" />
+    <Content Include="Scripts\SignUp\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\SignUp\jquery-migrate-1.1.0.min.js" />
+    <Content Include="Scripts\SignUp\jquery-ui.min.js" />
+    <Content Include="Scripts\SignUp\jquery.cookie.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Templates\emailconfirm.html" />
     <Content Include="Web.config">
@@ -2592,7 +2721,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -2618,13 +2746,22 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\CustomError\NotFound.cshtml" />
     <Content Include="Views\CustomError\Error.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Register_bk2.cshtml" />
     <Content Include="Views\Account\_ExternalSignUpPartial.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Account\EmailConfirmInfo.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Design\Chat.cshtml" />
+    <Content Include="Views\Design\FullCalender.cshtml" />
+    <Content Include="Views\Home\Landing.cshtml" />
+    <Content Include="Views\Design\SignUp.cshtml" />
+    <Content Include="Views\Design\SignUp2.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Design\Landing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\FullCalender\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -2633,6 +2770,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201506042137005_initial.resx">
       <DependentUpon>201506042137005_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506171656017_User Profile.resx">
+      <DependentUpon>201506171656017_User Profile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

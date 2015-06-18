@@ -4,23 +4,14 @@
 }
 
 @section styles{
-    @*<link href="~/Scripts/dhtmlxScheduler/dhtmlxscheduler.css" rel="stylesheet" />*@
-    <link href="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_flat.css" rel="stylesheet" />
+    <link href="~/Scripts/dhtmlxScheduler/dhtmlxscheduler.css" rel="stylesheet" />
+    @*<link href="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_flat.css" rel="stylesheet" />*@
+    <link href="~/Content/scheduler.css" rel="stylesheet" />
 }
 
-<section class="content-header">
-    <h1>
-        <small>Scheduler</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li class="active"><i class="fa fa-home"></i> Home</li>
-    </ol>
-</section>
 <!-- Main content -->
 <section class="content">
-    <div class="row">
-        <div class="col-xs-12">
-            <div id="scheduler_here" class="dhx_cal_container" style='width:100%; height: 500px'>
+            <div id="scheduler_here" class="dhx_cal_container" style='width:98%; height: 500px'>
                 <div class="dhx_cal_navline">
                     <div class="dhx_cal_prev_button">&nbsp;</div>
                     <div class="dhx_cal_next_button">&nbsp;</div>
@@ -33,22 +24,34 @@
                 <div class="dhx_cal_header"></div>
                 <div class="dhx_cal_data"></div>
             </div>
-        </div>
-    </div>
 </section>
-
+<div>
+    <input type="button" value="Events" id="btnGetEvents"/>
+</div>
 
 @section scripts{
-    
+
     <script>
         $(document).ready(function() {
             scheduler.init('scheduler_here', new Date(), "month");
             var events = [
-                        { id: 1, text: "Meeting", start_date: "04/11/2015 14:00", end_date: "04/11/2015 17:00" },
-                        { id: 2, text: "Conference", start_date: "04/15/2015 12:00", end_date: "04/18/2015 19:00" },
-                        { id: 3, text: "Interview", start_date: "04/24/2015 09:00", end_date: "04/24/2015 10:00" }
-                         ];
+                { id: 1, text: "Meeting", start_date: "06/11/2015 14:00", end_date: "06/11/2015 17:00" },
+                { id: 2, text: "Conference", start_date: "06/15/2015 12:00", end_date: "06/18/2015 19:00" },
+                { id: 3, text: "Interview", start_date: "06/24/2015 09:00", end_date: "06/24/2015 10:00" }
+            ];
             scheduler.parse(events, "json");
+            $('#btnGetEvents').click(function () {
+                var evs = scheduler.getEvents();
+                alert(JSON.stringify(evs));
+            });
+            scheduler.attachEvent("onBeforeEventChanged", function (ev, e, is_new, original) {
+                //any custom logic here
+                alert(JSON.stringify(original));
+                return true;
+            });
         });
+    </script>
+    <script>
+        
     </script>
 }

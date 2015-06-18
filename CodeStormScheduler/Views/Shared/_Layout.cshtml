@@ -37,6 +37,8 @@ Use search to find needed section.
     @Styles.Render("~/Content/PixelAdmin")
     @Styles.Render("~/Content/Plugins")
     @Styles.Render("~/Content/Custom")
+    @RenderSection("headscripts", required: false)
+    @RenderSection("styles", required: false)
     <!--[if lt IE 9]>
         <script src="assets/javascripts/ie.min.js"></script>
     <![endif]-->
@@ -379,6 +381,9 @@ Use search to find needed section.
                     <li>
                         <a href="index.html"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span></a>
                     </li>
+                    <li>
+                        <a href="/scheduler"><i class="menu-icon fa fa-calendar"></i><span class="mm-text">Calender</span></a>
+                    </li>
                     <li class="mm-dropdown">
                         <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Layouts</span><span class="label label-warning">Updated</span></a>
                         <ul>
@@ -390,9 +395,7 @@ Use search to find needed section.
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="stat-panels.html"><i class="menu-icon fa fa-tasks"></i><span class="mm-text">Stat panels</span></a>
-                    </li>
+                    
                     <li>
                         <a href="widgets.html"><i class="menu-icon fa fa-flask"></i><span class="mm-text">Widgets</span></a>
                     </li>
@@ -584,6 +587,7 @@ Use search to find needed section.
                 // Javascript code here
             });
             window.PixelAdmin.start(init);
+            
         </script>
         <script>
             $('#lnk_logoff').click(function (event) {

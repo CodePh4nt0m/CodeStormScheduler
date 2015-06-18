@@ -29,5 +29,8 @@ namespace CodeStormScheduler.Models
         {
             return new CodeStormDbContext();
         }
+
+        public DbSet<UserProfile> UserProfiles { get; set; }
+
     }
 }
