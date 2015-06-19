@@ -1,40 +1,55 @@
 <!-- index.html -->
-    <!DOCTYPE html>
-    <html ng-app="app">
-    <head>
-      <!-- SCROLLS -->
-      <!-- load bootstrap and fontawesome via CDN -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+<!DOCTYPE html>
+<html ng-app="app">
 
-      <!-- SPELLS -->
-      <!-- load angular and angular route via CDN -->
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.16/angular-route.js"></script>
-		
+<head>
+    <!-- SCROLLS -->
+    <!-- load bootstrap and fontawesome via CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
 
-      <script src="app.js"></script>		
-	  <!-- Modularized Scripts -->
-	  <script src="codestorm/calendar/model/calendar-meta.js"></script>
-	  <script src="codestorm/events/model/events-meta.js"></script>
-	  <script src="codestorm/settings/model/settings-meta.js"></script>
-	  <script src="codestorm/recommendations/model/recommendations-meta.js"></script>
-	  <script src="codestorm/user-profile/model/profile-meta.js"></script>
-	  
-	  <script src="codestorm/calendar/controllers/calendarController.js"></script>
-	  <script src="codestorm/events/controllers/eventsController.js"></script>
-	  <script src="codestorm/settings/controllers/settingsController.js"></script>
-	  <script src="codestorm/recommendations/controllers/recommendationsController.js"></script>
-	  <script src="codestorm/user-profile/controllers/profileController.js"></script>
-	  <!-- endregion -->
-			
-      
-    </head>
-    <body ng-controller="calendarController">
+    <!-- jQuery and Calendar specific libs -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/css/smoothness/jquery-ui-1.10.0.custom.min.css" rel="stylesheet" data-semver="1.10.0" data-require="jqueryui@1.10.0" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.1/fullcalendar.min.css" rel="stylesheet" data-semver="1.6.1" data-require="fullcalendar@1.6.1" />
+    <script src="//code.jquery.com/jquery-2.0.3.min.js" data-require="jquery" data-semver="2.0.3"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.1/fullcalendar.min.js" data-semver="1.6.1" data-require="fullcalendar@1.6.1"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/jquery-ui.js" data-semver="1.10.0" data-require="jqueryui@1.10.0"></script>
 
-        <!-- HEADER AND NAVBAR -->
-        <header>
-            <nav class="navbar navbar-default">
+    <!-- end region -->
+
+    <!-- SPELLS -->
+    <!-- load angular and angular route via CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.16/angular-route.js"></script>
+
+
+    <!-- External directives -->
+    <script src="codestorm/calendar/directives/calendar-directive.js"></script>
+    <!-- end region -->
+    
+    <script src="app.js"></script>
+    <!-- Modularized Scripts -->
+    <script src="codestorm/calendar/model/calendar-meta.js"></script>
+    <script src="codestorm/events/model/events-meta.js"></script>
+    <script src="codestorm/settings/model/settings-meta.js"></script>
+    <script src="codestorm/recommendations/model/recommendations-meta.js"></script>
+    <script src="codestorm/user-profile/model/profile-meta.js"></script>
+
+    <script src="codestorm/calendar/controllers/calendarController.js"></script>
+    <script src="codestorm/events/controllers/eventsController.js"></script>
+    <script src="codestorm/settings/controllers/settingsController.js"></script>
+    <script src="codestorm/recommendations/controllers/recommendationsController.js"></script>
+    <script src="codestorm/user-profile/controllers/profileController.js"></script>
+    <!-- endregion -->
+
+
+</head>
+
+<body ng-controller="calendarController">
+
+    <!-- HEADER AND NAVBAR -->
+    <header>
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/">Code Storm Angular Skeletal Code</a>
@@ -44,21 +59,22 @@
                     <li><a href="#/"><i class="fa fa-calendar"></i> Calendar</a></li>
                     <li><a href="#settings"><i class="fa fa-shield"></i> Settings</a></li>
                     <li><a href="#events"><i class="fa fa-comment"></i> Events</a></li>
-					<li><a href="#recommendations"><i class="fa fa-tag"></i> Recommendations</a></li>
+                    <li><a href="#recommendations"><i class="fa fa-tag"></i> Recommendations</a></li>
                     <li><a href="#profile"><i class="fa fa-user"></i> Profile</a></li>
                 </ul>
             </div>
-            </nav>
-        </header>
+        </nav>
+    </header>
 
-        <!-- MAIN CONTENT AND INJECTED VIEWS -->
-        <div id="main">
+    <!-- MAIN CONTENT AND INJECTED VIEWS -->
+    <div id="main">
 
-			<!-- angular templating -->
-            <!-- this is where content will be injected -->
-			<div ng-view></div>
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+        <div ng-view></div>
 
-        </div>
+    </div>
 
-    </body>
-    </html>
+</body>
+
+</html>
