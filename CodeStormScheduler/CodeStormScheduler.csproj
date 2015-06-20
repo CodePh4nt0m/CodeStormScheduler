@@ -203,6 +203,11 @@
   <ItemGroup>
     <Content Include="App\App.js" />
     <Content Include="App\codestorm\calendar\controllers\calendarController.js" />
+    <Content Include="App\codestorm\calendar\directives\calendar-directive.js" />
+    <Content Include="App\codestorm\calendar\directives\mini-calendar-directive\moment-with-locales.js" />
+    <Content Include="App\codestorm\calendar\directives\mini-calendar-directive\moment.min.js" />
+    <Content Include="App\codestorm\calendar\directives\mini-calendar-directive\multiple-date-picker.css" />
+    <Content Include="App\codestorm\calendar\directives\mini-calendar-directive\multipleDatePicker.min.js" />
     <Content Include="App\codestorm\calendar\model\calendar-meta.js" />
     <Content Include="App\codestorm\calendar\views\calendar.html" />
     <Content Include="App\codestorm\events\controllers\eventsController.js" />
@@ -217,6 +222,8 @@
     <Content Include="App\codestorm\user-profile\controllers\profileController.js" />
     <Content Include="App\codestorm\user-profile\model\profile-meta.js" />
     <Content Include="App\codestorm\user-profile\views\profile.html" />
+    <Content Include="App\general\directives\multiselect-mini-calendar\gm.datepickerMultiSelect.js" />
+    <Content Include="App\general\directives\multiselect-mini-calendar\gm.datepickerMultiSelect.min.js" />
     <Content Include="App\index.html" />
     <Content Include="assets\demo\avatars\1.jpg" />
     <Content Include="assets\demo\avatars\2.jpg" />
