@@ -1,5 +1,24 @@
-calendarModule.controller('calendarController', function($scope,$compile,uiCalendarConfig) {
+calendarModule.controller('calendarController', function($scope, $compile, uiCalendarConfig) {
     $scope.message = 'Look! I am a calendar.';
+
+    //region mini calendar specific data 
+    $scope.scheduledDates = [{
+        date: moment().date(2).valueOf(),
+        css: 'holiday',
+        selectable: false,
+        title: 'A Holiday.'
+    }, {
+        date: moment().date(14).valueOf(),
+        css: 'off',
+        selectable: false,
+        title: 'No a working day.'
+    }, {
+        date: moment().date(25).valueOf(),
+        css: 'birthday',
+        selectable: true,
+        title: 'Birthday.'
+    }];
+    //end region
 
     var date = new Date();
     var d = date.getDate();
@@ -30,17 +49,37 @@ calendarModule.controller('calendarController', function($scope,$compile,uiCalen
         }
     });*/
 
-    
+
     //to explicitly add events to the calendar
     //you can add the events in following ways
-    $scope.events = [
-      {title: 'All Day Event',start: new Date('Thu Jun 18 2015 09:00:00 GMT+0530 (IST)')},
-      {title: 'Long Event',start: new Date('Sat Jun 20 2015 10:00:00 GMT+0530 (IST)'),end: new Date('Thu Oct 17 2013 17:00:00 GMT+0530 (IST)')},
-      {id: 999,title: 'Repeating Event',start: new Date('Sat Jun 20 2015 09:00:00 GMT+0530 (IST)'),allDay: false},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
-      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
-      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
-    ];
+    $scope.events = [{
+        title: 'All Day Event',
+        start: new Date('Thu Jun 18 2015 09:00:00 GMT+0530 (IST)')
+    }, {
+        title: 'Long Event',
+        start: new Date('Sat Jun 20 2015 10:00:00 GMT+0530 (IST)'),
+        end: new Date('Thu Oct 17 2013 17:00:00 GMT+0530 (IST)')
+    }, {
+        id: 999,
+        title: 'Repeating Event',
+        start: new Date('Sat Jun 20 2015 09:00:00 GMT+0530 (IST)'),
+        allDay: false
+    }, {
+        id: 999,
+        title: 'Repeating Event',
+        start: new Date(y, m, d + 4, 16, 0),
+        allDay: false
+    }, {
+        title: 'Birthday Party',
+        start: new Date(y, m, d + 1, 19, 0),
+        end: new Date(y, m, d + 1, 22, 30),
+        allDay: false
+    }, {
+        title: 'Click for Google',
+        start: new Date(y, m, 28),
+        end: new Date(y, m, 29),
+        url: 'http://google.com/'
+    }];
     //we don't need it right now*/
 
 

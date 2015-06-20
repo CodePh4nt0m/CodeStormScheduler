@@ -2,7 +2,7 @@ if (app.meta === undefined) {
 	app.meta = {};
 }
 
-var calendarModule = angular.module('calendarModule', ['ui.calendar']);
+var calendarModule = angular.module('calendarModule', ['ui.calendar', 'multipleDatePicker']);
 
 app.meta.calendarModule = {};
 app.meta.calendarModule.rootRoute = '/';

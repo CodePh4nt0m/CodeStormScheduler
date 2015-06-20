@@ -23,6 +23,7 @@
         </div>
 
         <div class="col-md-3">
+            <multiple-date-picker all-days-off="true" highlight-days="scheduledDates"/>
             <ul class="unstyled">
                 <li ng-repeat="e in events | filter:currentDate">
                     <div class="alert alert-info">
