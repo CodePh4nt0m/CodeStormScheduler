@@ -1,0 +1,35 @@
+﻿<h2>codestorm</h2>
+
+@section scripts {
+    <script src="~/App/App.js"></script>
+
+    <script src="~/App/codestorm/calendar/model/calendar-meta.js"></script>
+    <script src="~/App/codestorm/calendar/controllers/calendarController.js"></script>
+
+    <script src="~/App/codestorm/events/model/events-meta.js"></script>
+    <script src="~/App/codestorm/events/controllers/eventsController.js"></script>
+
+
+    <script src="~/App/codestorm/recommendations/model/recommendations-meta.js"></script>
+    <script src="~/App/codestorm/recommendations/controllers/recommendationsController.js"></script>
+
+    <script src="~/App/codestorm/settings/model/settings-meta.js"></script>
+    <script src="~/App/codestorm/settings/controllers/settingsController.js"></script>
+
+    <script src="~/App/codestorm/user-profile/model/profile-meta.js"></script>
+    <script src="~/App/codestorm/user-profile/controllers/profileController.js"></script>
+
+
+}
+
+@section jsCode {
+    @*angular.bootstrap(document.getElementById("codestrom-app"), ['main']);*@
+}
+
+@*<div ng-app="main" id="codestrom-app" ng-controller="MainController">
+        <div ng-view></div>
+    </div>*@
+
+<div>
+    <div ng-view></div>
+</div>
