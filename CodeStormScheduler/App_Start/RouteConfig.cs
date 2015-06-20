@@ -14,6 +14,13 @@ namespace CodeStormScheduler
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "codestorm",
+                url: "codestorm/{*catchall}",
+                defaults: new { controller = "Home", action = "codestorm" });
+
+            routes.MapMvcAttributeRoutes();
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

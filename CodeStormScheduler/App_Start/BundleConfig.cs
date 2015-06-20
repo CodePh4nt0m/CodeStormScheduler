@@ -11,7 +11,7 @@ namespace CodeStormScheduler
             BundleTable.EnableOptimizations = false;
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-2.1.4.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate.min.js"));

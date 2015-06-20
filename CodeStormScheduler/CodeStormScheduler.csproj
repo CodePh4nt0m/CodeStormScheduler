@@ -2758,6 +2758,7 @@
     <Content Include="Views\Design\SignUp2.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Design\Landing.cshtml" />
+    <Content Include="Views\Home\codestorm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

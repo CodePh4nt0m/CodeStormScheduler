@@ -13,7 +13,7 @@
  ]);
 
  // configure our routes
- app.config(function($routeProvider) {
+ app.config(function ($routeProvider, $locationProvider) {
      $routeProvider
 
      // route for the calendar page
@@ -45,4 +45,10 @@
          templateUrl: app.meta.userProfileModule.templateUrl,
          controller: app.meta.userProfileModule.controller
      });
+
+     $locationProvider.html5Mode(true);
+ });
+
+ app.controller('MainController', function($scope) {
+     
  });

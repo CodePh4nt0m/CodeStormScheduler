@@ -1,25 +1,41 @@
 ﻿<h2>codestorm</h2>
 
 @section scripts {
+
+<link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/css/smoothness/jquery-ui-1.10.0.custom.min.css" rel="stylesheet" data-semver="1.10.0" data-require="jqueryui@1.10.0" />
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.1/fullcalendar.min.js" data-semver="1.6.1" data-require="fullcalendar@1.6.1"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/jquery-ui.js" data-semver="1.10.0" data-require="jqueryui@1.10.0"></script>
+
+    <script src="~/App/codestorm/calendar/directives/calendar-directive.js"></script>
+    <script src="~/App/codestorm/calendar/directives/mini-calendar-directive/moment.min.js"></script>
+    <script src="~/App/codestorm/calendar/directives/mini-calendar-directive/moment-with-locales.js"></script>
+    <script src="~/App/codestorm/calendar/directives/mini-calendar-directive/multipleDatePicker.min.js"></script>
+
+
     <script src="~/App/App.js"></script>
 
     <script src="~/App/codestorm/calendar/model/calendar-meta.js"></script>
-    <script src="~/App/codestorm/calendar/controllers/calendarController.js"></script>
-
     <script src="~/App/codestorm/events/model/events-meta.js"></script>
-    <script src="~/App/codestorm/events/controllers/eventsController.js"></script>
-
-
     <script src="~/App/codestorm/recommendations/model/recommendations-meta.js"></script>
-    <script src="~/App/codestorm/recommendations/controllers/recommendationsController.js"></script>
-
     <script src="~/App/codestorm/settings/model/settings-meta.js"></script>
-    <script src="~/App/codestorm/settings/controllers/settingsController.js"></script>
-
     <script src="~/App/codestorm/user-profile/model/profile-meta.js"></script>
+    <script src="~/App/codestorm/calendar/controllers/calendarController.js"></script>
+    <script src="~/App/codestorm/events/controllers/eventsController.js"></script>
+    <script src="~/App/codestorm/recommendations/controllers/recommendationsController.js"></script>
+    <script src="~/App/codestorm/settings/controllers/settingsController.js"></script>
     <script src="~/App/codestorm/user-profile/controllers/profileController.js"></script>
 
 
+
+
+
+
+}
+
+@section styles {
+<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.1/fullcalendar.min.css" rel="stylesheet" data-semver="1.6.1" data-require="fullcalendar@1.6.1" />
+    <link href="~/App/codestorm/calendar/directives/mini-calendar-directive/multiple-date-picker.css" rel="stylesheet" />
 }
 
 @section jsCode {
