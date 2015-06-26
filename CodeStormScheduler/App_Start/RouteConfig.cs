@@ -13,16 +13,22 @@ namespace CodeStormScheduler
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "codestorm",
-                url: "codestorm/{*catchall}",
-                defaults: new { controller = "Home", action = "codestorm" });
+            //routes.MapRoute(
+            //    name: "codestorm",
+            //    url: "CodeStorm/{*catchall}",
+            //    defaults: new { controller = "CodeStorm", action = "calendar" });
 
-            routes.MapMvcAttributeRoutes();
+            //routes.MapMvcAttributeRoutes();
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Data",
+                url: "DataControllers/{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }

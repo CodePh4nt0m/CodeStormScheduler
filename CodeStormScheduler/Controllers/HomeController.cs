@@ -12,7 +12,8 @@ namespace CodeStormScheduler.Controllers
         {
             if (!User.Identity.IsAuthenticated)
                 return View("Landing");
-            return RedirectToAction("codestorm", "Home");
+            return View();
+            //return RedirectToAction("calender", "CodeStorm");
         }
 
         public ActionResult codestorm()

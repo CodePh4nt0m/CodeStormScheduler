@@ -20,8 +20,8 @@ Use search to find needed section.
 <!--[if IE 8]>         <html class="ie8"> <![endif]-->
 <!--[if IE 9]>         <html class="ie9 gt-ie8"> <![endif]-->
 <!--[if gt IE 9]><!-->
-<html class="gt-ie8 gt-ie9 not-ie" ng-app="app">
- <!--<![endif]-->
+<html class="gt-ie8 gt-ie9 not-ie" ng-app="main">
+<!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <base href="/">
@@ -38,6 +38,7 @@ Use search to find needed section.
     @Styles.Render("~/Content/PixelAdmin")
     @Styles.Render("~/Content/Plugins")
     @Styles.Render("~/Content/Custom")
+
 
     @RenderSection("headscripts", required: false)
     @RenderSection("styles", required: false)
@@ -64,7 +65,6 @@ Use search to find needed section.
 
     <script>var init = [];</script>
     <!-- Demo script -->
-    
     <!-- / Demo script -->
     <script src="~/Scripts/PixelAdmin/demo.js"></script>
     <div id="main-wrapper">
@@ -324,7 +324,7 @@ Use search to find needed section.
                                         <li><a href="#"><span class="badge badge-primary pull-right">New</span>Account</a></li>
                                         <li><a href="#"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li>
                                         <li class="divider"></li>
-                                        @using (Html.BeginForm("LogOff", "Account",FormMethod.Post, new {id="form_logoff"}))
+                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "form_logoff" }))
                                         {@Html.AntiForgeryToken()}
                                         <li id="lnk_logoff"><a href=""><i class="dropdown-icon fa fa-power-off"></i>Log Out</a></li>
                                     </ul>
@@ -384,7 +384,7 @@ Use search to find needed section.
                         <a href="index.html"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span></a>
                     </li>
                     <li>
-                        <a href="/scheduler"><i class="menu-icon fa fa-calendar"></i><span class="mm-text">Calender</span></a>
+                        <a href="/CodeStorm/Calender"><i class="menu-icon fa fa-calendar"></i><span class="mm-text">Calender</span></a>
                     </li>
                     <li class="mm-dropdown">
                         <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Layouts</span><span class="label label-warning">Updated</span></a>
@@ -397,7 +397,7 @@ Use search to find needed section.
                             </li>
                         </ul>
                     </li>
-                    
+
                     <li>
                         <a href="widgets.html"><i class="menu-icon fa fa-flask"></i><span class="mm-text">Widgets</span></a>
                     </li>
@@ -556,7 +556,7 @@ Use search to find needed section.
                         </ul>
                     </li>
                 </ul> <!-- / .navigation -->
-                
+
             </div> <!-- / #main-menu-inner -->
         </div> <!-- / #main-menu -->
         <!-- /4. $MAIN_MENU -->
@@ -580,30 +580,35 @@ Use search to find needed section.
     <!--[if lte IE 9]>
         <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">'+"<"+"/script>"); </script>
     <![endif]-->
-
-        <!-- Pixel Admin's javascripts -->
+    <!-- Pixel Admin's javascripts -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/pixeladmin")
     @Scripts.Render("~/bundles/plugins")
-        <script type="text/javascript">
-            init.push(function() {
-                // Javascript code here
-            });
-            window.PixelAdmin.start(init);
-            
-        </script>
-        <script>
-            $('#lnk_logoff').click(function (event) {
-                event.preventDefault();
-                var form = $('#form_logoff');
-                form.submit();
-            });
-        </script>
+    <script type="text/javascript">
+        window.CodeStorm = {};
+    </script>
+    <script src="~/Scripts/CodeStorm.js"></script>
+    <script src="~/App/App.js"></script>
+    <script type="text/javascript">
+        init.push(function () {
+            // Javascript code here
+        });
+        window.PixelAdmin.start(init);
+
+    </script>
+    <script>
+        $('#lnk_logoff').click(function (event) {
+            event.preventDefault();
+            var form = $('#form_logoff');
+            form.submit();
+        });
+    </script>
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
-    @RenderSection("jsCode", required: false)
+        @RenderSection("jsCode", required: false)
     </script>
 
 </body>
+
 </html>

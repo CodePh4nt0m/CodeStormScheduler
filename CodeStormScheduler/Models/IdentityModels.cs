@@ -31,6 +31,8 @@ namespace CodeStormScheduler.Models
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<UserMessage> UserMessages { get; set; }
 
     }
 }

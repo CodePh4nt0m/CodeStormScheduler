@@ -1,10 +1,10 @@
-if (app.meta === undefined) {
-	app.meta = {};
+if (mainModule.meta === undefined) {
+    mainModule.meta = {};
 }
 
-var calendarModule = angular.module('calendarModule', ['ui.calendar', 'multipleDatePicker']);
+var calendarModule = angular.module('calendarModule', ['main']);
 
-app.meta.calendarModule = {};
-app.meta.calendarModule.rootRoute = '/codestorm/calender';
-app.meta.calendarModule.controller = 'calendarController';
-app.meta.calendarModule.templateUrl = '/App/codestorm/calendar/views/calendar.html';
+//app.meta.calendarModule = {};
+//app.meta.calendarModule.rootRoute = '/codestorm/calender';
+//app.meta.calendarModule.controller = 'calendarController';
+//app.meta.calendarModule.templateUrl = '/App/codestorm/calendar/views/calendar.html';
