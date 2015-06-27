@@ -23,7 +23,9 @@ namespace CodeStormScheduler.Models
 
         [Column(TypeName = "NVARCHAR")]
         [StringLength(10)]
+
         public string Status { get; set; }
+        public DateTime CDate { get; set; }
 
     }
 }

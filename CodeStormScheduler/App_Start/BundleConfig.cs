@@ -44,7 +44,8 @@ namespace CodeStormScheduler
                       "~/Scripts/PixelAdmin/pixel-admin.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/plugins").Include(
-                      "~/Scripts/PixelAdmin/jquery.slimscroll.min.js"));
+                      "~/Scripts/PixelAdmin/jquery.slimscroll.min.js",
+                      "~/plugins/timeago/jquery.timeago.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                       "~/Scripts/angular.js",

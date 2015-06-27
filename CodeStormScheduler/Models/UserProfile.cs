@@ -22,6 +22,10 @@ namespace CodeStormScheduler.Models
 
         [Column(TypeName = "NVARCHAR")]
         [StringLength(128)]
+        public string ImageUrl { get; set; }
+
+        [Column(TypeName = "NVARCHAR")]
+        [StringLength(128)]
         public string Id { get; set; }
     }
 }

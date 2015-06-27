@@ -1,8 +1,8 @@
 // create the module and name it scotchApp
 var commonModule = angular.module('common', []);
-var mainModule = angular.module('main', ['common', 'ngRoute']);
+var mainModule = angular.module('main', ['common', 'ngRoute', 'ngCookies']);
 
-commonModule.factory('dataHelper', function($http) { return CodeStorm.dataHelper($http); });
+commonModule.factory('angularHelper', function ($http) { return CodeStorm.angularHelper($http); });
  // configure our routes
  //app.config(function ($routeProvider, $locationProvider) {
  //    $routeProvider
@@ -107,9 +107,68 @@ var commonHelper = function () { return CodeStorm.dataHelper() };
 
         return this;
     }
+
+    var angularHelper = function ($http) {
+        var self = this;
+
+        self.getData = function (url, data, success, failure) {
+            $http.get(url, data)
+                .then(function (result) {
+                    success(result);
+                });
+        }
+
+
+        self.postData = function (url, data, success) {
+            $http.post(url, data)
+                .then(function (result) {
+                    success(result);
+                });
+        }
+
+        self.findIndexByKey = function (array, property, value) {
+            for (var i = 0; i < array.length; i++) {
+                if (array[i][property] == value) {
+                    return i;
+                }
+            }
+            return null;
+        }
+
+        self.replaceValue = function (array, id, idvalue, property, newvalue) {
+            for (var i = 0; i < array.length; i++) {
+                if (array[i][id] == idvalue) {
+                    array[i][property] = newvalue;
+                    return;
+                }
+            }
+        }
+
+        self.insertObj = function (array, index, item) {
+            array.splice(index, 0, item);
+        }
+
+        return this;
+    }
+
     codestorm.dataHelper = dataHelper;
+    codestorm.angularHelper = angularHelper;
 }(window.CodeStorm));
 
-mainModule.controller('MainController', function ($scope) {
-     
+mainModule.controller('MainController', function ($scope, $cookies, angularHelper) {
+    var initialize = function () {
+        var usr = $cookies.userid;
+        if (usr == null) {
+            angularHelper.getData('/UserData/GetCurrentUserProfileData', null,
+            function (result) {
+                var user = result.data;
+                $cookies.userid = user.userid;
+                $cookies.fname = user.fname;
+                $cookies.lname = user.lname;
+                $cookies.imgurl = user.imgurl;
+            });
+        }
+    }
+
+    initialize();
  });

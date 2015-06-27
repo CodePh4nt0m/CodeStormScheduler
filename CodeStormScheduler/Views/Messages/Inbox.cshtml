@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Inbox";
 }
 
@@ -30,8 +29,16 @@
             margin-top: 0;
         }
 
-        .chat-activity-list .chat-element {
-            border-bottom: 1px solid #e7eaec;
+        .chat-activity-list {
+            padding-right: 15px;
+        }
+
+            .chat-activity-list .chat-element {
+                border-bottom: 1px solid #e7eaec;
+            }
+
+        .chat-form {
+            margin-top: 15px;
         }
 
         .chat-element, .media-body {
@@ -53,6 +60,10 @@
         .chat-element img.img-circle, .dropdown-messages-box img.img-circle {
             width: 38px;
             height: 38px;
+        }
+
+        .chat-element .pull-left img {
+            margin-right: 10px;
         }
 
         .img-circle {
@@ -83,72 +94,150 @@
         .text-navy {
             color: #1ab394;
         }
+
+        .thread {
+            cursor: pointer;
+        }
+
+            .thread:hover {
+                background: rgba(238, 238, 238, 0.89);
+            }
+
+        .widget-threads .thread:first-child {
+            padding-top: 15px !important;
+            border-top: 1px solid #DFDFDF;
+        }
+
+        .widget-threads .thread:last-child {
+            padding-bottom: 15px !important;
+            border-bottom: 1px solid #DFDFDF;
+        }
     </style>
 }
 
-<div class="col-lg-6">
-    <div class="ibox float-e-margins">
+@section jsCode {
+    angular.bootstrap(document.getElementById("conversation_container"), ['messagesModule']);
+}
 
-        <div class="ibox-content">
 
-            <div>
-                <div class="chat-activity-list">
-
-                    <div class="chat-element">
-                        <a href="#" class="pull-left">
-                            <img alt="image" class="img-circle" src="assets/demo/avatars/a2.jpg">
-                        </a>
-                        <div class="media-body ">
-                            <small class="pull-right text-navy">1m ago</small>
-                            <strong>Mike Smith</strong>
-                            <p class="m-b-xs">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                            </p>
-                            <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
+<div ng-app="messagesModule" id="conversation_container" ng-controller="messagesController">
+    <div class="col-lg-4">
+        <div class="panel panel-info widget-threads" id="conversation-list">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="panel-title-icon fa fa-comments-o"></i>{{convheading}}</span>
+            </div> <!-- / .panel-heading -->
+            <div class="panel-body">
+                <div class="thread" ng-repeat="c in conversations" data-conv="{{c.convid}}" ng-click="viewConversation(c.convid)">
+                    <img src="/ImageBase/Users/{{c.imgurl}}" alt="" class="thread-avatar">
+                    <div class="thread-body">
+                        <span class="thread-time"></span>
+                        <a class="thread-title">{{c.fullname}}</a>
+                        <div class="thread-info">
+                            {{c.message}}
                         </div>
-                    </div>
+                    </div> <!-- / .thread-body -->
+                </div> <!-- / .thread -->
+            </div> <!-- / .panel-body -->
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="ibox float-e-margins">
 
-                    <div class="chat-element right">
-                        <a href="#" class="pull-right">
-                            <img alt="image" class="img-circle" src="assets/demo/avatars/a4.jpg">
-                        </a>
-                        <div class="media-body text-right ">
-                            <small class="pull-left">5m ago</small>
-                            <strong>John Smith</strong>
-                            <p class="m-b-xs">
-                                Lorem Ipsum is simply dummy text of the printing.
-                            </p>
-                            <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
-                        </div>
-                    </div>
+            <div class="ibox-content">
 
-                    <div class="chat-element ">
-                        <a href="#" class="pull-left">
-                            <img alt="image" class="img-circle" src="assets/demo/avatars/a2.jpg">
-                        </a>
-                        <div class="media-body ">
-                            <small class="pull-right">2h ago</small>
-                            <strong>Mike Smith</strong>
-                            <p class="m-b-xs">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                            </p>
-                            <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
+                <div>
+                    <div class="chat-activity-list">
+                        <div ng-class="{true:'chat-element right',false:'chat-element'}[c.self]" ng-repeat="c in conversation">
+                            <a href="#" ng-class="{true:'pull-right',false:'pull-left'}[c.self]">
+                                <img alt="image" class="img-circle" src="/ImageBase/Users/{{c.imgurl}}">
+                            </a>
+                            <div ng-class="{true:'media-body text-right',false:'media-body'}[c.self]">
+                                <small ng-class="{true:'pull-left',false:'pull-right'}[c.self]">1m ago</small>
+                                <strong>{{c.fullname}}</strong>
+                                <p class="m-b-xs">
+                                    {{c.message}}
+                                </p>
+                                <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="chat-form">
-                <form role="form">
-                    <div class="form-group">
-                        <textarea class="form-control" placeholder="Message"></textarea>
-                    </div>
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-sm btn-primary m-t-n-xs"><strong>Send message</strong></button>
-                    </div>
-                </form>
+                <div class="chat-form">
+                    <form role="form">
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Message" id="message" ng-model="chat_message"></textarea>
+                        </div>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-sm btn-primary m-t-n-xs" id="btnSendMessage" ng-click="sendMessage()"><strong>Send message</strong></button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+@section scripts{
+
+    <script src="~/signalr/hubs"></script>
+    <script>
+        function addMessage(msg) {
+            var chat = '<div class="chat-element">' +
+                '<a href="#" class="pull-left">' +
+                '<img alt="image" class="img-circle" src="assets/demo/avatars/a2.jpg">' +
+                '</a>' +
+                '<div class="media-body ">' +
+                '<small class="pull-right text-navy">1m ago</small>' +
+                '<strong>Mike Smith</strong>' +
+                '<p class="m-b-xs">' +
+                msg +
+                '</p>' +
+                '<small class="text-muted">Today 4:21 pm - 12.06.2014</small>' +
+                '</div>' +
+                '</div>';
+            $('.chat-activity-list').append(chat);
+            var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
+            $('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
+        };
+
+        $(function () {
+            //var chat = $.connection.messageHub;
+            //chat.client.addChatMessage = function (msg) {
+            //    addMessage(msg);
+            //};
+
+            //$.connection.hub.start().done(function () {
+            //    $('#btnSendMessage').click(function () {
+            //        //chat.server.send($('#receiver').val(), $('#message').val());
+            //        //$('#message').val('');
+            //        var scope = angular.element($("#conversation_container")).scope();
+            //        alert(scope.currentconv);
+                    
+            //    });
+            //});
+
+            //function fetchMessages() {
+
+            //}
+
+            
+        });
+    </script>
+    <script>
+        $('.chat-activity-list').slimScroll({ height: 300, start: 'bottom' });
+        $('#conversation-list .panel-body').slimScroll({ height: 450, alwaysVisible: false, color: '#888', allowPageScroll: true });
+        var receiver = $('#receiver').val();
+        $(document).ready(function () {
+            $("time.timeago").timeago();
+            $('#btnShow').click(function () {
+
+            });
+            $('#btnSendMessage').click(function () {
+            });
+        });
+    </script>
+    <script src="~/App/codestorm/messages/model/messages-meta.js"></script>
+    <script src="~/App/codestorm/messages/controllers/messagesController.js"></script>
+}
 
 

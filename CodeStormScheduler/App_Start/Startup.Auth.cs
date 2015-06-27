@@ -68,6 +68,8 @@ namespace CodeStormScheduler
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+            app.MapSignalR();
         }
     }
 }

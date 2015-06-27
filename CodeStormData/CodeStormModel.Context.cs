@@ -12,6 +12,8 @@ namespace CodeStormData
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class CodeStormDBEntities : DbContext
     {
@@ -30,7 +32,30 @@ namespace CodeStormData
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<UserProfile> UserProfiles { get; set; }
+        public virtual DbSet<UserMessage> UserMessages { get; set; }
+    
+        public virtual ObjectResult<spGetConversationList_Result> spGetConversationList(string userid)
+        {
+            var useridParameter = userid != null ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetConversationList_Result>("spGetConversationList", useridParameter);
+        }
+    
+        public virtual ObjectResult<spGetConversation_Result> spGetConversation(string convid, string userid)
+        {
+            var convidParameter = convid != null ?
+                new ObjectParameter("convid", convid) :
+                new ObjectParameter("convid", typeof(string));
+    
+            var useridParameter = userid != null ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetConversation_Result>("spGetConversation", convidParameter, useridParameter);
+        }
     }
 }
