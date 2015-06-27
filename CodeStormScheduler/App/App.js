@@ -156,6 +156,7 @@ var commonHelper = function () { return CodeStorm.dataHelper() };
 }(window.CodeStorm));
 
 mainModule.controller('MainController', function ($scope, $cookies, angularHelper) {
+    $scope.user_name = $cookies.fname;
     var initialize = function () {
         var usr = $cookies.userid;
         if (usr == null) {
@@ -166,6 +167,7 @@ mainModule.controller('MainController', function ($scope, $cookies, angularHelpe
                 $cookies.fname = user.fname;
                 $cookies.lname = user.lname;
                 $cookies.imgurl = user.imgurl;
+                $scope.user_name = user.fname;
             });
         }
     }

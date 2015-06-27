@@ -5,379 +5,893 @@
 
 
 <!DOCTYPE html>
-
-
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"/>
     <base href="/">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
     <title>CodeStorm</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Animation CSS -->
-    <link href="~/Content/animate.min.css" rel="stylesheet" />
-    <link href="~/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <!-- Custom styles for this template -->
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="nileforest">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:200,400,300,600,500,900,700,100,800' rel='stylesheet' type='text/css'>
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <!-- Favicone Icon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <!-- CSS -->
     <link href="~/Content/Landing/style.css" rel="stylesheet" />
+    <link href="~/Content/Landing/bootstrap.css" rel="stylesheet" />
+    <link href="~/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/plugins/ionicons/css/ionicons.css" rel="stylesheet" />
+    <link href="~/Content/Landing/plugin/jPushMenu.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/Landing/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/Landing/plugin/YTPlayer.css" rel="stylesheet"/>
+    <link href="~/Content/Landing/custom.css" rel="stylesheet" />
 </head>
-<body id="page-top" class="landing-page">
-    <div class="navbar-wrapper">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<body class="full-intro background--dark">
+    <!-- Preloader -->
+    <section id="preloader">
+        <div class="loader" id="loader">
+            <div class="loader-img"></div>
+        </div>
+    </section>
+    <!-- End Preloader -->
+    <!-- Sidemenu -->
+    <section class="side-menu cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right">
+        <a class="menu-close toggle-menu menu-right push-body"><i class="ion ion-android-close"></i></a>
+        <ul>
+            <li><a target="_blank" href="index.html">Main Demo Page</a></li>
+            <li><a href="home.html">Home Default</a></li>
+            <li><a href="login-register.html">Login & Signup</a></li>
+            <li><a href="about-1.html">About</a></li>
+            <li><a href="service-1.html">Service</a></li>
+            <li><a href="contact-1.html">Contact Us</a></li>
+        </ul>
+    </section>
+    <!--End Sidemenu -->
+    <!-- Site Wraper -->
+    <div class="wrapper">
+        <!-- HEADER -->
+        <header class="header">
             <div class="container">
-                <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @*<a class="navbar-brand" href="index.html">WEBAPPLAYERS</a>*@
+                <!-- logo -->
+                <div class="logo">
+                    <a href="">
+                        <img class="l-black" src="/assets/landing/landinglogo-black.png">
+                        <img class="l-white" src="/assets/landing/landinglogo-white.png">
+                        <img class="l-color" src="/assets/landing/landinglogo-white.png">
+                    </a>
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a class="page-scroll" href="#page-top">Home</a></li>
-                        <li><a class="page-scroll" href="#features">Features</a></li>
-                        <li><a class="page-scroll" href="#team">Team</a></li>
-                        <li><a class="page-scroll" href="#contact">Contact</a></li>
-                        <li><a class="page-scroll" href="/Account/Login">SING IN</a></li>
-                        <li><a class="page-scroll" href="/Account/Register">SIGN UP</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
-    <div id="inSlider" class="carousel carousel-fade" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#inSlider" data-slide-to="0" class="active"></li>
-            <li data-target="#inSlider" data-slide-to="1"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h1>
-                            Being more productive<br />
-                            is pointless<br />
-                            if you are working <br />
-                            on the wrong things.
-                        </h1>
-                        <p>And yes we love puppies.</p>
-                        <p>
-                            <a class="btn btn-lg btn-primary" href="#" role="button">READ MORE</a>
-                        </p>
-                    </div>
-                    <div class="carousel-image wow zoomIn">
-                        <img src="assets/images/Landing/480.gif" alt="laptop" />
-                    </div>
-                </div>
-                <!-- Set background for slide in css -->
-                <div class="header-back one"></div>
-
-            </div>
-            <div class="item">
-                <div class="container">
-                    <div class="carousel-caption blank">
-                        <h1>A god sent calendar <br /> which will make you smile everytime you see it.</h1>
-                        <p>Easy Planner is a wonderful free web service from CodeStorm that lets you manage your events in user friendly interface.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-                    </div>
-                </div>
-                <!-- Set background for slide in css -->
-                <div class="header-back two"></div>
-            </div>
-        </div>
-        <a class="left carousel-control" href="#inSlider" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#inSlider" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-
-
-    <section id="features" class="container services">
-        <div class="row">
-            <div class="col-sm-3">
-                <h2>Full responsive</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-                <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
-            </div>
-            <div class="col-sm-3">
-                <h2>LESS/SASS Files</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-                <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
-            </div>
-            <div class="col-sm-3">
-                <h2>6 Charts Library</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-                <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
-            </div>
-            <div class="col-sm-3">
-                <h2>Advanced Forms</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-                <p><a class="navy-link" href="#" role="button">Details &raquo;</a></p>
-            </div>
-        </div>
-    </section>
-
-    
-
-    <section id="team" class="gray-section team">
-        <div class="container">
-            <div class="row m-b-lg">
-                <div class="col-lg-12 text-center">
-                    <div class="navy-line"></div>
-                    <h1>Our Team</h1>
-                    <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4 wow fadeInLeft">
-                    <div class="team-member">
-                        <img src="assets/images/Landing/avatar3.jpg" class="img-responsive img-circle" alt="">
-                        <h4><span class="navy">Dilnuwan</span> Chathuranga</h4>
-                        <p>Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus. </p>
-                        <ul class="list-inline social-icon">
-                            <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-member wow zoomIn">
-                        <img src="assets/images/Landing/avatar1.jpg" class="img-responsive img-circle" alt="">
-                        <h4><span class="navy">John</span> Novak</h4>
-                        <p>Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.</p>
-                        <ul class="list-inline social-icon">
-                            <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4 wow fadeInRight">
-                    <div class="team-member">
-                        <img src="assets/images/Landing/avatar2.jpg" class="img-responsive img-circle" alt="">
-                        <h4><span class="navy">Peter</span> Johnson</h4>
-                        <p>Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.</p>
-                        <ul class="list-inline social-icon">
-                            <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4 wow fadeInLeft animated" style="visibility: visible; -webkit-animation: fadeInLeft;">
-                    <div class="team-member">
-                        <img src="assets/images/Landing/avatar3.jpg" class="img-responsive img-circle" alt="">
-                        <h4><span class="navy">Amelia</span> Smith</h4>
-                        <p>Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus. </p>
-                        <ul class="list-inline social-icon">
-                            <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-member wow zoomIn animated" style="visibility: visible; -webkit-animation: zoomIn;">
-                        <img src="assets/images/Landing/avatar1.jpg" class="img-responsive img-circle" alt="">
-                        <h4><span class="navy">John</span> Novak</h4>
-                        <p>Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.</p>
-                        <ul class="list-inline social-icon">
-                            <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4 wow fadeInRight animated" style="visibility: visible; -webkit-animation: fadeInRight;">
-                    <div class="team-member">
-                        <img src="assets/images/Landing/avatar2.jpg" class="img-responsive img-circle" alt="">
-                        <h4><span class="navy">Peter</span> Johnson</h4>
-                        <p>Lorem ipsum dolor sit amet, illum fastidii dissentias quo ne. Sea ne sint animal iisque, nam an soluta sensibus.</p>
-                        <ul class="list-inline social-icon">
-                            <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="gray-section contact">
-        <div class="container">
-            <div class="row m-b-lg">
-                <div class="col-lg-12 text-center">
-                    <div class="navy-line"></div>
-                    <h1>Contact Us</h1>
-                    <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.</p>
-                </div>
-            </div>
-            <div class="row m-b-lg">
-                <div class="col-lg-3 col-lg-offset-3">
-                    <address>
-                        <strong><span class="navy">Company name, Inc.</span></strong><br />
-                        795 Folsom Ave, Suite 600<br />
-                        San Francisco, CA 94107<br />
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                    </address>
-                </div>
-                <div class="col-lg-4">
-                    <p class="text-color">
-                        Consectetur adipisicing elit. Aut eaque, totam corporis laboriosam veritatis quis ad perspiciatis, totam corporis laboriosam veritatis, consectetur adipisicing elit quos non quis ad perspiciatis, totam corporis ea,
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <a href="mailto:test@email.com" class="btn btn-primary">Send us mail</a>
-                    <p class="m-t-sm">
-                        Or follow us on social platform
-                    </p>
-                    <ul class="list-inline social-icon">
+                <!--End logo-->
+                <!-- Rightside Menu (Search, Cart, Bart icon) -->
+                
+                <!-- End Rightside Menu -->
+                <!-- Navigation Menu -->
+                <nav class="navigation singlepage-nav">
+                    <ul>
                         <li>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a class="current-ele" href="#intro">Home</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#about">About</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#team">Meet US</a>
+                        </li>
+                        <li>
+                            <a href="#work">Work</a>
+                        </li>
+                        <li>
+                            <a href="#contant">Contant</a>
+                        </li>
+                        <li>
+                            <a href="#contact-section">Contact</a>
+                        </li>
+                        <li>
+                            <a href="/acccount/signin" id="landing_signin">Sign In</a>
+                        </li>
+                        <li>
+                            <a href="/account/register" id="landing_register">Register</a>
                         </li>
                     </ul>
+                </nav>
+                <!--End Navigation Menu -->
+
+            </div>
+        </header>
+        <!-- END HEADER -->
+        <!-- CONTENT --------------------------------------------------------------------------------->
+        <!-- Intro Section -->
+        <section id="intro" class="full-screen-intro bg-img29">
+            <div class="media-wapper bg-img parallax parallax-section1 overlay-dark" style="background-image: url('/assets/landing/aa.png');">
+                <canvas id="pollyfill-canvas"></canvas>
+            </div>
+            <div class="full-cap-wraper">
+                <div class="content-caption light-color">
+                    <div class="container">
+                        <h5>NEXT GENERATION CALENDER</h5>
+                        <br>
+                        <h1 class="h1">Code Storm Digital Agency</h1>
+                        <br>
+                        <div><a href="#about" class="btn btn-md btn-white-line xs-hidden">Read More</a><span class="btn-space-10 xs-hidden"></span><a href="#contant" class="btn btn-md btn-white">Learn More</a></div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg">
-                <p><strong>&copy; 2015 CodeStorm</strong><br/> consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.
-                </p>
+        </section>
+        <div class="clearfix"></div>
+        <!-- End Intro Section -->
+        <!--About Section-->
+        <section id="about" class="wow fadeIn ptb ptb-sm-80">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h3 class="h4">About CodeStrom</h3>
+                        <div class="spacer-15"></div>
+                        <p class="lead">We Are Under Graduate Students of UCD CS 03 Batch  <a class="tipped" data-title="Sample Text" data-tipper-options='{"direction":"top"}'><b>This is our Final Year Project </b></a> Where We Have Developed Event Schedular Application To Organize Day To Day Meetings And Plans.</p>
+                    </div>
+                </div>
+                <div class="row mt-80">
+                    <div class="col-md-4 mb-30">
+                        <img src="/assets/landing/about1.jpg" alt="" />
+                    </div>
+                    <div class="col-md-4 mb-30">
+                        <h4>WE`RE CREATIVE.</h4>
+                        <div class="spacer-15"></div>
+                        <p>Within this application we have developed with nice attractive UI and C# code first methodology</p>
+                        <p>We were able to connect social media into our application as well as some amount of AI into this</p>
+                    </div>
+                    <!-- Skills -->
+                    <div class="col-md-4">
+                        <div class="skillbar" data-percent="55%">
+                            <div class="skillbar-title">Web design</div>
+                            <div class="skill-bar-percent">55%</div>
+                            <div class="skillbar-bar"></div>
+                        </div>
+                        <div class="skillbar" data-percent="80%">
+                            <div class="skillbar-title">development</div>
+                            <div class="skill-bar-percent">80%</div>
+                            <div class="skillbar-bar"></div>
+                        </div>
+                        <div class="skillbar" data-percent="40%">
+                            <div class="skillbar-title">Photography</div>
+                            <div class="skill-bar-percent">40%</div>
+                            <div class="skillbar-bar"></div>
+                        </div>
+                        <div class="skillbar" data-percent="70%">
+                            <div class="skillbar-title">branding</div>
+                            <div class="skill-bar-percent">70%</div>
+                            <div class="skillbar-bar"></div>
+                        </div>
+                    </div>
+                    <!-- End Skills -->
+                </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
+        <!-- End About Section-->
+        <hr />
+        <!-- Team -->
+        <section id=team class="ptb ptb-sm-80">
+            <div class="container text-center">
+                <h3>Meet The Team</h3>
+                <div class="spacer-60"></div>
+                <!--Team Carousel -->
+                <div class="row">
+                    <div class="owl-carousel team-carousel nf-carousel-theme">
+                        <div class="item">
+                            <div class="team-item nf-col-padding">
+                                <div class="team-item-img">
+                                    <img src="/assets/landing/team/people-1.jpg" alt=""/>
+                                    <div class="team-item-detail">
+                                        <div class="team-item-detail-inner light-color">
+                                            <h5>Dilnuwan Chathuranga</h5>
+                                            <p>Works at Acesss-SLIT as .Net Developer</p>
+                                            <ul class="social">
+                                                <li><a href="https://www.facebook.com/dilnuwan.chathu" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="https://www.twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="https://www.dribbble.com/" target="_blank"><i class="fa fa-dribbble"></i></a></li>
+                                                <li><a href="https://www.pinterest.com/" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                                                <li><a href="https://www.behance.net/" target="_blank"><i class="fa fa-behance"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="team-item-info">
+                                    <h5>Dila</h5>
+                                    <p class="">Developer</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="team-item nf-col-padding">
+                                <div class="team-item-img">
+                                    <img src="/assets/landing/team/people-1.jpg" alt=""/>
+                                    <div class="team-item-detail">
+                                        <div class="team-item-detail-inner light-color">
+                                            <h5>Isuru Siriwardhana</h5>
+                                            <p>Works at Zone24x7 Pvt. Ltd As a Java Developer.</p>
+                                            <ul class="social">
+                                                <li><a href="https://www.facebook.com/isuruanatomy" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="https://www.twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="https://www.dribbble.com/" target="_blank"><i class="fa fa-dribbble"></i></a></li>
+                                                <li><a href="https://www.pinterest.com/" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                                                <li><a href="https://www.behance.net/" target="_blank"><i class="fa fa-behance"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="team-item-info">
+                                    <h5>Mala</h5>
+                                    <p class="">Developer</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="team-item nf-col-padding">
+                                <div class="team-item-img">
+                                    <img src="/assets/landing/team/people-1.jpg" alt=""/>
+                                    <div class="team-item-detail">
+                                        <div class="team-item-detail-inner light-color">
+                                            <h5>Sameera Fonseka</h5>
+                                            <p>Works at DMX As a Software Developer</p>
+                                            <ul class="social">
+                                                <li><a href="https://www.facebook.com/sameera.fonseka?fref=ts" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="https://www.twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="https://www.dribbble.com/" target="_blank"><i class="fa fa-dribbble"></i></a></li>
+                                                <li><a href="https://www.pinterest.com/" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                                                <li><a href="https://www.behance.net/" target="_blank"><i class="fa fa-behance"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="team-item-info">
+                                    <h5>Sameera</h5>
+                                    <p class="">Social app</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<!-- Mainly scripts -->
+                <div class="row">
+                    <div class="owl-carousel team-carousel nf-carousel-theme">
+                        <div class="item">
+                            <div class="team-item nf-col-padding">
+                                <div class="team-item-img">
+                                    <img src="/assets/landing/team/people-1.jpg" alt="" />
+                                    <div class="team-item-detail">
+                                        <div class="team-item-detail-inner light-color">
+                                            <h5>Charuka Senal </h5>
+                                            <p>Works at Sri Lanka CERT|CC.</p>
+                                            <ul class="social">
+                                                <li><a href="https://www.facebook.com/charukasenal.damunupola?fref=ts" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="https://www.twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="https://www.dribbble.com/" target="_blank"><i class="fa fa-dribbble"></i></a></li>
+                                                <li><a href="https://www.pinterest.com/" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                                                <li><a href="https://www.behance.net/" target="_blank"><i class="fa fa-behance"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="team-item-info">
+                                    <h5>Charuka</h5>
+                                    <p class="">Designer</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="team-item nf-col-padding">
+                                <div class="team-item-img">
+                                    <img src="/assets/landing/team/people-1.jpg" alt="" />
+                                    <div class="team-item-detail">
+                                        <div class="team-item-detail-inner light-color">
+                                            <h5>Lusitha Perera</h5>
+                                            <p>Works at Pearson Lanka as Performance Engineer</p>
+                                            <ul class="social">
+                                                <li><a href="https://www.facebook.com/lusitha.perera?fref=ts" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="https://www.twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="https://www.dribbble.com/" target="_blank"><i class="fa fa-dribbble"></i></a></li>
+                                                <li><a href="https://www.pinterest.com/" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                                                <li><a href="https://www.behance.net/" target="_blank"><i class="fa fa-behance"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="team-item-info">
+                                    <h5>Lusiya</h5>
+                                    <p class="">Designer</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="team-item nf-col-padding">
+                                <div class="team-item-img">
+                                    <img src="/assets/landing/team/people-1.jpg" alt="" />
+                                    <div class="team-item-detail">
+                                        <div class="team-item-detail-inner light-color">
+                                            <h5>Sankaja Gunawardana</h5>
+                                            <p>Similique sunt culpa qui officia deserunt mollitia animi dolorum fuga.</p>
+                                            <ul class="social">
+                                                <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="https://www.twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="https://www.dribbble.com/" target="_blank"><i class="fa fa-dribbble"></i></a></li>
+                                                <li><a href="https://www.pinterest.com/" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                                                <li><a href="https://www.behance.net/" target="_blank"><i class="fa fa-behance"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="team-item-info">
+                                    <h5>Sanka</h5>
+                                    <p class="">Project Manager</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!--End Team Carousel --->
+                </div>
+        </section>
+        <!-- End Team -->
+        <!-- Action Box Section -->
+        <section id="action-box" class="dark-bg ptb-60 background-image: url('/assets/landing/aa.png')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-8">
+                        <h4 class="">More About the Project</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Action Box Section -->
+        <!-- Work Section -->
+        <section id="work" class="wow fadeInUp ptb ptb-sm-80 text-center">
+            <div class="container">
+                <h3>Our Work</h3>
+                <div class="spacer-60"></div>
+                <!-- work Filter -->
+                <div class="row">
+                    <ul class="container-filter categories-filter mb-0">
+                        <li><a class="categories active" data-filter="*">All</a></li>
+                        <li><a class="categories" data-filter=".branding">Branding</a></li>
+                        <li><a class="categories" data-filter=".design">Design</a></li>
+                        <li><a class="categories" data-filter=".photo">Photo</a></li>
+                        <li><a class="categories" data-filter=".coffee">coffee</a></li>
+                    </ul>
+                </div>
+                <!-- End work Filter -->
+            </div>
+            <!-- Work Gallary -->
+            <div class="container">
+                <div class="row container-grid nf-col-3">
+                    <div class="nf-item branding design coffee spacing">
+                        <div class="item-box">
+                            <a class="cbox-gallary1" href="/assets/landing/portfolio/1.jpg" title="Consequat massa quis">
+                                <img class="item-container" src="/assets/landing/portfolio/1.jpg" alt="1" />
+                                <div class="item-mask">
+                                    <div class="item-caption">
+                                        <h5 class="white">Consequat massa quis</h5>
+                                        <p class="white">Branding, Design, Coffee</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="nf-item photo spacing">
+                        <div class="item-box">
+                            <a class="cbox-gallary1" href="/assets/landing/portfolio/2.jpg" title="Vivamus elementum semper">
+                                <img class="item-container" src="/assets/landing/portfolio/2.jpg" alt="2" />
+                                <div class="item-mask">
+                                    <div class="item-caption">
+                                        <h5 class="white">Vivamus elementum semper</h5>
+                                        <p class="white">Photo</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="nf-item branding design coffee spacing">
+                        <div class="item-box">
+                            <a class="cbox-gallary1" href="/assets/landing/portfolio/3.jpg" title="Quisque rutrum">
+                                <img class="item-container" src="/assets/landing/portfolio/3.jpg" alt="4" />
+                                <div class="item-mask">
+                                    <div class="item-caption">
+                                        <h5 class="white">Quisque rutrum</h5>
+                                        <p class="white">Branding, Design, Coffee</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="nf-item branding design spacing">
+                        <div class="item-box">
+                            <a class="cbox-gallary1" href="/assets/landing/portfolio/4.jpg" title="Tellus eget condimentum">
+                                <img class="item-container" src="/assets/landing/portfolio/4.jpg" alt="4" />
+                                <div class="item-mask">
+                                    <div class="item-caption">
+                                        <h5 class="white">Tellus eget condimentum</h5>
+                                        <p class="white">Design</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="nf-item branding design spacing">
+                        <div class="item-box">
+                            <a class="cbox-gallary1" href="/assets/landing/portfolio/5.jpg" title="Nullam quis ant">
+                                <img class="item-container" src="/assets/landing/portfolio/5.jpg" alt="5" />
+                                <div class="item-mask">
+                                    <div class="item-caption">
+                                        <h5 class="white">Nullam quis ant</h5>
+                                        <p class="white">Branding, Design</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="nf-item photo spacing">
+                        <div class="item-box">
+                            <a class="cbox-gallary1" href="/assets/landing/portfolio/6.jpg" title="Sed fringilla mauris">
+                                <img class="item-container" src="/assets/landing/portfolio/6.jpg" alt="6" />
+                                <div class="item-mask">
+                                    <div class="item-caption">
+                                        <h5 class="white">Sed fringilla mauris</h5>
+                                        <p class="white">Photo</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="nf-item design spacing">
+                        <div class="item-box">
+                            <a class="cbox-gallary1" href="/assets/landing/portfolio/7.jpg" title="Augue velit cursus">
+                                <img class="item-container" src="/assets/landing/portfolio/7.jpg" alt="7" />
+                                <div class="item-mask">
+                                    <div class="item-caption">
+                                        <h5 class="white">Augue velit cursus</h5>
+                                        <p class="white">Design</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="nf-item coffee spacing">
+                        <div class="item-box">
+                            <a class="cbox-gallary1" href="/assets/landing/portfolioo/8.jpg" title="Donec sodales sagittis">
+                                <img class="item-container" src="/assets/landing/portfolio/8.jpg" alt="8" />
+                                <div class="item-mask">
+                                    <div class="item-caption">
+                                        <h5 class="white">Donec sodales sagittis</h5>
+                                        <p class="white">Coffee</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="nf-item photo spacing">
+                        <div class="item-box">
+                            <a class="cbox-gallary1" href="/assets/landing/portfolio/9.jpg" title="Donec sodales sagittis">
+                                <img class="item-container" src="/assets/landing/portfolio/9.jpg" alt="8" />
+                                <div class="item-mask">
+                                    <div class="item-caption">
+                                        <h5 class="white">Donec sodales sagittis</h5>
+                                        <p class="white">Coffee</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- End Work Gallary -->
+            <div class="spacer-30"></div>
+            <div class="container">
+                <a target="_blank" href="portfolio-grid-3col.html" class="btn btn-md btn-black-line">View All</a>
+            </div>
+        </section>
+        <!-- End Work Section -->
+        <!-- Counter Section -->
+        <section id="counter" class="overlay-dark80 light-color ptb-80" style="background-image: url('/assets/landing/clock2.jpg');" data-stellar-background-ratio="0.5">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-3 mb-sm-30">
+                        <h1 class="counter" data-count="9">0</h1>
+                        <h6>awards</h6>
+                    </div>
+                    <div class="col-md-3 mb-sm-30">
+                        <h1 class="counter" data-count="1">0</h1>
+                        <h6>Clients</h6>
+                    </div>
+                    <div class="col-md-3 mb-sm-30">
+                        <h1 class="counter" data-count="6">0</h1>
+                        <h6>Team</h6>
+                    </div>
+                    <div class="col-md-3 mb-sm-30">
+                        <h1 class="counter" data-count="2">0</h1>
+                        <h6>Project</h6>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Counter Section -->
+        <hr />
+        <!-- Contant Slider Section -->
+        <section id="contant" class="wow fadeIn ptb ptb-sm-80">
+            <div class="owl-carousel content-carousel content-slider">
+                <div class="item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 mb-sm-30">
+                                <img src="/assets/landing/moc-1.png" alt="" />
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <h3>Flexible & Customizable</h3>
+                                <div class="spacer-15"></div>
+                                <p>Cras dapibus Vivamus elementum semper nisi Aenean vulputate eleifend tellus Aenean leo ligula, porttitor eu consequat vitae Phasellus viverra nulla ut metus varius laoreet.</p>
+                                <p>porttitor eu consequat vitae Phasellus viverra nulla ut metus varius laoreet</p>
+                                <div class="spacer-15"></div>
+                                <a class="btn btn-md btn-black">Buy this Theme</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5 mb-sm-30">
+                                <h3>Multipages & Onepage</h3>
+                                <div class="spacer-15"></div>
+                                <p>Cras dapibus Vivamus elementum semper nisi Aenean vulputate eleifend tellus Aenean leo ligula, porttitor eu consequat vitae Phasellus viverra nulla ut metus varius laoreet.</p>
+                                <p>porttitor eu consequat vitae Phasellus viverra nulla.</p>
+                                <div class="spacer-15"></div>
+                                <a class="btn btn-md btn-black">Download Theme</a>
+                            </div>
+                            <div class="col-md-6 col-md-offset-1">
+                                <img src="/assets/landing/moc-1.png" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 mb-sm-30">
+                                <img src="/assets/landing/moc-2.png" alt="" />
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <h3>Fully Responsive</h3>
+                                <div class="spacer-15"></div>
+                                <p>Cras dapibus Vivamus elementum semper nisi Aenean vulputate eleifend tellus Aenean leo ligula, porttitor eu consequat vitae Phasellus viverra nulla ut metus varius laoreet.</p>
+                                <p>porttitor eu consequat vitae Phasellus viverra nulla ut metus varius laoreet</p>
+                                <div class="spacer-15"></div>
+                                <a class="btn btn-md btn-black">Buy this Theme</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Contain Slider Section -->
+        <!-- Testimonials -->
+        <section id="testimonial" class="overlay-dark80 dark-bg ptb ptb-sm-80" style="background-image: url('/assets/landing/calendar.jpg');" data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="owl-carousel testimonial-carousel nf-carousel-theme white">
+                    <div class="item">
+                        <div class="testimonial text-center dark-color">
+                            <div class="container-icon"><i class="fa fa-quote-right"></i></div>
+                            <p class="lead">" I got a dummy for Christmas and started teaching myself. I got books and records and sat in front of the practising. I did my first show in the third grade and just kept going. "</p>
+                            <h6 class="quote-author">Jeff Dunham <span style="font-weight: 400;">( Appel Studio )</span></h6>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimonial text-center dark-color">
+                            <div class="container-icon"><i class="fa fa-quote-right"></i></div>
+                            <p class="lead">" It's true, you can never eat a pet you name. And anyway, I did my first show in the third grade it would be like a ventriloquist eating his dummy. "</p>
+                            <h6 class="quote-author">Alexander Theroux <span style="font-weight: 400;">( USA )</span></h6>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimonial text-center dark-color">
+                            <div class="container-icon"><i class="fa fa-quote-right"></i></div>
+                            <p class="lead">" We're not leaving here without Buster, man. Leave no crash-test dummy behind! "</p>
+                            <h6 class="quote-author">Adam Savage <span style="font-weight: 400;">( Artist )</span></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Testimonials -->
+        <!-- Features -->
+        <section id="features" class="ptb ptb-sm-80">
+            <div class="container text-center">
+                <h3 class="mt-sm">Key Features</h3>
+                <p class="lead">Fully Responsive & Mobile Ready</p>
+                <div class="spacer-60"></div>
+                <div class="row">
+                    <div class="wow fadeInLeft col-md-4 pt-80 pt-sm-0">
+                        <div class="features-box-right">
+                            <div class="features-icon-right"><i class="ion ion-ios-monitor-outline"></i></div>
+                            <h5>bootstrap 3</h5>
+                            <p>Consectetuer Adipiscing elit Aenean commodo Ligula dolor.</p>
+                        </div>
+                        <div class="features-box-right">
+                            <div class="features-icon-right"><i class="ion ion-ios-videocam-outline"></i></div>
+                            <h5>html 5 video</h5>
+                            <p>Nullam dictum felis eu pede mollis pretium leo eget bibendum sodales augue velit cursus.</p>
+                        </div>
+                        <div class="features-box-right">
+                            <div class="features-icon-right"><i class="ion ion-ios-barcode-outline"></i></div>
+                            <h5>Clean code & design</h5>
+                            <p>tellus eget condimentum rhoncus sem quam semper libero.</p>
+                        </div>
+                        <div class="features-box-right">
+                            <div class="features-icon-right"><i class="ion ion-ios-albums-outline"></i></div>
+                            <h5>Unlimited layouts</h5>
+                            <p>Donec sodales sagittis magna. Sed consequat.</p>
+                        </div>
+                    </div>
+                    <div class="wow fadeIn col-md-4 hidden-sm hidden-xs text-center">
+                        <img src="/assets/landing/moc-3.png" />
+                    </div>
+                    <div class="wow fadeInRight col-md-4 pt-80 pt-sm-0">
+                        <div class="features-box-left">
+                            <div class="features-icon-left"><i class="ion ion-ios-compose-outline"></i></div>
+                            <h5>Flexible & Customizable</h5>
+                            <p>Donec vitae sapien ut libero venenatis faucibus.</p>
+                        </div>
+                        <div class="features-box-left">
+                            <div class="features-icon-left"><i class="ion ion-ios-eye-outline"></i></div>
+                            <h5>Multi Concept & Mutli prapose Theme</h5>
+                            <p>Quisque rutrum. Aenean imperdiet Etiam ultricies nisi.</p>
+                        </div>
+                        <div class="features-box-left">
+                            <div class="features-icon-left"><i class="ion ion-ios-paper-outline"></i></div>
+                            <h5>Well Documented</h5>
+                            <p>Aenean vulputate eleifend tellus Aenean leo ligula porttitor.</p>
+                        </div>
+                        <div class="features-box-left">
+                            <div class="features-icon-left"><i class="ion ion-ios-chatbubble-outline"></i></div>
+                            <h5>Friendly Support</h5>
+                            <p>Phasellus viverra nulla ut metus laoreet Quisque rutrum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Features -->
+        <hr />
+        <hr />
+
+        <!-- Social Section -->
+        <section id="social" class="gray-bg ptb ptb-sm-80">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h3>Get Connect With Us</h3>
+                    </div>
+                </div>
+                <div class="spacer-60"></div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-4 col-xs-6">
+                                <div class="page-icon-top">
+                                    <i class="ion ion-social-twitter"></i>
+                                </div>
+                                <h6><a class="link" target="_blank" href="https://www.twitter.com/">Twitter</a></h6>
+                            </div>
+                            <div class="col-md-3 col-sm-4 col-xs-6">
+                                <div class="page-icon-top">
+                                    <i class="ion ion-social-facebook"></i>
+                                </div>
+                                <h6><a class="link" target="_blank" href="https://www.facebook.com/">Facebook</a></h6>
+                            </div>
+                            <div class="col-md-3 col-sm-4 col-xs-6">
+                                <div class="page-icon-top">
+                                    <i class="ion ion-social-googleplus"></i>
+                                </div>
+                                <h6><a class="link" target="_blank" href="https://plus.google.com/">Google plus</a></h6>
+                            </div>
+                            <div class="col-md-3 col-sm-4 col-xs-6">
+                                <div class="page-icon-top">
+                                    <i class="fa fa-linkedin"></i>
+                                </div>
+                                <h6><a class="link" target="_blank" href="https://www.linkedin.com/">Linkedin</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Social Section -->
+        <!-- Contact Section -->
+        <section id="contact-section" class="ptb ptb-sm-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <h3>Get In Touch</h3>
+                    </div>
+                </div>
+                <div class="spacer-75"></div>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <!-- Contact FORM -->
+                        <form class="contact-form" id="contact" role="form">
+                            <!-- IF MAIL SENT SUCCESSFULLY -->
+                            <h6 class="successContent">
+                                <i class="fa fa-check left" style="color: #5cb45d;"></i>Your message has been sent successfully.
+                            </h6>
+                            <!-- END IF MAIL SENT SUCCESSFULLY -->
+                            <!-- MAIL SENDING UNSUCCESSFULL -->
+                            <h6 class="errorContent">
+                                <i class="fa fa-exclamation-circle left" style="color: #e1534f;"></i>There was a problem validating the form please check!
+                            </h6>
+                            <!-- END MAIL SENDING UNSUCCESSFULL -->
+                            <div class="form-field-wrapper">
+                                <input class="input-sm form-full" id="form-name" type="text" name="form-name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-field-wrapper">
+                                <input class="input-sm form-full" id="form-email" type="email" name="form-email" placeholder="Email" required>
+                            </div>
+                            <div class="form-field-wrapper">
+                                <input class="input-sm form-full" id="form-subject" type="text" name="form-subject" placeholder="Subject">
+                            </div>
+                            <div class="form-field-wrapper">
+                                <textarea class="form-full" id="form-message" rows="7" name="form-message" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button class="btn btn-md btn-black form-full" type="submit" id="form-submit" name="submit">Send Message</button>
+                        </form>
+                        <!-- END Contact FORM -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <hr />
+        <section id="contact-info" class="ptb ptb-sm-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="contact-box-left">
+                            <div class="contact-icon-left"><i class="ion ion-ios-location"></i></div>
+                            <h6>Address</h6>
+                            <p>
+                                318, High Level Road, Colombo 05, Sri Lanka.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-box-left">
+                            <div class="contact-icon-left"><i class="ion ion-ios-telephone"></i></div>
+                            <h6>Call Us</h6>
+                            <p>
+                                <span>+94-11-544-5000</span><br />
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-box-left">
+                            <div class="contact-icon-left"><i class="ion ion-ios-email"></i></div>
+                            <h6>Email</h6>
+                            <p>
+                                <a>ucdcodestorm@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Map Section -->
+        <section class="map">
+            <div id="map"></div>
+        </section>
+        <!-- Map Section -->
+        <!-- END CONTENT ---------------------------------------------------------------------------->
+        <!-- FOOTER -->
+        <footer class="footer pt-80">
+            <!-- Copyright Bar -->
+            <section class="copyright pb-60">
+                <div class="container">
+                    <p class="">
+                        &copy; 2015 <a><b>Code Strom</b></a>. All Rights Reserved.
+                        <br />
+                        Template  by <a target="_blank" href="https://github.com/dilnuwanchathuranga/CodeStormScheduler.com/"><b>CodeStrom</b></a>
+                    </p>
+                </div>
+            </section>
+            <!-- End Copyright Bar -->
+        </footer>
+        <!-- END FOOTER -->
+        <!-- Scroll Top -->
+        <a class="scroll-top">
+            <i class="fa fa-angle-double-up"></i>
+        </a>
+        <!-- End Scroll Top -->
+    </div>
+    <!-- Site Wraper End -->
+    <!-- JS -->
+    <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+    <script src="js/plugin/jquery.easing.js" type="text/javascript"></script>
+    <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/plugin/jquery.flexslider.js" type="text/javascript"></script>
+    <script src="js/plugin/background-check.min.js" type="text/javascript"></script>
+    <script src="js/plugin/jquery.fitvids.js" type="text/javascript"></script>
+    <script src="js/plugin/jquery.viewportchecker.js" type="text/javascript"></script>
+    <script src="js/plugin/jquery.stellar.min.js" type="text/javascript"></script>
+    <script src="js/plugin/wow.min.js" type="text/javascript"></script>
+    <script src="js/plugin/jquery.colorbox-min.js" type="text/javascript"></script>
+    <script src="js/plugin/owl.carousel.min.js" type="text/javascript"></script>
+    <script src="js/plugin/isotope.pkgd.min.js" type="text/javascript"></script>
+    <script src="js/plugin/masonry.pkgd.min.js" type="text/javascript"></script>
+    <script src="js/plugin/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+    <script src="js/plugin/jPushMenu.js" type="text/javascript"></script>
+    <script src="js/plugin/jquery.fs.tipper.min.js" type="text/javascript"></script>
+    <script src="js/plugin/mediaelement-and-player.min.js"></script>
+    <script src="js/plugin/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="js/theme.js" type="text/javascript"></script>
+    <script src="js/navigation.js" type="text/javascript"></script>
+    <script src="js/plugin/jquery.mb.YTPlayer.min.js" type="text/javascript"></script>
+    <script src="js/plugin/jquery.singlePageNav.js" type="text/javascript"></script>
+    <script src="js/contact-form.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+    <script src="js/plugin/TweenLite.min.js" type="text/javascript"></script>
+    <script src="js/plugin/EasePack.min.js" type="text/javascript"></script>
+<script src="js/plugin/pollyfill.js" type="text/javascript"></script>
 
     <script src="~/Scripts/jquery-2.1.4.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/Landing/jquery.metisMenu.js"></script>
-<script src="~/Scripts/Landing/jquery.slimscroll.min.js"></script>
-
-<!-- Custom and plugin javascript -->
-
-    <script src="~/Scripts/Landing/inspinia.js"></script>
-    <script src="~/Scripts/Landing/pace.min.js"></script>
-    <script src="~/Scripts/Landing/wow.min.js"></script>
-<script>
-
-        $(document).ready(function () {
-
-            $('body').scrollspy({
-                target: '.navbar-fixed-top',
-                offset: 80
-            });
-
-            // Page scrolling feature
-            $('a.page-scroll').bind('click', function (event) {
-                var link = $(this);
-                $('html, body').stop().animate({
-                    scrollTop: $(link.attr('href')).offset().top - 50
-                }, 500);
-                event.preventDefault();
-            });
+    <script src="~/Scripts/Landing/plugin/jquery.easing.js"></script>
+    <script src="~/Scripts/Landing/jquery-ui.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/Landing/plugin/jquery.flexslider.js"></script>
+    <script src="~/Scripts/Landing/plugin/background-check.min.js"></script>
+    <script src="~/Scripts/Landing/plugin/jquery.fitvids.js"></script>
+<script src="~/Scripts/Landing/plugin/jquery.viewportchecker.js"></script>
+    <script src="~/Scripts/Landing/plugin/jquery.stellar.min.js"></script>
+    <script src="~/Scripts/Landing/plugin/wow.min.js"></script>
+    <script src="~/Scripts/Landing/plugin/jquery.colorbox-min.js"></script>
+    <script src="~/Scripts/Landing/plugin/owl.carousel.min.js"></script>
+    <script src="~/Scripts/Landing/plugin/isotope.pkgd.min.js"></script>
+    <script src="~/Scripts/Landing/plugin/masonry.pkgd.min.js"></script>
+    <script src="~/Scripts/Landing/plugin/imagesloaded.pkgd.min.js"></script>
+    <script src="~/Scripts/Landing/plugin/jPushMenu.js"></script>
+    <script src="~/Scripts/Landing/plugin/jquery.fs.tipper.min.js"></script>
+<script src="~/Scripts/Landing/plugin/mediaelement-and-player.min.js"></script>
+    <script src="~/Scripts/Landing/plugin/jquery.validate.min.js"></script>
+    <script src="~/Scripts/Landing/theme.js"></script>
+    <script src="~/Scripts/Landing/navigation.js"></script>
+    <script src="~/Scripts/Landing/plugin/jquery.mb.YTPlayer.min.js"></script>
+    <script src="~/Scripts/Landing/plugin/jquery.singlePageNav.js"></script>
+    <script src="~/Scripts/Landing/contact-form.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="~/Scripts/Landing/map.js"></script>
+    <script src="~/Scripts/Landing/plugin/TweenLite.min.js"></script>
+    <script src="~/Scripts/Landing/plugin/EasePack.min.js"></script>
+    <script src="~/Scripts/Landing/plugin/pollyfill.js"></script>
+<script type="text/javascript">
+        //  Onepage Nav Elements
+        $('.singlepage-nav').singlePageNav({
+            offset: 0,
+            filter: ':not(.nav-external)',
+            updateHash: true,
+            currentClass: 'current-ele',
+            easing: 'swing',
+            speed: 750,
+            beforeStart: function () {
+                console.log('begin scrolling');
+            },
+            onComplete: function () {
+                console.log('done scrolling');
+            }
         });
-
-        var cbpAnimatedHeader = (function () {
-            var docElem = document.documentElement,
-                    header = document.querySelector('.navbar-default'),
-                    didScroll = false,
-                    changeHeaderOn = 200;
-            function init() {
-                window.addEventListener('scroll', function (event) {
-                    if (!didScroll) {
-                        didScroll = true;
-                        setTimeout(scrollPage, 250);
-                    }
-                }, false);
-            }
-            function scrollPage() {
-                var sy = scrollY();
-                if (sy >= changeHeaderOn) {
-                    $(header).addClass('navbar-scroll')
-                }
-                else {
-                    $(header).removeClass('navbar-scroll')
-                }
-                didScroll = false;
-            }
-            function scrollY() {
-                return window.pageYOffset || docElem.scrollTop;
-            }
-            init();
-
-        })();
-
-        // Activate WOW.js plugin for animation on scrol
-        new WOW().init();
-
+        $('#landing_signin').click(function() {
+            window.location = "/account/login";
+        });
+        $('#landing_register').click(function () {
+            window.location = "/account/register";
+        });
     </script>
-
 </body>
 </html>
