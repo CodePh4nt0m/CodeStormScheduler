@@ -1,8 +1,11 @@
-﻿using DotLiquid;
+﻿using System.Collections.Generic;
+using DotLiquid;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Web.Mvc;
+using CodeStormData;
 using CodeStormScheduler.Services;
 
 
@@ -79,5 +82,27 @@ namespace CodeStormScheduler.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult Autocomplete()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public JsonResult GetNames()
+        {
+            using (CodeStormData.CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                var names = db.UserProfiles.ToList();
+                return Json(names, JsonRequestBehavior.AllowGet);
+            }
+            
+        }
+    }
+
+    class Vmodel
+    {
+        public string id { get; set; }
+        public string text { get; set; }
     }
 }

@@ -53,5 +53,7 @@
         $('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
     }
 
+    
+
     initialize();
 });

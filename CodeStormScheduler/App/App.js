@@ -172,5 +172,7 @@ mainModule.controller('MainController', function ($scope, $cookies, angularHelpe
         }
     }
 
+    
+
     initialize();
  });

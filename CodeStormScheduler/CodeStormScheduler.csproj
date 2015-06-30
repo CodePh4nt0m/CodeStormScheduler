@@ -2906,6 +2906,7 @@
     <Content Include="Views\CodeStorm\Cal.cshtml" />
     <Content Include="Views\CodeStorm\Calender.cshtml" />
     <Content Include="Views\Messages\Inbox.cshtml" />
+    <Content Include="Views\Test\Autocomplete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -33,9 +33,9 @@
             padding-right: 15px;
         }
 
-            .chat-activity-list .chat-element {
-                border-bottom: 1px solid #e7eaec;
-            }
+        .chat-activity-list .chat-element {
+            border-bottom: 1px solid #e7eaec;
+        }
 
         .chat-form {
             margin-top: 15px;
@@ -49,9 +49,9 @@
             padding-bottom: 15px;
         }
 
-            .chat-element, .chat-element .media {
-                margin-top: 15px;
-            }
+        .chat-element, .chat-element .media {
+            margin-top: 15px;
+        }
 
         .right.chat-element > .pull-right {
             margin-left: 10px;
@@ -99,9 +99,9 @@
             cursor: pointer;
         }
 
-            .thread:hover {
-                background: rgba(238, 238, 238, 0.89);
-            }
+        .thread:hover {
+            background: rgba(238, 238, 238, 0.89);
+        }
 
         .widget-threads .thread:first-child {
             padding-top: 15px !important;
@@ -112,19 +112,29 @@
             padding-bottom: 15px !important;
             border-bottom: 1px solid #DFDFDF;
         }
+
+        #newMessageModal .modal-dialog {
+            width: 500px;
+        }
+        .select2-result-label img {
+            width: 30px;
+        }
     </style>
+
 }
 
 @section jsCode {
     angular.bootstrap(document.getElementById("conversation_container"), ['messagesModule']);
 }
 
-
 <div ng-app="messagesModule" id="conversation_container" ng-controller="messagesController">
     <div class="col-lg-4">
         <div class="panel panel-info widget-threads" id="conversation-list">
             <div class="panel-heading">
                 <span class="panel-title"><i class="panel-title-icon fa fa-comments-o"></i>{{convheading}}</span>
+                <div class="panel-heading-controls">
+                    <button class="btn btn-xs btn-labeled btn-primary" id="btnNewMessage"><span class="btn-label icon fa fa-envelope-o"></span>New Message</button>
+                </div>
             </div> <!-- / .panel-heading -->
             <div class="panel-body">
                 <div class="thread" ng-repeat="c in conversations" data-conv="{{c.convid}}" ng-click="viewConversation(c.convid)">
@@ -175,6 +185,42 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="newMessageModal" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    @*<h4 class="modal-title" id="myModalLabel">New Message</h4>*@
+                    <a href="#" class="badge badge-primary">New Message</a>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="inputEmail2" class="col-sm-2 control-label">To</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="message_name_list" class="form-control select2-offscreen" tabindex="-1">
+                                    </div>
+                                </div> <!-- / .form-group -->
+                                <div class="form-group">
+                                    <label for="asdasdas" class="col-sm-2 control-label">Message</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="4" id="txtModalMessage"></textarea>
+                                    </div>
+                                </div> <!-- / .form-group -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    <input type="button" class="btn btn-primary btn-sm" value="Send Message" />
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section scripts{
@@ -212,7 +258,7 @@
             //        //$('#message').val('');
             //        var scope = angular.element($("#conversation_container")).scope();
             //        alert(scope.currentconv);
-                    
+
             //    });
             //});
 
@@ -220,20 +266,45 @@
 
             //}
 
-            
+
         });
     </script>
     <script>
         $('.chat-activity-list').slimScroll({ height: 300, start: 'bottom' });
         $('#conversation-list .panel-body').slimScroll({ height: 450, alwaysVisible: false, color: '#888', allowPageScroll: true });
         var receiver = $('#receiver').val();
+        function nameFormatResult(name) {
+            var $state = $(
+              '<span><img src="/ImageBase/Users/' + name.ImageUrl + '" class="img-flag" /> ' + name.FirstName +' '+ name.LastName + '</span>'
+            );
+            return $state;
+        }
+
+        function nameFormatSelection(name) {
+            return name.FirstName + ' ' + name.LastName;
+        }
         $(document).ready(function () {
             $("time.timeago").timeago();
-            $('#btnShow').click(function () {
-
-            });
-            $('#btnSendMessage').click(function () {
-            });
+            $("#message_name_list").select2({
+                placeholder: "Enter a name",
+                minimumInputLength: 1,
+                allowClear: true,
+                ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+                    url: "/Test/GetNames",
+                    results: function (data){
+                        return { results: data };
+                    }
+                },
+                formatResult: nameFormatResult,
+                formatSelection: nameFormatSelection,
+                dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
+                escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
+            });
+            
+        });
+        
+        $('#btnNewMessage').click(function () {
+            $('#newMessageModal').modal();
         });
     </script>
     <script src="~/App/codestorm/messages/model/messages-meta.js"></script>
