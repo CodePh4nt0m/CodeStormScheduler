@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodeStormData.ViewModels;
 
 namespace CodeStormData.Data
 {
@@ -21,6 +22,14 @@ namespace CodeStormData.Data
             using (CodeStormDBEntities db = new CodeStormDBEntities())
             {
                 return db.UserProfiles.Where(p => p.Id == userid).FirstOrDefault();
+            }
+        }
+
+        public List<UserProfile> GetUsersList()
+        {
+            using (CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                return db.UserProfiles.ToList();
             }
         }
     }

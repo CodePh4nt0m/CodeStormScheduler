@@ -71,6 +71,21 @@ namespace CodeStormScheduler.DataControllers
             MessageData msgData = new MessageData();
             return msgData.AddMessage(msg);
         }
+
+        [HttpPost]
+        public void SendUserMessage(MessageViewModel model)
+        {
+            string userid = User.Identity.GetUserId();
+            var msg = new UserMessage()
+            {
+                Message = model.message,
+                SenderId = userid,
+                ReceiverId = model.receiver,
+                Status = "Unread"
+            };
+            MessageData msgData = new MessageData();
+            msgData.AddMessage(msg);
+        }
     }
 
 

@@ -1,4 +1,6 @@
-﻿messagesModule.controller('messagesController', function ($scope, angularHelper, chat, $cookies) {
+﻿var extMsgScope;
+messagesModule.controller('messagesController', function ($scope, angularHelper, chat, $cookies) {
+    extMsgScope = $scope;
     $scope.convheading = 'conversations';
 
     var initialize = function () {
@@ -34,13 +36,17 @@
         chat.server.send($scope.currentconv, $scope.chat_message);
         chat.server.send($cookies.userid, $scope.chat_message);
         //$scope.addOwnMessage($scope.chat_message);
+        
+
         $scope.chat_message = "";
         var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
+        
         $('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
+        
     };
 
     chat.client.addChatMessage = function onNewMessage(name, message, imgurl,self) {
-        $scope.conversation.push({messageid:'0',fullname:name,message:message,imgurl:imgurl,time:new Date(),self:self});
+        $scope.conversation.push({ messageid: '0', fullname: name, message: message, imgurl: imgurl, time: new Date(), self: self });
         $scope.$apply();
         var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
         $('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
@@ -53,7 +59,8 @@
         $('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
     }
 
-    
+    $scope.sendModelMessage = function() {
+    }
 
     initialize();
 });
