@@ -179,7 +179,7 @@
 
                 <div class="form-actions">
                     <input type="submit" value="SIGN IN" class="signin-btn bg-primary" id="btnLogIn">
-                    <a href="#" class="forgot-password" id="forgot-password-link">Forgot your password?</a>
+                    <a href="/Account/ForgotPassword" class="forgot-password">Forgot your password?</a>
                 </div>
                 <!-- / .form-actions -->
             }
@@ -190,28 +190,6 @@
                 @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
             </div>
             <!-- / "Sign In with" block -->
-            <!-- Password reset form -->
-            <div class="password-reset-form" id="password-reset-form">
-                <div class="header">
-                    <div class="signin-text">
-                        <span>Password reset</span>
-                        <div class="close">&times;</div>
-                    </div> <!-- / .signin-text -->
-                </div> <!-- / .header -->
-                <!-- Form -->
-                <form action="index.html" id="password-reset-form_id">
-                    <div class="form-group w-icon">
-                        <input type="text" name="password_reset_email" id="p_email_id" class="form-control input-lg" placeholder="Enter your email">
-                        <span class="fa fa-envelope signin-form-icon"></span>
-                    </div> <!-- / Email -->
-
-                    <div class="form-actions">
-                        <input type="submit" value="SEND PASSWORD RESET LINK" class="signin-btn bg-primary">
-                    </div> <!-- / .form-actions -->
-                </form>
-                <!-- / Form -->
-            </div>
-            <!-- / Password reset form -->
         </div>
         <!-- Right side -->
     </div>
@@ -230,10 +208,9 @@
     <![endif]-->
     <!-- Pixel Admin's javascripts -->
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/pixeladmin")
     @Scripts.Render("~/bundles/plugins")
-
     <script type="text/javascript">
         // Resize BG
         init.push(function () {
@@ -307,6 +284,25 @@
             errorPlacement: function (error, element) {
                 element.parent().append(error);
             }
+        });
+        $('#btnResetPass').click(function () {
+            var email = $('#p_email_id').val();
+            var model = { Email: email };
+            $.ajax({
+                type: "POST",
+                url: "/Account/ForgotPassword",
+                data: model,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                success: function (response) {
+                    var result = JSON.parse(response.d);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+            return true;
         });
     </script>
 

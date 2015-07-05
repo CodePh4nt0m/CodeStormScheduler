@@ -83,6 +83,23 @@ var commonHelper = function () { return CodeStorm.dataHelper() };
             });
         }
 
+        self.postAsyncData = function (url, data, success, failure) {
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                success: function (result) {
+                    success(result);
+                },
+                error: function () {
+
+                }
+            });
+        }
+
         self.findIndexByKey = function (array, property, value) {
             for (var i = 0; i < array.length; i++) {
                 if (array[i][property] == value) {

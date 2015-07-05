@@ -14,7 +14,7 @@
     @Styles.Render("~/Content/Plugins")
     <link href="~/Content/blankpages.css" rel="stylesheet" />
 </head>
-<body class="theme-default page-404 page-notice page-confirmemail">
+<body class="theme-default page-404 page-notice page-emailinfo">
     <script>var init = [];</script>
     <div class="header">
         <a href="/" class="logo">
@@ -24,12 +24,13 @@
     </div> <!-- / .header -->
 
     <div class="container">
-        <div class="note note-warning">
-            <div class="msg-heading"><b>CONFIRM EMAIL</b></div>
-            <p class="note-desc">You are one step away from accessing</p>
-            <p>Please confirm your email-address using the confirmation link which we have send you. If you haven't received a mail click below button to resend it again.</p>
+        <div class="note note-info">
+            <div class="msg-heading"><b>EMAIL VERIFICATION SUCCESSFUL</b>
+            </div>
+            <br/>
+            <p >Thank you for verifying your identity. Now you can successfuly login to the site. Use the navigate button below to go to login page.</p>
             <div class="action-buttons">
-                <input type="button" class="btn btn-warning" value="Resend Confirmation Email" id="btn-send" />
+                <input type="button" class="btn btn-primary" value="Navigate to Login" id="btn-login" />
             </div>
         </div>
     </div>
@@ -49,15 +50,8 @@
             // Javascript code here
         });
         window.PixelAdmin.start(init);
-        $('#btn-home').click(function () {
-            window.location.href = "/";
-        });
-        $('#btn-send').click(function () {
-            var dataHelper = commonHelper();
-            dataHelper.postData('/Account/ConfirmEmail', null,
-                function (result) {
-                });
-            window.location.href = "/Account/ConfirmEmailResend";
+        $('#btn-login').click(function () {
+            window.location.href = "/Account/Login";
         });
     </script>
 </body>

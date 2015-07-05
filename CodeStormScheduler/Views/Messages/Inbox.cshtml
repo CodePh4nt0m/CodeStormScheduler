@@ -124,6 +124,9 @@
         .msg-controls {
             padding-bottom: 10px;
         }
+        .thread-body .thread-time {
+            font-size: 10px !important;
+        }
     </style>
 
 }
@@ -152,7 +155,7 @@
                         <div class="thread" ng-repeat="c in conversations" data-conv="{{c.convid}}" ng-click="viewConversation(c.convid)">
                             <img src="/ImageBase/Users/{{c.imgurl}}" alt="" class="thread-avatar">
                             <div class="thread-body">
-                                <span class="thread-time"></span>
+                                <span class="thread-time">{{ c.time | timeAgo }}</span>
                                 <a class="thread-title">{{c.fullname}}</a>
                                 <div class="thread-info">
                                     {{c.message}}
@@ -167,22 +170,20 @@
     </div>
     <div class="col-lg-6">
         <div class="ibox float-e-margins">
-
             <div class="ibox-content">
-
                 <div>
-                    <div class="chat-activity-list">
-                        <div ng-class="{true:'chat-element right',false:'chat-element'}[c.self]" ng-repeat="c in conversation">
+                    <div class="chat-activity-list scroll-body" slimscroll="{height: '300'}">
+                        <div ng-class="{true:'chat-wrap chat-element right',false:'chat-wrap chat-element'}[c.self]" ng-repeat="c in conversation">
                             <a href="#" ng-class="{true:'pull-right',false:'pull-left'}[c.self]">
                                 <img alt="image" class="img-circle" src="/ImageBase/Users/{{c.imgurl}}">
                             </a>
                             <div ng-class="{true:'media-body text-right',false:'media-body'}[c.self]">
-                                <small ng-class="{true:'pull-left',false:'pull-right'}[c.self]">1m ago</small>
+                                <small ng-class="{true:'pull-left',false:'pull-right'}[c.self]">{{c.time | timeAgo}}</small>
                                 <strong>{{c.fullname}}</strong>
                                 <p class="m-b-xs">
                                     {{c.message}}
                                 </p>
-                                <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
+                                <small class="text-muted">{{c.time | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</small>
                             </div>
                         </div>
                     </div>
@@ -284,11 +285,15 @@
 
         });
     </script>
+    <script src="~/Scripts/angular-moment.min.js"></script>
+    <script src="~/Scripts/angular-timeago.js"></script>
+    <script src="~/Scripts/angular-slimscroll.js"></script>
     <script src="~/App/codestorm/messages/model/messages-meta.js"></script>
     <script src="~/App/codestorm/messages/controllers/messagesController.js"></script>
+
     <script>
-        $('.chat-activity-list').slimScroll({ height: 300, start: 'bottom' });
-        $('#conversation-list .panel-body').slimScroll({ height: 450, alwaysVisible: false, color: '#888', allowPageScroll: true });
+        //$('.chat-activity-list').slimScroll({ height: 300, start: 'bottom' });
+        //$('#conversation-list .panel-body').slimScroll({ height: 450, alwaysVisible: false, color: '#888', allowPageScroll: true });
         var receiver = $('#receiver').val();
 
         function nameFormatResult(name) {
@@ -316,14 +321,15 @@
                         placeholder: "Enter a name",
                         allowClear: true
                     });
+                    $('#newMessageModal').modal();
                 });
-            $('#newMessageModal').modal();
+            
         });
         $('#model_SendMessage').click(function () {
             var user = $("#message_name_list").select2("data");
             var msg = $('#txtModalMessage').val();
             var dataHelper = commonHelper();
-            var message = {  messageid:"0",message:msg,sender:null,receiver:user.id};
+            var message = { messageid: "0", message: msg, sender: null, receiver: user.id };
             dataHelper.postData('/MessageData/SendUserMessage', message,
             function (result) {
 
@@ -335,7 +341,7 @@
                         extMsgScope.conversations = result;
                     });
                 });
-            
+
             $("#message_name_list").select2("val", "");
             $('#txtModalMessage').val("");
             $('#newMessageModal').modal('toggle');

@@ -76,8 +76,6 @@ namespace CodeStormScheduler.Controllers
                 return View(model);
             }
 
-
-
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
@@ -90,7 +88,7 @@ namespace CodeStormScheduler.Controllers
                         if (!await UserManager.IsEmailConfirmedAsync(user.Id))
                         {
                             ViewBag.Message = "You must have a confirmed email to log on.";
-                            return View("EmailConfirmInfo");
+                            return View("ConfirmEmail");
                         }
                     }
                     return RedirectToLocal(returnUrl);
@@ -192,7 +190,7 @@ namespace CodeStormScheduler.Controllers
                     ViewBag.Message = "Check your email and confirm your account, you must be confirmed "
                                       + "before you can log in.";
 
-                    return View("EmailConfirmInfo");
+                    return View("RegisterSuccess");
                 }
                 else
                 {
@@ -219,7 +217,7 @@ namespace CodeStormScheduler.Controllers
                 return View("Error");
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            return View(result.Succeeded ? "ConfirmSuccess" : "Error");
         }
 
         //
@@ -240,11 +238,19 @@ namespace CodeStormScheduler.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
-                {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
-                }
+                //if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                //{
+                //    // Don't reveal that the user does not exist or is not confirmed
+                //    return View("ForgotPasswordConfirmation");
+                //}
+
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                string mail = MailBuilder.GeneratePaswordReset(callbackUrl);
+                CSEmailService mailService = new CSEmailService();
+
+                mailService.SendGridEmail(mail, model.Email, "[Code Storm] Reset Password");
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
@@ -448,6 +454,29 @@ namespace CodeStormScheduler.Controllers
                 db.UserProfiles.Add(userProfile);
                 db.SaveChanges();
             }
+        }
+
+        [HttpPost]
+        public string ConfirmEmail()
+        {
+            string userid = User.Identity.GetUserId();
+            string email = User.Identity.GetUserName();
+            string code = UserManager.GenerateEmailConfirmationToken(userid);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userid, code = code },
+                protocol: Request.Url.Scheme);
+            //await UserManager.SendEmailAsync(user.Id, "Confirm your account", callbackUrl);
+            //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+            //return RedirectToAction("Index", "Home");
+            string mail = MailBuilder.GenerateEmailConfirmation(callbackUrl);
+            CSEmailService mailService = new CSEmailService();
+
+            mailService.SendGridEmail(mail, email, "[Code Storm] Email Confirmation");
+            return "Success";
+        }
+
+        public ActionResult ConfirmEmailResend()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

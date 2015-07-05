@@ -26,5 +26,21 @@ namespace CodeStormScheduler.Services
             }
             return html;
         }
+
+        public static string GeneratePaswordReset(string resetlink)
+        {
+            string html = "";
+            using (var reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Templates/resetpassword.html")))
+            {
+                var contents = reader.ReadToEnd();
+                Template bodyTemplate = Template.Parse(contents);
+                var bodyDto = new
+                {
+                    resetlink = resetlink
+                };
+                html = bodyTemplate.Render(Hash.FromAnonymousObject(bodyDto));
+            }
+            return html;
+        }
     }
 }

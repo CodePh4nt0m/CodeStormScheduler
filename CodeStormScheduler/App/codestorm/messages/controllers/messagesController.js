@@ -2,6 +2,7 @@
 messagesModule.controller('messagesController', function ($scope, angularHelper, chat, $cookies) {
     extMsgScope = $scope;
     $scope.convheading = 'conversations';
+    $scope.pageLoadTime = (new Date()).toISOString();
 
     var initialize = function () {
         $scope.getConversationlist();
@@ -28,8 +29,8 @@ messagesModule.controller('messagesController', function ($scope, angularHelper,
     $scope.viewConversation = function (convid) {
         $scope.currentconv = convid;
         $scope.loadConversation(convid);
-        var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
-        $('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
+        //var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
+        //$('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
     }
 
     $scope.sendMessage = function () {
@@ -39,24 +40,24 @@ messagesModule.controller('messagesController', function ($scope, angularHelper,
         
 
         $scope.chat_message = "";
-        var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
+        //var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
         
-        $('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
+        //$('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
         
     };
 
     chat.client.addChatMessage = function onNewMessage(name, message, imgurl,self) {
         $scope.conversation.push({ messageid: '0', fullname: name, message: message, imgurl: imgurl, time: new Date(), self: self });
         $scope.$apply();
-        var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
-        $('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
+        //var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
+        //$('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
     };
 
     $scope.addOwnMessage = function(message) {
         $scope.conversation.push({ messageid: '0', fullname: $cookies.fname + ' ' + $cookies.lname, message: message, imgurl: $cookies.imgurl, time: new Date(), self: true });
         $scope.$apply();
-        var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
-        $('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
+        //var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
+        //$('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
     }
 
     $scope.sendModelMessage = function() {

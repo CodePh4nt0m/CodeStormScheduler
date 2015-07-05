@@ -98,6 +98,16 @@ namespace CodeStormScheduler.Controllers
             }
             
         }
+
+        public ActionResult EmailConfirmInfo()
+        {
+            return View();
+        }
+
+        public ActionResult EmailConfirm()
+        {
+            return View();
+        }
     }
 
     class Vmodel

@@ -1,0 +1,41 @@
+﻿.page-notice {
+    background: #F5F1F1 !important;
+}
+
+    .page-notice .header .demo-logo, .page-500 .header .demo-logo {
+        background: transparent !important;
+    }
+
+    .page-notice .note .msg-heading {
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    .page-notice .note-desc {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-weight: 600;
+        color: #8D8D8D;
+    }
+
+    .page-notice .help-block {
+        font-size: 12px;
+        color: #8D8D8D;
+        margin-top: -5px;
+    }
+
+    .page-notice .action-buttons {
+        margin-top: 20px;
+    }
+
+    .page-notice .note {
+        margin: 80px 0 !important;
+    }
+
+.page-emailinfo .note .msg-heading {
+    color: #1d89cf;
+}
+
+.page-confirmemail .note .msg-heading {
+    color: #e38b0e;
+}

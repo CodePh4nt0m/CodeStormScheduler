@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>false</IncludeIisSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -338,6 +339,7 @@
     <Content Include="assets\landing\tumblr_mnijymzM9Q1st4t3po1_1280-1024x379.png" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\animate.min.css" />
+    <Content Include="Content\blankpages.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Calender\calender.css" />
@@ -2517,8 +2519,12 @@
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
     <Content Include="Scripts\angular-cookies.min.js" />
+    <Content Include="Scripts\angular-moment.js" />
+    <Content Include="Scripts\angular-moment.min.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular-slimscroll.js" />
+    <Content Include="Scripts\angular-timeago.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2848,6 +2854,7 @@
     <Content Include="Scripts\SignUp\jquery.cookie.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Templates\emailconfirm.html" />
+    <Content Include="Templates\resetpassword.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -2868,7 +2875,7 @@
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPassword_bk.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login_bk.cshtml" />
     <Content Include="Views\Account\Register_bk.cshtml" />
@@ -2907,6 +2914,12 @@
     <Content Include="Views\CodeStorm\Calender.cshtml" />
     <Content Include="Views\Messages\Inbox.cshtml" />
     <Content Include="Views\Test\Autocomplete.cshtml" />
+    <Content Include="Views\Test\EmailConfirmInfo.cshtml" />
+    <Content Include="Views\Account\RegisterSuccess.cshtml" />
+    <Content Include="Views\Test\EmailConfirm.cshtml" />
+    <Content Include="Views\Account\ConfirmEmailResend.cshtml" />
+    <Content Include="Views\Account\ConfirmSuccess.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

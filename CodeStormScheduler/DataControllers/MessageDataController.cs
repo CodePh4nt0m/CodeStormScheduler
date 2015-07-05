@@ -25,7 +25,7 @@ namespace CodeStormScheduler.DataControllers
                 fullname = c.Sender,
                 imgurl = c.ImageUrl,
                 message = SplitMesage(c.Message),
-                time = c.CDate.ToString("G")
+                time = c.CDate.ToString("O")
             }).ToList();
             return Json(conversationlist, JsonRequestBehavior.AllowGet);
         }
@@ -42,7 +42,7 @@ namespace CodeStormScheduler.DataControllers
                 fullname = c.FullName,
                 imgurl = c.ImageUrl,
                 message = c.Message,
-                time = c.CDate.ToString(""),
+                time = c.CDate.ToString("O"),
                 self = c.Self
             }).ToList();
             return Json(conversationlist, JsonRequestBehavior.AllowGet);
