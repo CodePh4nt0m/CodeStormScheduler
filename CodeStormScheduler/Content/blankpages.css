@@ -2,7 +2,8 @@
     background: #F5F1F1 !important;
 }
 
-    .page-notice .header .demo-logo, .page-500 .header .demo-logo {
+    .page-notice .header .demo-logo, .page-500 .header .demo-logo,
+    .page-reset-pass .bg-primary{
         background: transparent !important;
     }
 
@@ -39,3 +40,5 @@
 .page-confirmemail .note .msg-heading {
     color: #e38b0e;
 }
+
+

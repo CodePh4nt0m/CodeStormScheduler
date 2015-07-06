@@ -108,6 +108,11 @@ namespace CodeStormScheduler.Controllers
         {
             return View();
         }
+
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
     }
 
     class Vmodel
