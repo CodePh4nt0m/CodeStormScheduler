@@ -20,17 +20,15 @@ messagesModule.controller('messagesController', function ($scope, angularHelper,
     $scope.loadConversation = function (convid) {
         angularHelper.getData('/MessageData/GetConversation', { params: { conversation : convid } },
             function (result) {
-                $scope.$apply(function () {
                     $scope.conversation = result.data;
-                });
             });
     };
 
     $scope.viewConversation = function (convid) {
         $scope.currentconv = convid;
         $scope.loadConversation(convid);
-        //var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
-        //$('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
+        var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
+        $('.chat-activity-list').slimScroll({ height: 340, scrollTo: chatheight });
     }
 
     $scope.sendMessage = function () {

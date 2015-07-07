@@ -28,7 +28,7 @@ namespace CodeStormScheduler.DataControllers
             {
                 id = u.Id,
                 text = u.FirstName + " " + u.LastName,
-                imgurl = u.ImageUrl
+                imgurl = u.ImageUrl == null ? "blank_photo.png" : u.ImageUrl
             }).ToList();
             userlist.Remove(userlist.Where(u => u.id == User.Identity.GetUserId()).First());
             return Json(userlist, JsonRequestBehavior.AllowGet);

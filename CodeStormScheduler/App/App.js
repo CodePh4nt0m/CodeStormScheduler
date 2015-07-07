@@ -1,44 +1,8 @@
-// create the module and name it scotchApp
+
 var commonModule = angular.module('common', []);
-var mainModule = angular.module('main', ['common', 'ngRoute', 'ngCookies']);
+var mainModule = angular.module('main', ['ngCookies', 'common']);
 
 commonModule.factory('angularHelper', function ($http) { return CodeStorm.angularHelper($http); });
- // configure our routes
- //app.config(function ($routeProvider, $locationProvider) {
- //    $routeProvider
-
- //    // route for the calendar page
- //    //    .when(app.meta.calendarModule.rootRoute, {
- //    //    templateUrl: app.meta.calendarModule.templateUrl,
- //    //    controller: app.meta.calendarModule.controller
- //    //})
-
- //    // route for the settings page
- //    .when(app.meta.settingsModule.rootRoute, {
- //        templateUrl: app.meta.settingsModule.templateUrl,
- //        controller: app.meta.settingsModule.controller
- //    })
-
- //    // route for the events page
- //    .when(app.meta.eventsModule.rootRoute, {
- //        templateUrl: app.meta.eventsModule.templateUrl,
- //        controller: app.meta.eventsModule.controller
- //    })
-
- //    //route for the recommendations page
- //    .when(app.meta.recommendationsModule.rootRoute, {
- //        templateUrl: app.meta.recommendationsModule.templateUrl,
- //        controller: app.meta.recommendationsModule.controller
- //    })
-
- //    //route for the user profile page
- //    .when(app.meta.userProfileModule.rootRoute, {
- //        templateUrl: app.meta.userProfileModule.templateUrl,
- //        controller: app.meta.userProfileModule.controller
- //    });
-
- //    $locationProvider.html5Mode(true);
-//});
 
 var commonHelper = function () { return CodeStorm.dataHelper() };
 
@@ -175,18 +139,29 @@ var commonHelper = function () { return CodeStorm.dataHelper() };
 mainModule.controller('MainController', function ($scope, $cookies, angularHelper) {
     $scope.user_name = $cookies.fname;
     var initialize = function () {
-        var usr = $cookies.userid;
-        if (usr == null) {
-            angularHelper.getData('/UserData/GetCurrentUserProfileData', null,
+        $scope.loadnames();
+    }
+
+    function nameFormatResult(name) {
+        var $state = $(
+          '<span><img src="/ImageBase/Users/' + name.imgurl + '" class="img-flag" /> ' + name.text + '</span>'
+        );
+        return $state;
+    }
+
+    $scope.loadnames = function() {
+        $("#txt_navbar_search").select2("val", "");
+        var userlist = null;
+        angularHelper.getData('/UserData/GetAutoCompleteUserList', null,
             function (result) {
-                var user = result.data;
-                $cookies.userid = user.userid;
-                $cookies.fname = user.fname;
-                $cookies.lname = user.lname;
-                $cookies.imgurl = user.imgurl;
-                $scope.user_name = user.fname;
+                userlist = result.data;
+                $("#txt_navbar_search").select2({
+                    data: userlist,
+                    formatResult: nameFormatResult,
+                    placeholder: "Search",
+                    allowClear: true
+                });
             });
-        }
     }
 
     initialize();

@@ -23,7 +23,7 @@ namespace CodeStormScheduler.DataControllers
             {
                 convid = c.Id,
                 fullname = c.Sender,
-                imgurl = c.ImageUrl,
+                imgurl = c.ImageUrl == null ? "blank_photo.png" : c.ImageUrl,
                 message = SplitMesage(c.Message),
                 time = c.CDate.ToString("O")
             }).ToList();
@@ -40,7 +40,7 @@ namespace CodeStormScheduler.DataControllers
             {
                 messageid = c.MessageId,
                 fullname = c.FullName,
-                imgurl = c.ImageUrl,
+                imgurl = c.ImageUrl == null ? "blank_photo.png" : c.ImageUrl,
                 message = c.Message,
                 time = c.CDate.ToString("O"),
                 self = c.Self

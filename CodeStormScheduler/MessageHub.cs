@@ -21,7 +21,8 @@ namespace CodeStormScheduler
             bool self = (userid == who ? true : false);
             if (userid != who)
                 SaveMessage(message, userid, who);
-            Clients.Group(who).addChatMessage(user.FirstName + " " + user.LastName, message, user.ImageUrl, self);
+            string img = user.ImageUrl == null ? "blank_photo.png" : user.ImageUrl;
+            Clients.Group(who).addChatMessage(user.FirstName + " " + user.LastName, message, img, self);
         }
 
         public override Task OnConnected()

@@ -40,6 +40,14 @@ Use search to find needed section.
     @Styles.Render("~/Content/Custom")
     @RenderSection("headscripts", required: false)
     @RenderSection("styles", required: false)
+    <style>
+        #txt_navbar_search {
+            background: #f8f8f8;
+            border: none;
+            color: #999;
+        }
+
+    </style>
     <!--[if lt IE 9]>
         <script src="assets/javascripts/ie.min.js"></script>
     <![endif]-->
@@ -308,7 +316,7 @@ Use search to find needed section.
 
                                 <li>
                                     <form class="navbar-form pull-left">
-                                        <input type="text" class="form-control" placeholder="Search">
+                                        <input type="text" class="form-control select2-offscreen" tabindex="-1" id="txt_navbar_search">
                                     </form>
                                 </li>
 
@@ -382,7 +390,10 @@ Use search to find needed section.
                         <a href="index.html"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span></a>
                     </li>
                     <li>
-                        <a href="/CodeStorm/Calender"><i class="menu-icon fa fa-calendar"></i><span class="mm-text">Calender</span></a>
+                        <a href="/codestorm/calender"><i class="menu-icon fa fa-calendar"></i><span class="mm-text">Calender</span></a>
+                    </li>
+                    <li>
+                        <a href="/messages/inbox"><i class="menu-icon fa fa-envelope-o"></i><span class="mm-text">Messages</span></a>
                     </li>
                     <li class="mm-dropdown">
                         <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Layouts</span><span class="label label-warning">Updated</span></a>
@@ -394,10 +405,6 @@ Use search to find needed section.
                                 <a tabindex="-1" href="layouts-main-menu.html"><i class="menu-icon fa fa-th-list"></i><span class="mm-text">Main menu</span><span class="label label-warning">Updated</span></a>
                             </li>
                         </ul>
-                    </li>
-
-                    <li>
-                        <a href="widgets.html"><i class="menu-icon fa fa-flask"></i><span class="mm-text">Widgets</span></a>
                     </li>
                     <li class="mm-dropdown">
                         <a href="#"><i class="menu-icon fa fa-desktop"></i><span class="mm-text">UI elements</span></a>

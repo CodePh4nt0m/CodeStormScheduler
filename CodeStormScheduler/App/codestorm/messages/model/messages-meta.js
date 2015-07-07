@@ -2,7 +2,7 @@
     mainModule.meta = {};
 }
 
-var messagesModule = angular.module('messagesModule', ['main', 'common', 'ngCookies', 'ui.slimscroll', 'yaru22.angular-timeago', 'angularMoment']);
+var messagesModule = angular.module('messagesModule', ['ngCookies', 'ui.slimscroll', 'yaru22.angular-timeago', 'angularMoment', 'common']);
 
 (function() {
     $(function() {

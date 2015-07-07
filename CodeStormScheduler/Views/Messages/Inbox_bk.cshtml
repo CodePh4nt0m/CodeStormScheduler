@@ -1,0 +1,354 @@
+﻿@{
+    ViewBag.Title = "Inbox";
+}
+
+@section styles{
+    <style>
+        .ibox {
+            clear: both;
+            margin-bottom: 25px;
+            margin-top: 0;
+            padding: 0;
+        }
+
+        .ibox-content {
+            clear: both;
+        }
+
+        .ibox-content {
+            background-color: #ffffff;
+            color: inherit;
+            padding: 15px 20px 20px 20px;
+            border-color: #e7eaec;
+            border-image: none;
+            border-style: solid solid none;
+            border-width: 1px 0px;
+        }
+
+        .chat-element:first-child {
+            margin-top: 0;
+        }
+
+        .chat-activity-list {
+            padding-right: 15px;
+        }
+
+            .chat-activity-list .chat-element {
+                border-bottom: 1px solid #e7eaec;
+            }
+
+        .chat-form {
+            margin-top: 15px;
+        }
+
+        .chat-element, .media-body {
+            overflow: hidden;
+        }
+
+        .chat-element {
+            padding-bottom: 15px;
+        }
+
+            .chat-element, .chat-element .media {
+                margin-top: 15px;
+            }
+
+        .right.chat-element > .pull-right {
+            margin-left: 10px;
+        }
+
+        .chat-element img.img-circle, .dropdown-messages-box img.img-circle {
+            width: 38px;
+            height: 38px;
+        }
+
+        .chat-element .pull-left img {
+            margin-right: 10px;
+        }
+
+        .img-circle {
+            border-radius: 50%;
+        }
+
+        .feed-element, .media-body {
+            overflow: hidden;
+        }
+
+        .sidebard-panel .feed-element, .media-body, .sidebard-panel p {
+            font-size: 12px;
+        }
+
+        .media-body {
+            display: block;
+            width: auto;
+        }
+
+        .m-b-xs {
+            margin-bottom: 5px;
+        }
+
+        .text-muted {
+            color: #888888;
+        }
+
+        .text-navy {
+            color: #1ab394;
+        }
+
+        .thread {
+            cursor: pointer;
+        }
+
+            .thread:hover {
+                background: rgba(238, 238, 238, 0.89);
+            }
+
+        .widget-threads .thread:first-child {
+            padding-top: 15px !important;
+            border-top: 1px solid #DFDFDF;
+        }
+
+        .widget-threads .thread:last-child {
+            padding-bottom: 15px !important;
+            border-bottom: 1px solid #DFDFDF;
+        }
+
+        #newMessageModal .modal-dialog {
+            width: 500px;
+        }
+
+        .select2-result-label img {
+            width: 30px;
+        }
+
+        .msg-controls {
+            padding-bottom: 10px;
+        }
+        .thread-body .thread-time {
+            font-size: 10px !important;
+        }
+    </style>
+
+}
+
+@section jsCode {
+    angular.bootstrap(document.getElementById("conversation_container"), ['messagesModule']);
+}
+
+<div ng-app="messagesModule" id="conversation_container" ng-controller="messagesController">
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-12 msg-controls">
+                <button class="btn btn-xs btn-labeled btn-primary" id="btnNewMessage"><span class="btn-label icon fa fa-envelope-o"></span>New Message</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-info widget-threads" id="conversation-list">
+                    <div class="panel-heading">
+                        <span class="panel-title"><i class="panel-title-icon fa fa-comments-o"></i>{{convheading}}</span>
+                        <div class="panel-heading-controls">
+
+                        </div>
+                    </div> <!-- / .panel-heading -->
+                    <div class="panel-body">
+                        <div class="thread" ng-repeat="c in conversations" data-conv="{{c.convid}}" ng-click="viewConversation(c.convid)">
+                            <img src="/ImageBase/Users/{{c.imgurl}}" alt="" class="thread-avatar">
+                            <div class="thread-body">
+                                <span class="thread-time">{{ c.time | timeAgo }}</span>
+                                <a class="thread-title">{{c.fullname}}</a>
+                                <div class="thread-info">
+                                    {{c.message}}
+                                </div>
+                            </div> <!-- / .thread-body -->
+                        </div> <!-- / .thread -->
+                    </div> <!-- / .panel-body -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div>
+                    <div class="chat-activity-list scroll-body" slimscroll="{height: '300'}">
+                        <div ng-class="{true:'chat-wrap chat-element right',false:'chat-wrap chat-element'}[c.self]" ng-repeat="c in conversation">
+                            <a href="#" ng-class="{true:'pull-right',false:'pull-left'}[c.self]">
+                                <img alt="image" class="img-circle" src="/ImageBase/Users/{{c.imgurl}}">
+                            </a>
+                            <div ng-class="{true:'media-body text-right',false:'media-body'}[c.self]">
+                                <small ng-class="{true:'pull-left',false:'pull-right'}[c.self]">{{c.time | timeAgo}}</small>
+                                <strong>{{c.fullname}}</strong>
+                                <p class="m-b-xs">
+                                    {{c.message}}
+                                </p>
+                                <small class="text-muted">{{c.time | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-form">
+                    <form role="form">
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Message" id="message" ng-model="chat_message"></textarea>
+                        </div>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-sm btn-primary m-t-n-xs" id="btnSendMessage" ng-click="sendMessage()"><strong>Send message</strong></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="newMessageModal" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    @*<h4 class="modal-title" id="myModalLabel">New Message</h4>*@
+                    <a href="#" class="badge badge-primary">New Message</a>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="inputEmail2" class="col-sm-2 control-label">To</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="message_name_list" class="form-control select2-offscreen" tabindex="-1">
+                                    </div>
+                                </div> <!-- / .form-group -->
+                                <div class="form-group">
+                                    <label for="asdasdas" class="col-sm-2 control-label">Message</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="4" id="txtModalMessage"></textarea>
+                                    </div>
+                                </div> <!-- / .form-group -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    <input type="button" class="btn btn-primary btn-sm" value="Send Message" id="model_SendMessage" ng-click="sendModelMessage()" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/signalr/hubs"></script>
+    <script>
+        function addMessage(msg) {
+            var chat = '<div class="chat-element">' +
+                '<a href="#" class="pull-left">' +
+                '<img alt="image" class="img-circle" src="assets/demo/avatars/a2.jpg">' +
+                '</a>' +
+                '<div class="media-body ">' +
+                '<small class="pull-right text-navy">1m ago</small>' +
+                '<strong>Mike Smith</strong>' +
+                '<p class="m-b-xs">' +
+                msg +
+                '</p>' +
+                '<small class="text-muted">Today 4:21 pm - 12.06.2014</small>' +
+                '</div>' +
+                '</div>';
+            $('.chat-activity-list').append(chat);
+            var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
+            $('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
+        };
+
+        $(function () {
+            //var chat = $.connection.messageHub;
+            //chat.client.addChatMessage = function (msg) {
+            //    addMessage(msg);
+            //};
+
+            //$.connection.hub.start().done(function () {
+            //    $('#btnSendMessage').click(function () {
+            //        //chat.server.send($('#receiver').val(), $('#message').val());
+            //        //$('#message').val('');
+            //        var scope = angular.element($("#conversation_container")).scope();
+            //        alert(scope.currentconv);
+
+            //    });
+            //});
+
+            //function fetchMessages() {
+
+            //}
+
+
+        });
+    </script>
+    <script src="~/Scripts/angular-moment.min.js"></script>
+    <script src="~/Scripts/angular-timeago.js"></script>
+    <script src="~/Scripts/angular-slimscroll.js"></script>
+    <script src="~/App/codestorm/messages/model/messages-meta.js"></script>
+    <script src="~/App/codestorm/messages/controllers/messagesController.js"></script>
+
+    <script>
+        //$('.chat-activity-list').slimScroll({ height: 300, start: 'bottom' });
+        //$('#conversation-list .panel-body').slimScroll({ height: 450, alwaysVisible: false, color: '#888', allowPageScroll: true });
+        var receiver = $('#receiver').val();
+
+        function nameFormatResult(name) {
+            var $state = $(
+              '<span><img src="/ImageBase/Users/' + name.imgurl + '" class="img-flag" /> ' + name.text + '</span>'
+            );
+            return $state;
+        }
+
+        $(document).ready(function () {
+            $("time.timeago").timeago();
+
+        });
+
+        $('#btnNewMessage').click(function () {
+            $("#message_name_list").select2("val", "");
+            var dataHelper = commonHelper();
+            var userlist = null;
+            dataHelper.getData('/UserData/GetAutoCompleteUserList', null,
+                function (result) {
+                    userlist = result;
+                    $("#message_name_list").select2({
+                        data: userlist,
+                        formatResult: nameFormatResult,
+                        placeholder: "Enter a name",
+                        allowClear: true
+                    });
+                    $('#newMessageModal').modal();
+                });
+            
+        });
+        $('#model_SendMessage').click(function () {
+            var user = $("#message_name_list").select2("data");
+            var msg = $('#txtModalMessage').val();
+            var dataHelper = commonHelper();
+            var message = { messageid: "0", message: msg, sender: null, receiver: user.id };
+            dataHelper.postData('/MessageData/SendUserMessage', message,
+            function (result) {
+
+            });
+            var userlist = null;
+            dataHelper.getData('/MessageData/GetConversationList', null,
+                function (result) {
+                    extMsgScope.$apply(function () {
+                        extMsgScope.conversations = result;
+                    });
+                });
+
+            $("#message_name_list").select2("val", "");
+            $('#txtModalMessage').val("");
+            $('#newMessageModal').modal('toggle');
+
+        });
+    </script>
+
+}
+
+

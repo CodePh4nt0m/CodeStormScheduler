@@ -40,5 +40,10 @@ namespace CodeStormScheduler.Controllers
         {
             return View();
         }
+
+        public ActionResult MessageChat()
+        {
+            return View();
+        }
     }
 }

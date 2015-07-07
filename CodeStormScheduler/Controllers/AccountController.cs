@@ -91,6 +91,27 @@ namespace CodeStormScheduler.Controllers
                             return View("ConfirmEmail");
                         }
                     }
+                    using (CodeStormDbContext db = new CodeStormDbContext())
+                    {
+                        var profile = db.UserProfiles.Where(u => u.Id == user.Id).FirstOrDefault();
+                        if (profile != null)
+                        {
+                            HttpCookie userid = new HttpCookie("userid");
+                            HttpCookie fname = new HttpCookie("fname");
+                            HttpCookie lname = new HttpCookie("lname");
+                            HttpCookie imgurl = new HttpCookie("imgurl");
+
+                            userid.Value = profile.Id;
+                            fname.Value = profile.FirstName;
+                            lname.Value = profile.LastName;
+                            imgurl.Value = (profile.ImageUrl == null ? "blank_photo.png" : profile.ImageUrl);
+
+                            this.ControllerContext.HttpContext.Response.Cookies.Add(userid);
+                            this.ControllerContext.HttpContext.Response.Cookies.Add(fname);
+                            this.ControllerContext.HttpContext.Response.Cookies.Add(lname);
+                            this.ControllerContext.HttpContext.Response.Cookies.Add(imgurl);
+                        }
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -435,6 +456,30 @@ namespace CodeStormScheduler.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
+            if (Request.Cookies["userid"] != null)
+            {
+                var c = new HttpCookie("userid");
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
+            }
+            if (Request.Cookies["fname"] != null)
+            {
+                var c = new HttpCookie("fname");
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
+            }
+            if (Request.Cookies["lname"] != null)
+            {
+                var c = new HttpCookie("lname");
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
+            }
+            if (Request.Cookies["imgurl"] != null)
+            {
+                var c = new HttpCookie("imgurl");
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
+            }
             return RedirectToAction("Login", "Account");
         }
 

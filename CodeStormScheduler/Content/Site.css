@@ -67,3 +67,23 @@
     padding: 8px 10px !important;
     font-size: 12px !important;
 }
+@media (min-width: 768px) {
+    #main-navbar form.navbar-form .form-control {
+        width: 270px;
+    }
+
+    #s2id_txt_navbar_search {
+        background: transparent !important;
+        margin-top: 2px !important;
+        
+    }
+
+    .navbar-nav .select2-chosen {
+        margin-top: -6px !important;
+    }
+
+    .navbar-nav .select2-choice {
+        background: #f8f8f8;
+        border: none !important;
+    }
+}

@@ -375,6 +375,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="ImageBase\Users\85c1c270742f4885a2659ca636f60577.jpg" />
+    <Content Include="ImageBase\Users\blank_photo.png" />
     <Content Include="ImageBase\Users\c0c4f8fa784049ae80c3143ed3bbe795.jpg" />
     <Content Include="ImageBase\Users\3614767a17c848cfb9dbe301f0301753.jpg" />
     <Content Include="ImageBase\Users\01671665483c488988aff059d936c9c1.jpg" />
@@ -2912,7 +2913,7 @@
     <Content Include="Views\CodeStorm\Index.cshtml" />
     <Content Include="Views\CodeStorm\Cal.cshtml" />
     <Content Include="Views\CodeStorm\Calender.cshtml" />
-    <Content Include="Views\Messages\Inbox.cshtml" />
+    <Content Include="Views\Messages\Inbox_bk.cshtml" />
     <Content Include="Views\Test\Autocomplete.cshtml" />
     <Content Include="Views\Test\EmailConfirmInfo.cshtml" />
     <Content Include="Views\Account\RegisterSuccess.cshtml" />
@@ -2922,6 +2923,8 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Test\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Design\MessageChat.cshtml" />
+    <Content Include="Views\Messages\Inbox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
