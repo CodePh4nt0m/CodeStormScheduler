@@ -1,8 +1,9 @@
 ﻿@section styles{
-    <script src="~/Scripts/dhtmlxScheduler/dhtmlxscheduler.js"></script>
     <link href="~/Scripts/dhtmlxScheduler/dhtmlxscheduler.css" rel="stylesheet" />
-    <link href="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_flat.css" rel="stylesheet" />
+    @*<link href="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_flat.css" rel="stylesheet" />*@
     <link href="~/Content/Calender/calender.css" rel="stylesheet" />
+
+
     <style>
         .calender-container {
             background: #fff;
@@ -20,8 +21,8 @@
 @section headscripts{
 
 }
+
 <div id="calender" ng-app="calendarModule" ng-controller="calendarController">
-    <h4>{{message}}</h4>
     <div class="calender-container">
         <div class="row">
             <div class="col-xs-12">
@@ -44,78 +45,123 @@
     <input type="button" id="btnGet" value="SHOW" />
 </div>
 @section scripts{
+    <script src="~/Scripts/dhtmlxScheduler/dhtmlxscheduler.js"></script>
+    <script src="~/Scripts/dhtmlxScheduler/ext/dhtmlxscheduler_recurring.js"></script>
     <script src="~/App/codestorm/calendar/model/calendar-meta.js"></script>
     <script src="~/App/codestorm/calendar/controllers/calendarController.js"></script>
-    <script>
-        //function GetData(uri, res) {
-        //    //var result;
-        //    $.ajax({
-        //        url: uri,
-        //        type: 'GET',
-        //        success: function (data) {
-        //            return data;
-        //        },
-        //        error: function () {
-        //            alert('error');
-        //        }
-        //    });
-        //    //return null;
-        //    $.get("/Design/GetCalenderEvents", function (data, status) {
-        //        res = data;
-        //    });
-        //};
+    <script src="~/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.js"></script>
+    <link href="~/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.css" rel="stylesheet" />
 
-        //function PostData(uri, event) {
-        //    $.ajax({
-        //        url: uri,
-        //        type: 'POST',
-        //        dataType: "json",
-        //        contentType: 'application/json',
-        //        data: JSON.stringify(event),
-        //        success: function (data) {
-        //            return data;
-        //        },
-        //        error: function () {
-        //            alert('error');
-        //        }
-        //    });
-        //};
+
+    <script>
 
         $(document).ready(function () {
+
             var dataHelper = commonHelper();
-            scheduler.init('scheduler_here', new Date(2015, 5, 1), "month");
-            
+            scheduler.config.include_end_by = true;
+            scheduler.init('scheduler_here', new Date(), "month");
+
+
+            $('select[name="colorpicker"]').simplecolorpicker();
+            scheduler.attachEvent("onBeforeLightbox", function (id) {
+                //$('select[name="colorpicker"]').simplecolorpicker();
+                $('#colorpicker').on('change', function () {
+                    alert(); // or $(this).val()
+                });
+                return true;
+            });
+
+            //Load Existing Events
             dataHelper.getData('/EventsData/GetEvents', null,
                 function (result) {
                     scheduler.parse(result, "json");
                 });
 
+
+            //Add new Event
             scheduler.attachEvent("onEventAdded", function (id, ev) {
                 var dataHelper = commonHelper();
-                var newEvent = { id: ev.id, start_date: ev.start_date, end_date: ev.end_date, text: ev.text };
+                var newEvent = {
+                    id: ev.id,
+                    start_date: ev.start_date,
+                    end_date: ev.end_date,
+                    text: ev.text,
+                    rec_type: ev.rec_type,
+                    event_length: ev.event_length,
+                    event_pid: ev.event_pid,
+                    color: '#FF0000'
+                };
                 dataHelper.postData('/EventsData/AddEvent', newEvent,
                 function (result) {
-                    dataHelper.replaceValue(scheduler.getEvents(),"id",ev.id,"id",result);
+                    //dataHelper.replaceValue(scheduler.getEvents(), "id", ev.id, "id", result);
                 });
             });
-            scheduler.attachEvent("onBeforeEventChanged", function (ev, e, is_new, original) {
+
+
+            //scheduler.attachEvent("onBeforeEventChanged", function (ev, e, is_new, original) {
+            //    //var dataHelper = commonHelper();
+            //    //var newEvent = {
+            //    //    id: ev.id,
+            //    //    start_date: ev.start_date,
+            //    //    end_date: ev.end_date,
+            //    //    text: ev.text,
+            //    //    rec_type: ev.rec_type,
+            //    //    event_length: ev.event_length,
+            //    //    event_pid: ev.event_pid
+            //    //};
+            //    //dataHelper.postData('/EventsData/UpdateEvent', newEvent,
+            //    //function (result) {
+
+            //    //});
+            //    //return true;
+            //});
+
+            //Delete Event
+            //scheduler.attachEvent("onBeforeEventDelete", function (id, e) {
+            //    var dataHelper = commonHelper();
+            //    dataHelper.postData('/EventsData/RemoveEvent', {eventid : id},
+            //    function (result) {
+            //    });
+            //    return true;
+            //});
+
+            scheduler.attachEvent("onEventChanged", function (id, ev) {
+                //any custom logic here
                 var dataHelper = commonHelper();
-                var newEvent = { id: ev.id, start_date: ev.start_date, end_date: ev.end_date, text: ev.text };
+                var newEvent = {
+                    id: ev.id,
+                    start_date: ev.start_date,
+                    end_date: ev.end_date,
+                    text: ev.text,
+                    rec_type: ev.rec_type,
+                    event_length: ev.event_length,
+                    event_pid: ev.event_pid,
+                    color: ""
+                };
                 dataHelper.postData('/EventsData/UpdateEvent', newEvent,
                 function (result) {
-
                 });
-                return true;
             });
+
+            scheduler.attachEvent("onEventDeleted", function (id) {
+                // custom code
+                var dataHelper = commonHelper();
+                dataHelper.postData('/EventsData/RemoveEvent', { eventid: id },
+                function (result) {
+                });
+            });
+
+            //scheduler.attachEvent("onClick", function (id, e) {
+            //    alert(JSON.stringify(e));
+            //    return true;
+            //});
+            $('#btnGet').click(function () {
+                $('select[name="colorpicker"]').simplecolorpicker();
+            });
+
+
         });
-        $('#btnGet').click(function () {
-            var dataHelper = commonHelper();
-            //dataHelper.getData('/EventsData/GetEvents', null,
-            //    function (result) {
-            //        alert(JSON.stringify(result));
-            //    });
-            alert(JSON.stringify(scheduler.getEvents()));
-        });
+
     </script>
 }
 

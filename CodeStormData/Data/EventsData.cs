@@ -24,11 +24,11 @@ namespace CodeStormData.Data
             }
         }
 
-        public Event GetEvent(int eventId)
+        public Event GetEvent(Int64 eventId)
         {
             using (CodeStormDBEntities db = new CodeStormDBEntities())
             {
-                return db.Events.Find(eventId);
+                return db.Events.Where(e => e.Id == eventId).FirstOrDefault();
             }
         }
 
@@ -46,22 +46,25 @@ namespace CodeStormData.Data
         {
             using (CodeStormDBEntities db = new CodeStormDBEntities())
             {
-                var e = db.Events.Where(x => x.EventId == evnt.EventId).FirstOrDefault();
+                var e = db.Events.Where(x => x.Id == evnt.Id).FirstOrDefault();
                 if (e != null)
                 {
                     e.StartDate = evnt.StartDate;
                     e.EndDate = evnt.EndDate;
                     e.Text = evnt.Text;
+                    e.RecType = evnt.RecType;
+                    e.EventLength = evnt.EventLength;
+                    e.EventPid = evnt.EventPid;
                     db.SaveChanges();
                 }
             }
         }
 
-        public void Delete(int eventId)
+        public void Delete(Int64 eventId)
         {
             using (CodeStormDBEntities db = new CodeStormDBEntities())
             {
-                var evnt = db.Events.Where(e => e.EventId == eventId).FirstOrDefault();
+                var evnt = db.Events.Where(e => e.Id == eventId).FirstOrDefault();
                 if (evnt != null)
                 {
                     db.Events.Remove(evnt);

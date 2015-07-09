@@ -40,9 +40,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DHTMLX">
-      <HintPath>..\packages\DHTMLX.Scheduler.NET.3.3.3.0\lib\DHTMLX.dll</HintPath>
-    </Reference>
     <Reference Include="DotLiquid">
       <HintPath>..\packages\DotLiquid.1.8.0\lib\NET45\DotLiquid.dll</HintPath>
     </Reference>
@@ -197,37 +194,17 @@
     </Compile>
     <Compile Include="JsonNetResult.cs" />
     <Compile Include="MessageHub.cs" />
-    <Compile Include="Migrations\201506042137005_initial.cs" />
-    <Compile Include="Migrations\201506042137005_initial.Designer.cs">
-      <DependentUpon>201506042137005_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201507071820151_initial.cs" />
+    <Compile Include="Migrations\201507071820151_initial.Designer.cs">
+      <DependentUpon>201507071820151_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201506171656017_User Profile.cs" />
-    <Compile Include="Migrations\201506171656017_User Profile.Designer.cs">
-      <DependentUpon>201506171656017_User Profile.cs</DependentUpon>
+    <Compile Include="Migrations\201507081451444_Events-Column[Color].cs" />
+    <Compile Include="Migrations\201507081451444_Events-Column[Color].Designer.cs">
+      <DependentUpon>201507081451444_Events-Column[Color].cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201506210620155_event.cs" />
-    <Compile Include="Migrations\201506210620155_event.Designer.cs">
-      <DependentUpon>201506210620155_event.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506241508504_update event table.cs" />
-    <Compile Include="Migrations\201506241508504_update event table.Designer.cs">
-      <DependentUpon>201506241508504_update event table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506241530414_alter event table.cs" />
-    <Compile Include="Migrations\201506241530414_alter event table.Designer.cs">
-      <DependentUpon>201506241530414_alter event table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506260426473_user_messages.cs" />
-    <Compile Include="Migrations\201506260426473_user_messages.Designer.cs">
-      <DependentUpon>201506260426473_user_messages.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506261059159_alter_user_profile.cs" />
-    <Compile Include="Migrations\201506261059159_alter_user_profile.Designer.cs">
-      <DependentUpon>201506261059159_alter_user_profile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506261824156_alter_usermsg.cs" />
-    <Compile Include="Migrations\201506261824156_alter_usermsg.Designer.cs">
-      <DependentUpon>201506261824156_alter_usermsg.cs</DependentUpon>
+    <Compile Include="Migrations\201507081850138_Events- New Column[Id].cs" />
+    <Compile Include="Migrations\201507081850138_Events- New Column[Id].Designer.cs">
+      <DependentUpon>201507081850138_Events- New Column[Id].cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -2474,6 +2451,14 @@
     <Content Include="plugins\ionslider\ion.rangeSlider.min.js" />
     <Content Include="plugins\ionslider\ion.rangeSlider.skinFlat.css" />
     <Content Include="plugins\ionslider\ion.rangeSlider.skinNice.css" />
+    <Content Include="plugins\jquery-simplecolorpicker\.gitignore" />
+    <Content Include="plugins\jquery-simplecolorpicker\demo.html" />
+    <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker-fontawesome.css" />
+    <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker-glyphicons.css" />
+    <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker-regularfont.css" />
+    <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker.css" />
+    <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker.js" />
+    <Content Include="plugins\jquery-simplecolorpicker\LICENSE.txt" />
     <Content Include="plugins\jquery-ui-1.11.4.custom\external\jquery\jquery.js" />
     <Content Include="plugins\jquery-ui-1.11.4.custom\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="plugins\jquery-ui-1.11.4.custom\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -2624,11 +2609,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\scheduler.min.css" />
-    <Content Include="Scripts\CodeStorm.js" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler.css" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler.js" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_classic.css" />
-    <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_custom_lightbox.js" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_flat.css" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_glossy.css" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_active_links.js" />
@@ -2637,20 +2620,15 @@
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_collision.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_container_autoresize.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_cookie.js" />
-    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_daytimeline.js" />
-    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_drag_between.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_editors.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_expand.js" />
-    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_grid_view.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_html_templates.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_key_nav.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_layer.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_limit.js" />
-    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_live_updates.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_map_view.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_minical.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_monthheight.js" />
-    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_multisection.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_multiselect.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_multisource.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_mvc.js" />
@@ -2661,12 +2639,8 @@
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_readonly.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_recurring.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_serialize.js" />
-    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_timeline.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_tooltip.js" />
-    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_treetimeline.js" />
-    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_units.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_url.js" />
-    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_week_agenda.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_wp.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_year_view.js" />
     <Content Include="Scripts\dhtmlxScheduler\imgs\buttons.png" />
@@ -2803,6 +2777,205 @@
     <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_ro.html" />
     <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_ru.html" />
     <Content Include="Scripts\dhtmlxScheduler\locale\recurring\repeat_template_sk.html" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\dhtmlxscheduler.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_active_links.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_agenda_view.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_all_timed.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_collision.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_container_autoresize.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_cookie.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_editors.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_expand.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_html_templates.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_key_nav.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_layer.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_limit.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_map_view.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_minical.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_monthheight.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_multiselect.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_multisource.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_mvc.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_offline.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_outerdrag.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_pdf.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_quick_info.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_readonly.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_recurring.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_serialize.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_tooltip.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_url.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_wp.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_year_view.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_ar.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_be.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_ca.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_cn.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_cs.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_da.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_de.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_el.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_en.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_es.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_fi.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_fr.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_he.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_hu.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_id.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_it.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_jp.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_nb.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_nl.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_no.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_pl.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_pt.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_ro.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_ru.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_si.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_sk.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_sv.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_tr.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_ua.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_be.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_cn.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_cs.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_da.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_de.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_el.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_en.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_es.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_fi.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_fr.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_it.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_nb.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_nl.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_pl.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_pt.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_ro.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_ru.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_sk.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_sv.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_ua.js" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\repeat_template_be.html" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\repeat_template_cn.html" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\repeat_template_de.html" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\repeat_template_el.html" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\repeat_template_en.html" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\repeat_template_es.html" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\repeat_template_fr.html" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\repeat_template_it.html" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\repeat_template_nl.html" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\repeat_template_ro.html" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\repeat_template_ru.html" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\repeat_template_sk.html" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\skins\dhtmlxscheduler.css" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\skins\dhtmlxscheduler_classic.css" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\skins\dhtmlxscheduler_flat.css" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\skins\dhtmlxscheduler_glossy.css" />
+    <Content Include="Scripts\CodeStorm.js" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\config" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\description" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\HEAD" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\applypatch-msg.sample" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\commit-msg.sample" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\post-update.sample" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\pre-applypatch.sample" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\pre-commit.sample" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\pre-push.sample" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\pre-rebase.sample" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\prepare-commit-msg.sample" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\update.sample" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\index" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\info\exclude" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\logs\HEAD" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\logs\refs\heads\master" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\logs\refs\remotes\origin\HEAD" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\objects\pack\pack-8a14efb4171286ef817d360aa43798e44931265b.idx" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\objects\pack\pack-8a14efb4171286ef817d360aa43798e44931265b.pack" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\packed-refs" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\refs\heads\master" />
+    <Content Include="plugins\jquery-simplecolorpicker\.git\refs\remotes\origin\HEAD" />
+    <Content Include="plugins\jquery-simplecolorpicker\bower.json" />
+    <Content Include="plugins\jquery-simplecolorpicker\README.md" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\dhtmlxscheduler.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_active_links.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_agenda_view.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_all_timed.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_collision.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_container_autoresize.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_cookie.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_editors.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_expand.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_html_templates.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_key_nav.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_layer.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_limit.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_map_view.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_minical.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_monthheight.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_multiselect.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_multisource.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_mvc.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_offline.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_outerdrag.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_pdf.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_quick_info.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_readonly.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_recurring.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_serialize.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_tooltip.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_url.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_wp.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_year_view.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_ar.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_be.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_ca.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_cn.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_cs.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_da.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_de.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_el.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_en.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_es.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_fi.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_fr.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_he.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_hu.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_id.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_it.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_jp.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_nb.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_nl.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_no.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_pl.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_pt.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_ro.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_ru.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_si.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_sk.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_sv.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_tr.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\locale_ua.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_be.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_cn.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_cs.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_da.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_de.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_el.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_en.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_es.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_fi.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_fr.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_it.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_nb.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_nl.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_pl.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_pt.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_ro.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_ru.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_sk.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_sv.js.map" />
+    <Content Include="Scripts\dhtmlxScheduler\sources\locale\recurring\locale_recurring_ua.js.map" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -2925,9 +3098,12 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Design\MessageChat.cshtml" />
     <Content Include="Views\Messages\Inbox.cshtml" />
+    <Content Include="Views\Design\ColorPicker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="plugins\jquery-simplecolorpicker\.git\objects\info\" />
+    <Folder Include="plugins\jquery-simplecolorpicker\.git\refs\tags\" />
     <Folder Include="Views\EventsData\" />
     <Folder Include="Views\FullCalender\" />
     <Folder Include="Views\MessageData\" />
@@ -2939,36 +3115,21 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201506042137005_initial.resx">
-      <DependentUpon>201506042137005_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506171656017_User Profile.resx">
-      <DependentUpon>201506171656017_User Profile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506210620155_event.resx">
-      <DependentUpon>201506210620155_event.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506241508504_update event table.resx">
-      <DependentUpon>201506241508504_update event table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506241530414_alter event table.resx">
-      <DependentUpon>201506241530414_alter event table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506260426473_user_messages.resx">
-      <DependentUpon>201506260426473_user_messages.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506261059159_alter_user_profile.resx">
-      <DependentUpon>201506261059159_alter_user_profile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506261824156_alter_usermsg.resx">
-      <DependentUpon>201506261824156_alter_usermsg.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\CodeStormData\CodeStormData.csproj">
       <Project>{ce6a9295-05a7-4b24-9b67-bea0d1a6abf5}</Project>
       <Name>CodeStormData</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201507071820151_initial.resx">
+      <DependentUpon>201507071820151_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507081451444_Events-Column[Color].resx">
+      <DependentUpon>201507081451444_Events-Column[Color].cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507081850138_Events- New Column[Id].resx">
+      <DependentUpon>201507081850138_Events- New Column[Id].cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,10 +1,12 @@
 /*
 @license
-dhtmlxScheduler.Net v.3.3.3 
+dhtmlxScheduler v.4.3.1 
 
-This software is covered by DHTMLX Evaluation License. Contact sales@dhtmlx.com to get Commercial or Enterprise license. Usage without proper license is prohibited.
+This software is covered by GPL license. You also can obtain Commercial or Enterprise license to use it in non-GPL project - please contact sales@dhtmlx.com. Usage without proper license is prohibited.
 
 (c) Dinamenta, UAB.
 */
-Scheduler.plugin(function(e){e._get_url_nav=function(){for(var e={},t=(document.location.hash||"").replace("#","").split(","),a=0;a<t.length;a++){var n=t[a].split("=");2==n.length&&(e[n[0]]=n[1])}return e},e.attachEvent("onTemplatesReady",function(){function t(t){r=t,e.getEvent(t)&&e.showEvent(t)}var a=!0,n=e.date.str_to_date("%Y-%m-%d"),i=e.date.date_to_str("%Y-%m-%d"),r=e._get_url_nav().event||null;e.attachEvent("onAfterEventDisplay",function(e){return r=null,!0}),e.attachEvent("onBeforeViewChange",function(s,d,_,o){
-if(a){a=!1;var l=e._get_url_nav();if(l.event)try{if(e.getEvent(l.event))return t(l.event),!1;var c=e.attachEvent("onXLE",function(){t(l.event),e.detachEvent(c)})}catch(h){}if(l.date||l.mode){try{this.setCurrentView(l.date?n(l.date):null,l.mode||null)}catch(h){this.setCurrentView(l.date?n(l.date):null,_)}return!1}}var u=["date="+i(o||d),"mode="+(_||s)];r&&u.push("event="+r);var v="#"+u.join(",");return document.location.hash=v,!0})})});
+scheduler._get_url_nav=function(){for(var e={},t=(document.location.hash||"").replace("#","").split(","),a=0;a<t.length;a++){var r=t[a].split("=");2==r.length&&(e[r[0]]=r[1])}return e},scheduler.attachEvent("onTemplatesReady",function(){function e(e){n=e,scheduler.getEvent(e)&&scheduler.showEvent(e)}var t=!0,a=scheduler.date.str_to_date("%Y-%m-%d"),r=scheduler.date.date_to_str("%Y-%m-%d"),n=scheduler._get_url_nav().event||null;scheduler.attachEvent("onAfterEventDisplay",function(e){return n=null,
+!0}),scheduler.attachEvent("onBeforeViewChange",function(i,l,d,s){if(t){t=!1;var o=scheduler._get_url_nav();if(o.event)try{if(scheduler.getEvent(o.event))return e(o.event),!1;var _=scheduler.attachEvent("onXLE",function(){e(o.event),scheduler.detachEvent(_)})}catch(c){}if(o.date||o.mode){try{this.setCurrentView(o.date?a(o.date):null,o.mode||null)}catch(c){this.setCurrentView(o.date?a(o.date):null,d)}return!1}}var h=["date="+r(s||l),"mode="+(d||i)];n&&h.push("event="+n);var u="#"+h.join(",");return document.location.hash=u,
+!0})});
+//# sourceMappingURL=../sources/ext/dhtmlxscheduler_url.js.map

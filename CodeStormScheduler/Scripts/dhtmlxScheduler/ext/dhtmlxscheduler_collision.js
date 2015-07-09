@@ -1,13 +1,15 @@
 /*
 @license
-dhtmlxScheduler.Net v.3.3.3 
+dhtmlxScheduler v.4.3.1 
 
-This software is covered by DHTMLX Evaluation License. Contact sales@dhtmlx.com to get Commercial or Enterprise license. Usage without proper license is prohibited.
+This software is covered by GPL license. You also can obtain Commercial or Enterprise license to use it in non-GPL project - please contact sales@dhtmlx.com. Usage without proper license is prohibited.
 
 (c) Dinamenta, UAB.
 */
-Scheduler.plugin(function(e){!function(){function t(t){var s=e._get_section_view();s&&t&&(i=e.getEvent(t)[e._get_section_property()])}var i,s;e.config.collision_limit=1,e.attachEvent("onBeforeDrag",function(e){return t(e),!0}),e.attachEvent("onBeforeLightbox",function(i){var a=e.getEvent(i);return s=[a.start_date,a.end_date],t(i),!0}),e.attachEvent("onEventChanged",function(t){if(!t||!e.getEvent(t))return!0;var i=e.getEvent(t);if(!e.checkCollision(i)){if(!s)return!1;i.start_date=s[0],i.end_date=s[1],
-i._timed=this.isOneDayEvent(i)}return!0}),e.attachEvent("onBeforeEventChanged",function(t,i,s){return e.checkCollision(t)}),e.attachEvent("onEventAdded",function(t,i){var s=e.checkCollision(i);s||e.deleteEvent(t)}),e.attachEvent("onEventSave",function(t,i,s){if(i=e._lame_clone(i),i.id=t,!i.start_date||!i.end_date){var a=e.getEvent(t);i.start_date=new Date(a.start_date),i.end_date=new Date(a.end_date)}return i.rec_type&&e._roll_back_dates(i),e.checkCollision(i)}),e._check_sections_collision=function(t,i){
-var s=e._get_section_property();return t[s]==i[s]&&t.id!=i.id?!0:!1},e.checkCollision=function(t){var s=[],a=e.config.collision_limit;if(t.rec_type)for(var n=e.getRecDates(t),r=0;r<n.length;r++)for(var d=e.getEvents(n[r].start_date,n[r].end_date),o=0;o<d.length;o++)(d[o].event_pid||d[o].id)!=t.id&&s.push(d[o]);else{s=e.getEvents(t.start_date,t.end_date);for(var l=0;l<s.length;l++)if(s[l].id==t.id){s.splice(l,1);break}}var _=e._get_section_view(),h=e._get_section_property(),c=!0;if(_){for(var u=0,l=0;l<s.length;l++)s[l].id!=t.id&&this._check_sections_collision(s[l],t)&&u++;
+!function(){function e(e){var a=scheduler._get_section_view();a&&e&&(t=scheduler.getEvent(e)[scheduler._get_section_property()])}var t,a;scheduler.config.collision_limit=1,scheduler.attachEvent("onBeforeDrag",function(t){return e(t),!0}),scheduler.attachEvent("onBeforeLightbox",function(t){var i=scheduler.getEvent(t);return a=[i.start_date,i.end_date],e(t),!0}),scheduler.attachEvent("onEventChanged",function(e){if(!e||!scheduler.getEvent(e))return!0;var t=scheduler.getEvent(e);if(!scheduler.checkCollision(t)){
+if(!a)return!1;t.start_date=a[0],t.end_date=a[1],t._timed=this.isOneDayEvent(t)}return!0}),scheduler.attachEvent("onBeforeEventChanged",function(e,t,a){return scheduler.checkCollision(e)}),scheduler.attachEvent("onEventAdded",function(e,t){var a=scheduler.checkCollision(t);a||scheduler.deleteEvent(e)}),scheduler.attachEvent("onEventSave",function(e,t,a){if(t=scheduler._lame_clone(t),t.id=e,!t.start_date||!t.end_date){var i=scheduler.getEvent(e);t.start_date=new Date(i.start_date),t.end_date=new Date(i.end_date);
 
-u>=a&&(c=!1)}else s.length>=a&&(c=!1);if(!c){var g=!e.callEvent("onEventCollision",[t,s]);return g||(t[h]=i||t[h]),g}return c}}()});
+}return t.rec_type&&scheduler._roll_back_dates(t),scheduler.checkCollision(t)}),scheduler._check_sections_collision=function(e,t){var a=scheduler._get_section_property();return e[a]==t[a]&&e.id!=t.id?!0:!1},scheduler.checkCollision=function(e){var a=[],i=scheduler.config.collision_limit;if(e.rec_type)for(var n=scheduler.getRecDates(e),r=0;r<n.length;r++)for(var l=scheduler.getEvents(n[r].start_date,n[r].end_date),d=0;d<l.length;d++)(l[d].event_pid||l[d].id)!=e.id&&a.push(l[d]);else{a=scheduler.getEvents(e.start_date,e.end_date);
+
+for(var o=0;o<a.length;o++)if(a[o].id==e.id){a.splice(o,1);break}}var s=scheduler._get_section_view(),_=scheduler._get_section_property(),c=!0;if(s){for(var u=0,o=0;o<a.length;o++)a[o].id!=e.id&&this._check_sections_collision(a[o],e)&&u++;u>=i&&(c=!1)}else a.length>=i&&(c=!1);if(!c){var h=!scheduler.callEvent("onEventCollision",[e,a]);return h||(e[_]=t||e[_]),h}return c}}();
+//# sourceMappingURL=../sources/ext/dhtmlxscheduler_collision.js.map

@@ -1,14 +1,15 @@
 /*
 @license
-dhtmlxScheduler.Net v.3.3.3 
+dhtmlxScheduler v.4.3.1 
 
-This software is covered by DHTMLX Evaluation License. Contact sales@dhtmlx.com to get Commercial or Enterprise license. Usage without proper license is prohibited.
+This software is covered by GPL license. You also can obtain Commercial or Enterprise license to use it in non-GPL project - please contact sales@dhtmlx.com. Usage without proper license is prohibited.
 
 (c) Dinamenta, UAB.
 */
-Scheduler.plugin(function(e){!function(){function t(e){var t={};for(var a in e)0!==a.indexOf("_")&&(t[a]=e[a]);return d.use_id||delete t.id,t}function a(){clearTimeout(s),s=setTimeout(function(){e.updateView()},1)}function n(e){e._loading=!0,e._not_render=!0,e.callEvent("onXLS",[])}function i(e){e._not_render=!1,e._render_wait&&e.render_view_data(),e._loading=!1,e.callEvent("onXLE",[])}function r(e){return d.use_id?e.id:e.cid}var s,d={use_id:!1};e.backbone=function(s,o){function _(){l.length&&(e.parse(l,"json"),
-l=[])}o&&(d=o),s.bind("change",function(t,n){var i=r(t),s=e._events[i]=t.toJSON();s.id=i,e._init_event(s),a()}),s.bind("remove",function(t,a){var n=r(t);e._events[n]&&e.deleteEvent(n)});var l=[];s.bind("add",function(t,a){var n=r(t);if(!e._events[n]){var i=t.toJSON();i.id=n,e._init_event(i),l.push(i),1==l.length&&setTimeout(_,1)}}),s.bind("request",function(t){t instanceof Backbone.Collection&&n(e)}),s.bind("sync",function(t){t instanceof Backbone.Collection&&i(e)}),s.bind("error",function(t){t instanceof Backbone.Collection&&i(e);
+!function(){function e(e){var t={};for(var a in e)0!==a.indexOf("_")&&(t[a]=e[a]);return d.use_id||delete t.id,t}function t(){clearTimeout(i),i=setTimeout(function(){scheduler.updateView()},1)}function a(e){e._loading=!0,e._not_render=!0,e.callEvent("onXLS",[])}function r(e){e._not_render=!1,e._render_wait&&e.render_view_data(),e._loading=!1,e.callEvent("onXLE",[])}function n(e){return d.use_id?e.id:e.cid}var i,d={use_id:!1};scheduler.backbone=function(i,l){function s(){o.length&&(scheduler.parse(o,"json"),
+o=[])}l&&(d=l),i.bind("change",function(e,a){var r=n(e),i=scheduler._events[r]=e.toJSON();i.id=r,scheduler._init_event(i),t()}),i.bind("remove",function(e,t){var a=n(e);scheduler._events[a]&&scheduler.deleteEvent(a)});var o=[];i.bind("add",function(e,t){var a=n(e);if(!scheduler._events[a]){var r=e.toJSON();r.id=a,scheduler._init_event(r),o.push(r),1==o.length&&setTimeout(s,1)}}),i.bind("request",function(e){e instanceof Backbone.Collection&&a(scheduler)}),i.bind("sync",function(e){e instanceof Backbone.Collection&&r(scheduler);
 
-}),e.attachEvent("onEventCreated",function(t){var a=new s.model(e.getEvent(t));return e._events[t]=a.toJSON(),e._events[t].id=t,!0}),e.attachEvent("onEventAdded",function(a){if(!s.get(a)){var n=t(e.getEvent(a)),i=new s.model(n),d=r(i);d!=a&&this.changeEventId(a,d),s.add(i),s.trigger("scheduler:add",i)}return!0}),e.attachEvent("onEventChanged",function(a){var n=s.get(a),i=t(e.getEvent(a));return n.set(i),s.trigger("scheduler:change",n),!0}),e.attachEvent("onEventDeleted",function(e){var t=s.get(e);
+}),i.bind("error",function(e){e instanceof Backbone.Collection&&r(scheduler)}),scheduler.attachEvent("onEventCreated",function(e){var t=new i.model(scheduler.getEvent(e));return scheduler._events[e]=t.toJSON(),scheduler._events[e].id=e,!0}),scheduler.attachEvent("onEventAdded",function(t){if(!i.get(t)){var a=e(scheduler.getEvent(t)),r=new i.model(a),d=n(r);d!=t&&this.changeEventId(t,d),i.add(r),i.trigger("scheduler:add",r)}return!0}),scheduler.attachEvent("onEventChanged",function(t){var a=i.get(t),r=e(scheduler.getEvent(t));
 
-return t&&(s.trigger("scheduler:remove",t),s.remove(e)),!0})}}()});
+return a.set(r),i.trigger("scheduler:change",a),!0}),scheduler.attachEvent("onEventDeleted",function(e){var t=i.get(e);return t&&(i.trigger("scheduler:remove",t),i.remove(e)),!0})}}();
+//# sourceMappingURL=../sources/ext/dhtmlxscheduler_mvc.js.map

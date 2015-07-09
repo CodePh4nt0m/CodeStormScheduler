@@ -1,11 +1,12 @@
 /*
 @license
-dhtmlxScheduler.Net v.3.3.3 
+dhtmlxScheduler v.4.3.1 
 
-This software is covered by DHTMLX Evaluation License. Contact sales@dhtmlx.com to get Commercial or Enterprise license. Usage without proper license is prohibited.
+This software is covered by GPL license. You also can obtain Commercial or Enterprise license to use it in non-GPL project - please contact sales@dhtmlx.com. Usage without proper license is prohibited.
 
 (c) Dinamenta, UAB.
 */
-Scheduler.plugin(function(e){e.config.active_link_view="day",e._active_link_click=function(t){var i=t.target||event.srcElement,s=i.getAttribute("jump_to"),a=e.date.str_to_date(e.config.api_date);return s?(e.setCurrentView(a(s),e.config.active_link_view),t&&t.preventDefault&&t.preventDefault(),!1):void 0},e.attachEvent("onTemplatesReady",function(){var t=function(t,i){i=i||t+"_scale_date",e.templates["_active_links_old_"+i]||(e.templates["_active_links_old_"+i]=e.templates[i]);var s=e.templates["_active_links_old_"+i],a=e.date.date_to_str(e.config.api_date);
+scheduler.config.active_link_view="day",scheduler._active_link_click=function(e){var t=e.target||event.srcElement,i=t.getAttribute("jump_to"),s=scheduler.date.str_to_date(scheduler.config.api_date);return i?(scheduler.setCurrentView(s(i),scheduler.config.active_link_view),e&&e.preventDefault&&e.preventDefault(),!1):void 0},scheduler.attachEvent("onTemplatesReady",function(){var e=function(e,t){t=t||e+"_scale_date",scheduler.templates["_active_links_old_"+t]||(scheduler.templates["_active_links_old_"+t]=scheduler.templates[t]);
 
-e.templates[i]=function(e){return"<a jump_to='"+a(e)+"' href='#'>"+s(e)+"</a>"}};if(t("week"),t("","month_day"),this.matrix)for(var i in this.matrix)t(i);this._detachDomEvent(this._obj,"click",e._active_link_click),dhtmlxEvent(this._obj,"click",e._active_link_click)})});
+var i=scheduler.templates["_active_links_old_"+t],s=scheduler.date.date_to_str(scheduler.config.api_date);scheduler.templates[t]=function(e){return"<a jump_to='"+s(e)+"' href='#'>"+i(e)+"</a>"}};if(e("week"),e("","month_day"),this.matrix)for(var t in this.matrix)e(t);this._detachDomEvent(this._obj,"click",scheduler._active_link_click),dhtmlxEvent(this._obj,"click",scheduler._active_link_click)});
+//# sourceMappingURL=../sources/ext/dhtmlxscheduler_active_links.js.map

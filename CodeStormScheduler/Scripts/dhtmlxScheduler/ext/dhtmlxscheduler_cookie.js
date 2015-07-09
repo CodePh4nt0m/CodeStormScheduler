@@ -1,13 +1,13 @@
 /*
 @license
-dhtmlxScheduler.Net v.3.3.3 
+dhtmlxScheduler v.4.3.1 
 
-This software is covered by DHTMLX Evaluation License. Contact sales@dhtmlx.com to get Commercial or Enterprise license. Usage without proper license is prohibited.
+This software is covered by GPL license. You also can obtain Commercial or Enterprise license to use it in non-GPL project - please contact sales@dhtmlx.com. Usage without proper license is prohibited.
 
 (c) Dinamenta, UAB.
 */
-Scheduler.plugin(function(e){!function(){function t(e,t,i){var s=e+"="+i+(t?"; "+t:"");document.cookie=s}function i(e){var t=e+"=";if(document.cookie.length>0){var i=document.cookie.indexOf(t);if(-1!=i){i+=t.length;var s=document.cookie.indexOf(";",i);return-1==s&&(s=document.cookie.length),document.cookie.substring(i,s)}}return""}var s=!0;e.attachEvent("onBeforeViewChange",function(a,n,r,d){if(s&&e._get_url_nav){var o=e._get_url_nav();(o.date||o.mode||o.event)&&(s=!1)}var l=(e._obj.id||"scheduler")+"_settings";
+!function(){function e(e,t,a){var i=e+"="+a+(t?"; "+t:"");document.cookie=i}function t(e){var t=e+"=";if(document.cookie.length>0){var a=document.cookie.indexOf(t);if(-1!=a){a+=t.length;var i=document.cookie.indexOf(";",a);return-1==i&&(i=document.cookie.length),document.cookie.substring(a,i)}}return""}var a=!0;scheduler.attachEvent("onBeforeViewChange",function(i,n,l,r){if(a&&scheduler._get_url_nav){var d=scheduler._get_url_nav();(d.date||d.mode||d.event)&&(a=!1)}if(a){a=!1;var o=t("scheduler_settings");
 
-if(s){s=!1;var _=i(l);if(_){e._min_date||(e._min_date=d),_=unescape(_).split("@"),_[0]=this.templates.xml_date(_[0]);var h=this.isViewExists(_[1])?_[1]:r,c=isNaN(+_[0])?d:_[0];return window.setTimeout(function(){e.setCurrentView(c,h)},1),!1}}var u=escape(this.templates.xml_format(d||n)+"@"+(r||a));return t(l,"expires=Sun, 31 Jan 9999 22:00:00 GMT",u),!0});var a=e._load;e._load=function(){var t=arguments;if(!e._date&&e._load_mode){var i=this;window.setTimeout(function(){a.apply(i,t)},1)}else a.apply(this,t);
-
-}}()});
+if(o){scheduler._min_date||(scheduler._min_date=r),o=unescape(o).split("@"),o[0]=this.templates.xml_date(o[0]);var s=this.isViewExists(o[1])?o[1]:l,_=isNaN(+o[0])?r:o[0];return window.setTimeout(function(){scheduler.setCurrentView(_,s)},1),!1}}var c=escape(this.templates.xml_format(r||n)+"@"+(l||i));return e("scheduler_settings","expires=Sun, 31 Jan 9999 22:00:00 GMT",c),!0});var i=scheduler._load;scheduler._load=function(){var e=arguments;if(!scheduler._date&&scheduler._load_mode){var t=this;window.setTimeout(function(){
+i.apply(t,e)},1)}else i.apply(this,e)}}();
+//# sourceMappingURL=../sources/ext/dhtmlxscheduler_cookie.js.map
