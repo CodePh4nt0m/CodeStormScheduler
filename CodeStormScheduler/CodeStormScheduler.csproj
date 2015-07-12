@@ -2477,14 +2477,6 @@
     <Content Include="plugins\ionslider\ion.rangeSlider.skinFlat.css" />
     <Content Include="plugins\ionslider\ion.rangeSlider.skinNice.css" />
     <Content Include="plugins\jquery-cookie\jquery.cookie.js" />
-    <Content Include="plugins\jquery-simplecolorpicker\.gitignore" />
-    <Content Include="plugins\jquery-simplecolorpicker\demo.html" />
-    <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker-fontawesome.css" />
-    <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker-glyphicons.css" />
-    <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker-regularfont.css" />
-    <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker.css" />
-    <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker.js" />
-    <Content Include="plugins\jquery-simplecolorpicker\LICENSE.txt" />
     <Content Include="plugins\jquery-ui-1.11.4.custom\external\jquery\jquery.js" />
     <Content Include="plugins\jquery-ui-1.11.4.custom\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="plugins\jquery-ui-1.11.4.custom\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -2903,30 +2895,6 @@
     <Content Include="Scripts\dhtmlxScheduler\sources\skins\dhtmlxscheduler_flat.css" />
     <Content Include="Scripts\dhtmlxScheduler\sources\skins\dhtmlxscheduler_glossy.css" />
     <Content Include="Scripts\CodeStorm.js" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\config" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\description" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\HEAD" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\applypatch-msg.sample" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\commit-msg.sample" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\post-update.sample" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\pre-applypatch.sample" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\pre-commit.sample" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\pre-push.sample" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\pre-rebase.sample" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\prepare-commit-msg.sample" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\hooks\update.sample" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\index" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\info\exclude" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\logs\HEAD" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\logs\refs\heads\master" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\logs\refs\remotes\origin\HEAD" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\objects\pack\pack-8a14efb4171286ef817d360aa43798e44931265b.idx" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\objects\pack\pack-8a14efb4171286ef817d360aa43798e44931265b.pack" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\packed-refs" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\refs\heads\master" />
-    <Content Include="plugins\jquery-simplecolorpicker\.git\refs\remotes\origin\HEAD" />
-    <Content Include="plugins\jquery-simplecolorpicker\bower.json" />
-    <Content Include="plugins\jquery-simplecolorpicker\README.md" />
     <Content Include="Scripts\dhtmlxScheduler\sources\dhtmlxscheduler.js.map" />
     <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_active_links.js.map" />
     <Content Include="Scripts\dhtmlxScheduler\sources\ext\dhtmlxscheduler_agenda_view.js.map" />
@@ -3139,8 +3107,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="plugins\jquery-simplecolorpicker\.git\objects\info\" />
-    <Folder Include="plugins\jquery-simplecolorpicker\.git\refs\tags\" />
     <Folder Include="Views\EventsData\" />
     <Folder Include="Views\FullCalender\" />
     <Folder Include="Views\MessageData\" />
