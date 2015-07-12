@@ -1,1 +1,217 @@
-﻿
+﻿@section styles{
+    <link href="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_custom.css" rel="stylesheet" />
+    <link href="~/Content/Calender/calender.css" rel="stylesheet" />
+
+    <style>
+        #map {
+            width: 100%;
+            height: 237px;
+            border: 4px solid #67c5f5;
+        }
+    </style>
+}
+
+
+@section headscripts{
+    ViewBag.Title = "Home";
+}
+
+@section jsCode {
+    angular.bootstrap(document.getElementById("dashboard"), ['dashboardModule']);
+}
+
+<div class="row" id="dashboard" ng-app="dashboardModule" ng-controller="dashboardController">
+    <div class="col-xs-12">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title"><strong>Hi {{userName}}</strong></span>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="panel widget-notifications">
+                            <div class="panel-heading">
+                                <span class="panel-title">Calender summery</span>
+                            </div>
+                            <div class="panel-body padding-sm">
+                                <div class="notifications-list" id="eventsTable">
+                                    <div class="notification">
+                                        <a href="#">
+                                            <div class="notification-title text-default">Meeting</div>
+                                            <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                            <div class="notification-description">NSBM, Nugegoda</div>
+                                            <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
+                                        </a>
+                                    </div>
+                                    <div class="notification">
+                                        <div class="notification-title text-default">Meeting</div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description">NSBM, Nugegoda</div>
+                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
+                                    </div>
+                                    <div class="notification">
+                                        <div class="notification-title text-default">Meeting</div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description">NSBM, Nugegoda</div>
+                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
+                                    </div>
+                                    <div class="notification">
+                                        <div class="notification-title text-default">Meeting</div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description">NSBM, Nugegoda</div>
+                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
+                                    </div>
+                                    <div class="notification">
+                                        <div class="notification-title text-default">Meeting</div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description">NSBM, Nugegoda</div>
+                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
+                                    </div>
+                                    <div class="notification">
+                                        <div class="notification-title text-default">Meeting</div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description">NSBM, Nugegoda</div>
+                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
+                                    </div>
+                                    <div class="notification">
+                                        <div class="notification-title text-default">Meeting</div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description">NSBM, Nugegoda</div>
+                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
+                                    </div>
+                                    <div class="notification">
+                                        <div class="notification-title text-default">Meeting</div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description">NSBM, Nugegoda</div>
+                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
+                                    </div>
+                                    <div class="notification">
+                                        <div class="notification-title text-default">Meeting</div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description">NSBM, Nugegoda</div>
+                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
+                                    </div>
+                                    <div class="notification">
+                                        <div class="notification-title text-default">Meeting</div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description">NSBM, Nugegoda</div>
+                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
+                                    </div>
+                                    <div class="notification">
+                                        <div class="notification-title text-default">Meeting</div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description">NSBM, Nugegoda</div>
+                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
+                                    </div>
+                                    <div class="notification">
+                                        <div class="notification-title text-default">Meeting</div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description">NSBM, Nugegoda</div>
+                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div id="map"></div>
+                        <input type="hidden" id="txt_map_lat" ng-model="map_lat">
+                        <input type="hidden" id="txt_map_lng" ng-model="map_lng">
+                    </div>
+                    <div class="col-xs-3">
+                        <div id="mini_here" style="width:100%"></div>
+                        <div id="scheduler_here" class="dhx_cal_container" style='width:300px; height:300px; display:none;'>
+                            <div class="dhx_cal_navline">
+                                <div class="dhx_cal_date"></div>
+                                <div class="dhx_cal_tab" name="day_tab" style="right:76px;"></div>
+                            </div>
+                            <div class="dhx_cal_header">
+                            </div>
+                            <div class="dhx_cal_data">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/App/codestorm/dashboard/model/dashboard-meta.js"></script>
+    <script src="~/App/codestorm/dashboard/controllers/dashboard-controller.js"></script>
+    <script src="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_custom.js"></script>
+    <script src="~/Scripts/dhtmlxScheduler/ext/dhtmlxscheduler_minical_custom.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script type="text/javascript" charset="utf-8">
+        function init() {
+            var dataHelper = commonHelper();
+            scheduler.config.include_end_by = true;
+            scheduler.init('scheduler_here', new Date(), "month");
+            dataHelper.getData('/EventsData/GetEvents', null,
+                function (result) {
+                    scheduler.parse(result, "json");
+                    scheduler.renderCalendar({
+                        container: "mini_here",
+                        date: scheduler._date,
+                        navigation: true,
+                        handler: function (date, calendar) {
+                            alert(date);
+                        }
+                    });
+                });
+
+
+        }
+
+        $(document).ready(function () {
+            init();
+        });
+
+        $('#eventsTable').slimScroll({ height: 217 });
+
+        //region -- google map integration
+        function setGeoLocation(pos) {
+            $('#txt_location').val('');
+            $('#txt_map_lat').val(pos.lat());
+            $('#txt_map_lng').val(pos.lng());
+        }
+
+        var map;
+        var marker;
+
+        function setMapLocation(lat, lng) {
+            var location = new google.maps.LatLng(lat, lng);
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 17,
+                mapTypeId: google.maps.MapTypeId.HYBRID,
+                center: location
+            });
+            marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                draggable: true,
+                title: 'location'
+            });
+            google.maps.event.addListener(marker, 'dragend', function () {
+                setGeoLocation(marker.getPosition());
+            });
+
+
+        }
+
+        var input = document.getElementById('txt_location');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+            setMapLocation(place.geometry.location.lat(), place.geometry.location.lng());
+            $('#txt_map_lat').val(place.geometry.location.lat());
+            $('#txt_map_lng').val(place.geometry.location.lng());
+        });
+
+        //endregion
+    </script>
+}
+

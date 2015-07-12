@@ -250,6 +250,8 @@
     <Content Include="App\codestorm\calendar\directives\mini-calendar-directive\multipleDatePicker.min.js" />
     <Content Include="App\codestorm\calendar\model\calendar-meta.js" />
     <Content Include="App\codestorm\calendar\views\calendar.html" />
+    <Content Include="App\codestorm\dashboard\controllers\dashboard-controller.js" />
+    <Content Include="App\codestorm\dashboard\model\dashboard-meta.js" />
     <Content Include="App\codestorm\events\controllers\eventsController.js" />
     <Content Include="App\codestorm\events\model\events-meta.js" />
     <Content Include="App\codestorm\events\views\events.html" />
@@ -3111,6 +3113,8 @@
     <Content Include="Views\Messages\Inbox.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\codestorm\dashboard\directives\" />
+    <Folder Include="App\codestorm\dashboard\views\" />
     <Folder Include="App_Data\" />
     <Folder Include="Views\EventsData\" />
     <Folder Include="Views\FullCalender\" />
