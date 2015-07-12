@@ -1,0 +1,225 @@
+﻿@section styles{
+    <link href="~/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.css" rel="stylesheet" />
+    <style>
+        .select2-result-label img {
+            width: 30px;
+        }
+
+        #map {
+            width: 100%;
+            height: 300px;
+            border: 4px solid #67c5f5;
+        }
+
+        #txt_location {
+            font-size: 12px !important;
+        }
+    </style>
+}
+
+@section headscripts{
+
+}
+
+@section jsCode {
+    angular.bootstrap(document.getElementById("event_detail"), ['eventsModule']);
+}
+
+<div id="event_detail" ng-app="eventsModule" ng-controller="eventsController">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <span class="panel-title"><strong>Event Details</strong></span>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Event Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" placeholder="Name of the Event" ng-model="text">
+                                    </div>
+                                </div> <!-- / .form-group -->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Description</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" rows="3" ng-model="description"></textarea>
+                                    </div>
+                                </div> <!-- / .form-group -->
+                                <div class="form-group">
+                                    <label for="asdasdas" class="col-sm-3 control-label">Event Color</label>
+                                    <div class="col-sm-9">
+                                        <select name="colorpicker" id="colorpicker">
+                                            <option value="#7bd148">Green</option>
+                                            <option value="#5484ed">Bold blue</option>
+                                            <option value="#a4bdfc">Blue</option>
+                                            <option value="#46d6db">Turquoise</option>
+                                            <option value="#7ae7bf">Light green</option>
+                                            <option value="#51b749">Bold green</option>
+                                            <option value="#fbd75b">Yellow</option>
+                                            <option value="#ffb878">Orange</option>
+                                            <option value="#ff887c">Red</option>
+                                            <option value="#dc2127">Bold red</option>
+                                            <option value="#dbadff">Purple</option>
+                                        </select>
+                                    </div>
+                                </div> <!-- / .form-group -->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Location</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" placeholder="Location" id="txt_place" ng-model="location">
+                                    </div>
+                                </div> <!-- / .form-group -->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Shared</label>
+                                    <div class="col-sm-9">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" class="px"> <span class="lbl"> </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Shared With</label>
+                                    <div class="col-sm-9">
+                                        <div class="select2-info">
+                                            <select multiple="multiple" id="input_shared_users"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group has-success">
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" placeholder="Search your location here" id="txt_location">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div id="map"></div>
+                                    <p class="help-block">Search location or drag the marker to particular location.</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="hidden" id="txt_map_lat" ng-model="map_lat">
+                                    <input type="hidden" id="txt_map_lng" ng-model="map_lng">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="button" value="Save Event Details" class="btn btn-primary" ng-click="GetLocation()" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.js"></script>
+    <script>
+        $('select[name="colorpicker"]').simplecolorpicker();
+
+        function nameFormatResult(name) {
+            var $state = $(
+                '<span><img src="/ImageBase/Users/' + name.imgurl + '" class="img-flag" /> ' + name.text + '</span>'
+            );
+            return $state;
+        }
+
+        $(document).ready(function () {
+            var dataHelper = commonHelper();
+            var userlist = null;
+            dataHelper.getData('/UserData/GetAutoCompleteUserList', null,
+                function (result) {
+                    userlist = result;
+                    $.each(result, function (i, user) {
+                        $('#input_shared_users')
+                            .append($("<option></option>")
+                                .attr("value", user.id)
+                                .text(user.text));
+                    });
+                    $("#input_shared_users").select2({
+                        placeholder: "Search Users"
+                    });
+                });
+        });
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script>
+        function setGeoLocation(pos) {
+            $('#txt_location').val('');
+            $('#txt_map_lat').val(pos.lat());
+            $('#txt_map_lng').val(pos.lng());
+        }
+
+        var map;
+        var marker;
+
+        //function initialize() {
+        //    var location = new google.maps.LatLng(6.872753, 79.88367);
+        //    map = new google.maps.Map(document.getElementById('map'), {
+        //        zoom: 17,
+        //        mapTypeId: google.maps.MapTypeId.HYBRID,
+        //        center: location
+        //    });
+        //    marker = new google.maps.Marker({
+        //        position: location,
+        //        map: map,
+        //        draggable: true,
+        //        title: 'location'
+        //    });
+        //    google.maps.event.addListener(marker, 'dragend', function () {
+        //        setGeoLocation(marker.getPosition());
+        //    });
+        //}
+
+        function setMapLocation(lat, lng) {
+            var location = new google.maps.LatLng(lat, lng);
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 17,
+                mapTypeId: google.maps.MapTypeId.HYBRID,
+                center: location
+            });
+            marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                draggable: true,
+                title: 'location'
+            });
+            google.maps.event.addListener(marker, 'dragend', function () {
+                setGeoLocation(marker.getPosition());
+            });
+            
+            
+        }
+
+        var input = document.getElementById('txt_location');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+            setMapLocation(place.geometry.location.lat(), place.geometry.location.lng());
+            $('#txt_map_lat').val(place.geometry.location.lat());
+            $('#txt_map_lng').val(place.geometry.location.lng());
+        });
+    </script>
+    <script src="~/App/codestorm/events/model/events-meta.js"></script>
+    <script src="~/App/codestorm/events/controllers/eventsController.js"></script>
+}
+
+
+

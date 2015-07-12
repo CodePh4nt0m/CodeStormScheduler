@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "MiniCalender";
+}
+
+@section styles{
+    <link href="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_custom.css" rel="stylesheet" />
+    <link href="~/Content/Calender/calender.css" rel="stylesheet" />
+}
+
+
+<div class="row">
+    <div class="col-xs-3">
+        <div id="mini_here" style="width:100%"></div>
+        <div id="scheduler_here" class="dhx_cal_container" style='width:300px; height:300px; display:none;'>
+            <div class="dhx_cal_navline">
+                <div class="dhx_cal_date"></div>
+                <div class="dhx_cal_tab" name="day_tab" style="right:76px;"></div>
+            </div>
+            <div class="dhx_cal_header">
+            </div>
+            <div class="dhx_cal_data">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_custom.js"></script>
+    <script src="~/Scripts/dhtmlxScheduler/ext/dhtmlxscheduler_minical_custom.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function init() {
+            var dataHelper = commonHelper();
+            scheduler.config.include_end_by = true;
+            scheduler.init('scheduler_here', new Date(), "month");
+            dataHelper.getData('/EventsData/GetEvents', null,
+                function (result) {
+                    scheduler.parse(result, "json");
+                    scheduler.renderCalendar({
+                        container: "mini_here",
+                        date: scheduler._date,
+                        navigation: true,
+                        handler: function (date, calendar) {
+                            alert(date);
+                        }
+                    });
+                });
+
+
+        }
+
+        $(document).ready(function () {
+            init();
+        });
+    </script>
+}
+
+

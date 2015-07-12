@@ -18,5 +18,10 @@ namespace CodeStormScheduler.Controllers
         {
             return View();
         }
+
+        public ActionResult Event()
+        {
+            return View();
+        }
     }
 }

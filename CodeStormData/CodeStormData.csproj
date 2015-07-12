@@ -78,10 +78,14 @@
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>CodeStormModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\EventDetailData.cs" />
     <Compile Include="Data\EventsData.cs" />
     <Compile Include="Data\MessageData.cs" />
     <Compile Include="Data\UserData.cs" />
     <Compile Include="Event.cs">
+      <DependentUpon>CodeStormModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventDetail.cs">
       <DependentUpon>CodeStormModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

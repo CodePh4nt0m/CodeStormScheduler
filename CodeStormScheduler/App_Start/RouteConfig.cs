@@ -16,7 +16,7 @@ namespace CodeStormScheduler
             //routes.MapRoute(
             //    name: "codestorm",
             //    url: "CodeStorm/{*catchall}",
-            //    defaults: new { controller = "CodeStorm", action = "calendar" });
+            //    defaults: new { controller = "CodeStorm", action = "Calendar" });
 
             //routes.MapMvcAttributeRoutes();
 

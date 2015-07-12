@@ -138,6 +138,8 @@ var commonHelper = function () { return CodeStorm.dataHelper() };
 
 mainModule.controller('MainController', function ($scope, $cookies, angularHelper) {
     $scope.user_name = $cookies.fname;
+    $scope.user_pic = $cookies.imgurl;
+
     var initialize = function () {
         $scope.loadnames();
     }

@@ -1,5 +1,129 @@
 ﻿.dhx_cal_event_clear {
-    background: #0E64A0 !important;
     color: #fff !important;
+}
 
+.dhx_mini_calendar .dhx_year_month {
+    background: #1889cf !important;
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 14px !important;
+    font-family: 'Open Sans';
+    height: 35px !important;
+    padding-top: 6px;
+}
+
+.dhx_mini_calendar .dhx_year_week {
+    background: #2f76a4 !important;
+    height: 35px !important;
+    font-weight: 700 !important;
+}
+
+.dhx_mini_calendar .dhx_scale_bar {
+    background: #2f76a4 !important;
+    color: #fff;
+    top: 6px !important;
+}
+
+.dhx_cal_container.dhx_mini_calendar {
+    border-radius: 0;
+}
+
+.dhx_mini_calendar .dhx_year_event {
+    border-radius: 0;
+    background-color: #1889cf;
+    color: #fff;
+}
+
+.dhx_mini_calendar .dhx_now .dhx_year_event {
+    background-color: #85d0fe;
+}
+
+.dhx_mini_calendar .dhx_now .dhx_month_body {
+    background-color: #fff;
+}
+
+.dhx_cal_prev_button:after {
+    content: "\f053";
+}
+
+.dhx_cal_next_button:after {
+    content: "\f054";
+}
+
+.dhx_cal_prev_button:after, .dhx_cal_next_button:after {
+    color: #808080;
+    font-weight: 600 !important;
+    font-family: FontAwesome;
+    margin-left: 14px;
+}
+
+.dhx_mini_calendar .dhx_cal_prev_button:after, .dhx_mini_calendar .dhx_cal_next_button:after {
+    color: #fff !important;
+}
+
+
+
+/* Calender Styles */
+.dhx_cal_tab {
+    border-color: #1a7ab9;
+    border-bottom-color: #16689e;
+    background: #1d89cf;
+    background-image: -webkit-linear-gradient(top,#1e8cd3 0,#1a7ab9 100%);
+    background-image: linear-gradient(to bottom,#1e8cd3 0,#1a7ab9 100%);
+    background-repeat: repeat-x;
+    color: #ffffff;
+    font-family: 'Open Sans';
+}
+
+    .dhx_cal_tab.active {
+        border-color: #1a7ab9;
+        border-bottom-color: #16689e;
+        background: #1d89cf;
+        background-image: -webkit-linear-gradient(top,#1e8cd3 0,#1a7ab9 100%);
+        background-image: linear-gradient(to bottom,#1e8cd3 0,#1a7ab9 100%);
+        background-repeat: repeat-x;
+        color: #ffffff;
+        border-left-color: #16689e;
+        border-right-color: #16689e;
+        z-index: 2;
+        font-family: 'Open Sans';
+        font-weight: 600;
+    }
+
+.dhx_cal_tab_first, .dhx_cal_prev_button {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.dhx_cal_tab_last, .dhx_cal_next_button {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.dhx_cal_today_button {
+    border-color: #1a7ab9;
+    border-bottom-color: #16689e;
+    background: #1d89cf;
+    background-image: -webkit-linear-gradient(top,#1e8cd3 0,#1a7ab9 100%);
+    background-image: linear-gradient(to bottom,#1e8cd3 0,#1a7ab9 100%);
+    background-repeat: repeat-x;
+    color: #ffffff;
+    font-family: 'Open Sans';
+    border-radius: 2px !important;
+}
+
+.dhx_cal_prev_button {
+    
+}
+
+.dhx_cal_next_button {
+    
+}
+
+.dhx_cal_event_clear {
+padding: 2px 2px 2px 5px;
+}
+
+.dhx_now .dhx_month_body, .dhx_now .dhx_month_head {
+    background-color: #d9edf7;
 }

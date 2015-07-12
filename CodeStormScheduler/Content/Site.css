@@ -67,6 +67,15 @@
     padding: 8px 10px !important;
     font-size: 12px !important;
 }
+
+.select2-result-label img {
+            width: 30px;
+        }
+
+.settings-toggle-hide {
+    display: none;
+}
+
 @media (min-width: 768px) {
     #main-navbar form.navbar-form .form-control {
         width: 270px;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodeStormData.ViewModels;
 
 namespace CodeStormData.Data
 {
@@ -60,6 +61,20 @@ namespace CodeStormData.Data
             }
         }
 
+        public void UpdateEventDtl(Event evnt)
+        {
+            using (CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                var e = db.Events.Where(x => x.Id == evnt.Id).FirstOrDefault();
+                if (e != null)
+                {
+                    e.Text = evnt.Text;
+                    e.Color = evnt.Color;
+                    db.SaveChanges();
+                }
+            }
+        }
+
         public void Delete(Int64 eventId)
         {
             using (CodeStormDBEntities db = new CodeStormDBEntities())
@@ -71,6 +86,30 @@ namespace CodeStormData.Data
                     db.SaveChanges();
                 }
                     
+            }
+        }
+
+        public EventDetailViewModel GetEventDetails(Int64 id)
+        {
+            using (CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                var evnt = from e in db.Events.AsEnumerable()
+                    join ed in db.EventDetails.AsEnumerable() on e.Id equals ed.Id
+                    where e.Id == id
+                    select new EventDetailViewModel()
+                    {
+                        text = e.Text,
+                        description = ed.Description,
+                        start_date = e.StartDate.ToString("MM/dd/yyyy HH:mm"),
+                        end_date = e.EndDate.ToString("MM/dd/yyyy HH:mm"),
+                        color = e.Color,
+                        location = ed.Location,
+                        longitude = ed.Longitude,
+                        latitude = ed.Latitude
+                    };
+
+                return evnt.FirstOrDefault();
+
             }
         }
     }

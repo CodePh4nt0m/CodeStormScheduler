@@ -140,6 +140,9 @@
         .thread-title {
             font-size: 12px !important;
         }
+        .widget-chat {
+            padding-top: 15px;
+        }
     </style>
 
 }
@@ -160,54 +163,28 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-info widget-threads" id="conversation-list">
-                        <div class="panel-body scroll-body" slimscroll="{height: '480'}">
-                            <div class="thread" ng-repeat="c in conversations" data-conv="{{c.convid}}" ng-click="viewConversation(c.convid)">
-                                <img src="/ImageBase/Users/{{c.imgurl}}" alt="" class="thread-avatar">
-                                <div class="thread-body">
-                                    <span class="thread-time">{{ c.time | timeAgo }}</span>
-                                    <a class="thread-title">{{c.fullname}}</a>
-                                    <div class="thread-info">
-                                        {{c.message}}
-                                    </div>
-                                </div> <!-- / .thread-body -->
-                            </div>
-                        </div> <!-- / .panel-body -->
+                        <div class="panel-body">
+                            <!-- / message panel-body -->
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
         <div class="col-lg-6 conv-chat">
-            <div class="ibox float-e-margins">
-                <div class="ibox-content">
-                    <div>
-                        <div class="chat-activity-list scroll-body" slimscroll="{height: '340',start:'bottom'}">
-                            <div ng-class="{true:'chat-wrap chat-element right',false:'chat-wrap chat-element'}[c.self]" ng-repeat="c in conversation">
-                                <a href="#" ng-class="{true:'pull-right',false:'pull-left'}[c.self]">
-                                    <img alt="image" class="img-circle" src="/ImageBase/Users/{{c.imgurl}}">
-                                </a>
-                                <div ng-class="{true:'media-body text-right',false:'media-body'}[c.self]">
-                                    <small ng-class="{true:'pull-left',false:'pull-right'}[c.self]">{{c.time | timeAgo}}</small>
-                                    <strong>{{c.fullname}}</strong>
-                                    <p class="m-b-xs">
-                                        {{c.message}}
-                                    </p>
-                                    <small class="text-muted">{{c.time | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat-form">
-                        <form role="form">
-                            <div class="form-group">
-                                <textarea class="form-control" placeholder="Message" id="message" ng-model="chat_message"></textarea>
-                            </div>
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-sm btn-primary m-t-n-xs" id="btnSendMessage" ng-click="sendMessage()"><strong>Send message</strong></button>
-                            </div>
-                        </form>
-                    </div>
+            <input type="hidden" id="current_conv_id" />
+            <div class="panel widget-chat">
+                <div class="panel-body">
+                    <!-- / message panel-body -->
                 </div>
+                <form class="panel-footer chat-controls">
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Message" id="chat_message"></textarea>
+                    </div>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-sm btn-primary m-t-n-xs" id="btnSendMessage"><strong>Send message</strong></button>
+                    </div>
+                </form> <!-- / .panel-footer -->
             </div>
         </div>
 
@@ -252,54 +229,127 @@
 </div>
 
 @section scripts{
-
+    <script src="~/plugins/moment/moment.js"></script>
     <script src="~/signalr/hubs"></script>
     <script>
-        function addMessage(msg) {
-            var chat = '<div class="chat-element">' +
-                '<a href="#" class="pull-left">' +
-                '<img alt="image" class="img-circle" src="assets/demo/avatars/a2.jpg">' +
-                '</a>' +
-                '<div class="media-body ">' +
-                '<small class="pull-right text-navy">1m ago</small>' +
-                '<strong>Mike Smith</strong>' +
-                '<p class="m-b-xs">' +
-                msg +
-                '</p>' +
-                '<small class="text-muted">Today 4:21 pm - 12.06.2014</small>' +
+        $(document).ready(function () {
+            getConversationlist();
+            $('.widget-chat .panel-body').slimScroll({ height: 372, alwaysVisible: false, color: '#888', allowPageScroll: true, start: 'bottom' });
+        });
+
+        function getConversationlist() {
+            var dataHelper = commonHelper();
+            dataHelper.getData('/MessageData/GetConversationList', null,
+                function (result) {
+                    $.each(result, function (i, msg) {
+                        addConversation(msg);
+                    });
+                });
+            $("time.timeago").timeago();
+            $('#conversation-list .panel-body').slimScroll({ height: 498, alwaysVisible: false, color: '#888', allowPageScroll: true });
+        }
+
+        function addConversation(c) {
+            var $conv = '<div class="thread" data-conv="' + c.convid + '">' +
+                '<img src="/ImageBase/Users/' + c.imgurl + '" alt="" class="thread-avatar">' +
+                '<div class="thread-body">' +
+                '<time class="timeago thread-time" datetime="' + c.time + '">' + c.time + '</time>' +
+                '<a class="thread-title">' + c.fullname + '</a>' +
+                '<div class="thread-info">' + c.message + '</div>' +
                 '</div>' +
                 '</div>';
-            $('.chat-activity-list').append(chat);
-            var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
-            $('.chat-activity-list').slimScroll({ height: 300, scrollTo: chatheight });
-        };
+            $('#conversation-list .panel-body').append($conv);
+            $("time.timeago").timeago();
+            $('#conversation-list .panel-body').slimScroll({ height: 450, alwaysVisible: false, color: '#888', allowPageScroll: true });
+
+        }
+
+        function addChatMessageLeft(c) {
+            var $msg = '<div class="message">' +
+                '<img src="/ImageBase/Users/' + c.imgurl + '" alt="" class="message-avatar">' +
+                '<div class="message-body">' +
+                '<div class="message-heading">' +
+                '<a href="#" title="">' + c.fullname + '</a> says:' +
+                '<time class="timeago pull-right" datetime="' + c.time + '">' + c.time + '</time>' +
+                '</div>' +
+                '<div class="message-text">' +
+                c.message +
+                '</div>' +
+                '</div>' +
+                '</div>';
+            $('.widget-chat .panel-body').append($msg);
+            $("time.timeago").timeago();
+            var chatheight = $('.widget-chat .panel-body').prop('scrollHeight') + 'px';
+            $('.widget-chat .panel-body').slimScroll({ height: 397, scrollTo: chatheight });
+        }
+
+        function addChatMessageRight(c) {
+            var $msg = '<div class="message right">' +
+                '<img src="/ImageBase/Users/' + c.imgurl + '" alt="" class="message-avatar">' +
+                '<div class="message-body">' +
+                '<div class="message-heading">' +
+                '<a href="#" title="">' + c.fullname + '</a> says:' +
+                '<time class="timeago pull-right" datetime="' + c.time + '">' + c.time + '</time>' +
+                '</div>' +
+                '<div class="message-text">' +
+                c.message +
+                '</div>' +
+                '</div>' +
+                '</div>';
+            $('.widget-chat .panel-body').append($msg);
+            $("time.timeago").timeago();
+            var chatheight = $('.widget-chat .panel-body').prop('scrollHeight') + 'px';
+            $('.widget-chat .panel-body').slimScroll({ height: 397, scrollTo: chatheight });
+        }
+
+        function loadConversation(convid) {
+            $('#current_conv_id').val(convid);
+            var dataHelper = commonHelper();
+            dataHelper.getData('/MessageData/GetConversation', { conversation: convid },
+                function (result) {
+                    $.each(result, function (i, msg) {
+                        if (msg.self)
+                            addChatMessageLeft(msg);
+
+                        else
+                            addChatMessageRight(msg);
+                    });
+                });
+            $("time.timeago").timeago();
+            $('.widget-chat .panel-body').slimScroll({ height: 397, alwaysVisible: false, color: '#888', allowPageScroll: true, start: bottom });
+            var chatheight = $('.widget-chat .panel-body').prop('scrollHeight') + 'px';
+            $('.widget-chat .panel-body').slimScroll({ height: 397, scrollTo: chatheight });
+        }
+
+        $('#conversation_container').on('click', '.thread', function () {
+            $('.thread').css("background-color", "#fff");
+            $(this).css("background-color", "rgb(214, 233, 238)");
+            $('.widget-chat .panel-body').empty();
+            loadConversation($(this).data("conv"));
+        });
 
         $(function () {
-            //var chat = $.connection.messageHub;
-            //chat.client.addChatMessage = function (msg) {
-            //    addMessage(msg);
-            //};
+            var chat = $.connection.messageHub;
+            chat.client.addChatMessage = function (name, message, imgurl, self) {
+                var msg = { messageid: '0', fullname: name, message: message, imgurl: imgurl, time: moment().format(), self: self };
+                if (msg.self)
+                    addChatMessageLeft(msg);
 
-            //$.connection.hub.start().done(function () {
-            //    $('#btnSendMessage').click(function () {
-            //        //chat.server.send($('#receiver').val(), $('#message').val());
-            //        //$('#message').val('');
-            //        var scope = angular.element($("#conversation_container")).scope();
-            //        alert(scope.currentconv);
+                else
+                    addChatMessageRight(msg);
+            };
 
-            //    });
-            //});
-
-            //function fetchMessages() {
-
-            //}
+            $.connection.hub.start().done(function () {
+                $('#btnSendMessage').click(function () {
+                    chat.server.send($('#current_conv_id').val(), $('#chat_message').val());
+                    chat.server.send($.cookie('userid'), $('#chat_message').val());
+                    $('#chat_message').val('');
+                });
+            });
 
 
         });
     </script>
-    <script src="~/Scripts/angular-moment.min.js"></script>
-    <script src="~/Scripts/angular-timeago.js"></script>
-    <script src="~/Scripts/angular-slimscroll.js"></script>
     <script src="~/App/codestorm/messages/model/messages-meta.js"></script>
     <script src="~/App/codestorm/messages/controllers/messagesController.js"></script>
 
@@ -310,7 +360,7 @@
 
         function nameFormatResult(name) {
             var $state = $(
-              '<span><img src="/ImageBase/Users/' + name.imgurl + '" class="img-flag" /> ' + name.text + '</span>'
+                '<span><img src="/ImageBase/Users/' + name.imgurl + '" class="img-flag" /> ' + name.text + '</span>'
             );
             return $state;
         }
@@ -342,22 +392,14 @@
             var msg = $('#txtModalMessage').val();
             var dataHelper = commonHelper();
             var message = { messageid: "0", message: msg, sender: null, receiver: user.id };
-            dataHelper.postData('/MessageData/SendUserMessage', message,
-            function (result) {
-
-            });
-            var userlist = null;
-            dataHelper.getData('/MessageData/GetConversationList', null,
+            dataHelper.postAsyncData('/MessageData/SendUserMessage', message,
                 function (result) {
-                    extMsgScope.$apply(function () {
-                        extMsgScope.conversations = result;
-                    });
+                    $("#message_name_list").select2("val", "");
+                    $('#txtModalMessage').val("");
+                    $('#conversation-list .panel-body').empty();
+                    getConversationlist();
+                    $('#newMessageModal').modal('toggle');
                 });
-
-            $("#message_name_list").select2("val", "");
-            $('#txtModalMessage').val("");
-            $('#newMessageModal').modal('toggle');
-
         });
     </script>
 

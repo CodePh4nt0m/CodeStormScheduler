@@ -35,6 +35,7 @@ namespace CodeStormData
         public virtual DbSet<UserMessage> UserMessages { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<EventDetail> EventDetails { get; set; }
     
         public virtual ObjectResult<spGetConversationList_Result> spGetConversationList(string userid)
         {

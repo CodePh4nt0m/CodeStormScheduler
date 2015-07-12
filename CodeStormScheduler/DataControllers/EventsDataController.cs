@@ -45,10 +45,19 @@ namespace CodeStormScheduler.DataControllers
                 RecType = model.rec_type,
                 EventLength = model.event_length,
                 EventPid = model.event_pid,
+                Color = "#5484ed",
                 UserId = User.Identity.GetUserId()
             };
             EventsData eventsData = new EventsData();
-            return eventsData.AddEvent(evnt);
+            var res = eventsData.AddEvent(evnt);
+
+            EventDetail ed = new EventDetail()
+            {
+                Id = model.id
+            };
+            EventDetailData eventDetailData = new EventDetailData();
+            eventDetailData.AddEventDetail(ed);
+            return res;
         }
 
         [HttpPost]
@@ -74,6 +83,39 @@ namespace CodeStormScheduler.DataControllers
         {
             EventsData eventsData = new EventsData();
             eventsData.Delete(eventid);
+        }
+
+        [HttpGet]
+        public JsonResult GetEventDetails(Int64 id)
+        {
+            EventsData eventsData = new EventsData();
+            var ed = eventsData.GetEventDetails(id);
+            return Json(ed, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public void SaveEventDetails(EventDetailViewModel model)
+        {
+            Event evnt = new Event()
+            {
+                Id = model.id,
+                Text = model.text,
+                Color = model.color
+            };
+            EventDetail eventDetail = new EventDetail()
+            {
+                Id = model.id,
+                Description = model.description,
+                Location = model.location,
+                Latitude = model.latitude,
+                Longitude = model.longitude
+            };
+
+            EventsData eventsData = new EventsData();
+            eventsData.UpdateEventDtl(evnt);
+
+            EventDetailData eventDetailData = new EventDetailData();
+            eventDetailData.UdateEventDetail(eventDetail);
         }
     }
 }

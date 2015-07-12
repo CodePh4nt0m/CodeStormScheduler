@@ -46,7 +46,6 @@ Use search to find needed section.
             border: none;
             color: #999;
         }
-
     </style>
     <!--[if lt IE 9]>
         <script src="assets/javascripts/ie.min.js"></script>
@@ -322,7 +321,7 @@ Use search to find needed section.
 
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
-                                        <img src="assets/demo/avatars/1.jpg" alt="">
+                                        <img src="assets/demo/avatars/{{imgrul}}" alt="">
                                         <span>{{user_name}}</span>
                                     </a>
                                     <ul class="dropdown-menu">
@@ -375,7 +374,7 @@ Use search to find needed section.
                     <div>
                         <div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold">John</span></div>
 
-                        <img src="assets/demo/avatars/1.jpg" alt="" class="">
+                        <img src="assets/demo/avatars/{{user_pic}}" alt="" class="">
                         <div class="btn-group">
                             <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-envelope"></i></a>
                             <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
@@ -390,7 +389,7 @@ Use search to find needed section.
                         <a href="index.html"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span></a>
                     </li>
                     <li>
-                        <a href="/codestorm/calender"><i class="menu-icon fa fa-calendar"></i><span class="mm-text">Calender</span></a>
+                        <a href="/calender"><i class="menu-icon fa fa-calendar"></i><span class="mm-text">Calender</span></a>
                     </li>
                     <li>
                         <a href="/messages/inbox"><i class="menu-icon fa fa-envelope-o"></i><span class="mm-text">Messages</span></a>
@@ -560,6 +559,9 @@ Use search to find needed section.
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="#" id="skin-panel"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Custom Skins</span></a>
+                    </li>
                 </ul> <!-- / .navigation -->
 
             </div> <!-- / #main-menu-inner -->
@@ -590,6 +592,7 @@ Use search to find needed section.
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/pixeladmin")
     @Scripts.Render("~/bundles/plugins")
+    <script src="~/plugins/jquery-cookie/jquery.cookie.js"></script>
     <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
     <script type="text/javascript">
         window.CodeStorm = {};
@@ -608,6 +611,11 @@ Use search to find needed section.
             event.preventDefault();
             var form = $('#form_logoff');
             form.submit();
+        });
+        $('#skin-panel').click(function () {
+            $('#demo-settings').toggleClass('open');
+            $('#demo-settings-toggler').toggleClass('settings-toggle-hide');
+            return false;
         });
     </script>
     @RenderSection("scripts", required: false)

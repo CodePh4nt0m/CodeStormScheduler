@@ -50,5 +50,15 @@ namespace CodeStormScheduler.Controllers
         {
             return View();
         }
+
+        public ActionResult MiniCalender()
+        {
+            return View();
+        }
+        public ActionResult Conversation()
+        {
+            return View();
+        }
+
     }
 }

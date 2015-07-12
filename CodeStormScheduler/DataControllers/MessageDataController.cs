@@ -73,7 +73,7 @@ namespace CodeStormScheduler.DataControllers
         }
 
         [HttpPost]
-        public void SendUserMessage(MessageViewModel model)
+        public int SendUserMessage(MessageViewModel model)
         {
             string userid = User.Identity.GetUserId();
             var msg = new UserMessage()
@@ -85,6 +85,7 @@ namespace CodeStormScheduler.DataControllers
             };
             MessageData msgData = new MessageData();
             msgData.AddMessage(msg);
+            return 1;
         }
     }
 

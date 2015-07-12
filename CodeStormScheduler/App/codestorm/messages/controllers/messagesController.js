@@ -35,8 +35,6 @@ messagesModule.controller('messagesController', function ($scope, angularHelper,
         chat.server.send($scope.currentconv, $scope.chat_message);
         chat.server.send($cookies.userid, $scope.chat_message);
         //$scope.addOwnMessage($scope.chat_message);
-        
-
         $scope.chat_message = "";
         //var chatheight = $('.chat-activity-list').prop('scrollHeight') + 'px';
         
@@ -61,5 +59,5 @@ messagesModule.controller('messagesController', function ($scope, angularHelper,
     $scope.sendModelMessage = function() {
     }
 
-    initialize();
+    //initialize();
 });

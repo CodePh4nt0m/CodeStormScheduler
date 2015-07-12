@@ -177,6 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CalenderController.cs" />
     <Compile Include="Controllers\CodeStormController.cs" />
     <Compile Include="Controllers\CustomErrorController.cs" />
     <Compile Include="Controllers\DesignController.cs" />
@@ -206,9 +207,30 @@
     <Compile Include="Migrations\201507081850138_Events- New Column[Id].Designer.cs">
       <DependentUpon>201507081850138_Events- New Column[Id].cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507100731078_New Table - [EventDetail].cs" />
+    <Compile Include="Migrations\201507100731078_New Table - [EventDetail].Designer.cs">
+      <DependentUpon>201507100731078_New Table - [EventDetail].cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507101932312_alter lat lng data type.cs" />
+    <Compile Include="Migrations\201507101932312_alter lat lng data type.Designer.cs">
+      <DependentUpon>201507101932312_alter lat lng data type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507102026418_alter lat lng data type%28decimal%2810,7%29%29.cs" />
+    <Compile Include="Migrations\201507102026418_alter lat lng data type%28decimal%2810,7%29%29.Designer.cs">
+      <DependentUpon>201507102026418_alter lat lng data type%28decimal%2810,7%29%29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507102107334_alter lat lng data type%28string%29.cs" />
+    <Compile Include="Migrations\201507102107334_alter lat lng data type%28string%29.Designer.cs">
+      <DependentUpon>201507102107334_alter lat lng data type%28string%29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507102127323_alter lat lng data type%28string[50]%29.cs" />
+    <Compile Include="Migrations\201507102127323_alter lat lng data type%28string[50]%29.Designer.cs">
+      <DependentUpon>201507102127323_alter lat lng data type%28string[50]%29.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventDetail.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserMessage.cs" />
@@ -351,6 +373,9 @@
     <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="ImageBase\Users\charuka.jpg" />
+    <Content Include="ImageBase\Users\2.jpg" />
+    <Content Include="ImageBase\Users\5.jpg" />
     <Content Include="ImageBase\Users\85c1c270742f4885a2659ca636f60577.jpg" />
     <Content Include="ImageBase\Users\blank_photo.png" />
     <Content Include="ImageBase\Users\c0c4f8fa784049ae80c3143ed3bbe795.jpg" />
@@ -2451,6 +2476,7 @@
     <Content Include="plugins\ionslider\ion.rangeSlider.min.js" />
     <Content Include="plugins\ionslider\ion.rangeSlider.skinFlat.css" />
     <Content Include="plugins\ionslider\ion.rangeSlider.skinNice.css" />
+    <Content Include="plugins\jquery-cookie\jquery.cookie.js" />
     <Content Include="plugins\jquery-simplecolorpicker\.gitignore" />
     <Content Include="plugins\jquery-simplecolorpicker\demo.html" />
     <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker-fontawesome.css" />
@@ -2490,6 +2516,7 @@
     <Content Include="plugins\jvectormap\jquery-jvectormap-1.2.2.min.js" />
     <Content Include="plugins\jvectormap\jquery-jvectormap-world-mill-en.js" />
     <Content Include="plugins\knob\jquery.knob.js" />
+    <Content Include="plugins\moment\moment.js" />
     <Content Include="plugins\morris\morris.css" />
     <Content Include="plugins\morris\morris.js" />
     <Content Include="plugins\morris\morris.min.js" />
@@ -2612,6 +2639,8 @@
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler.css" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler.js" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_classic.css" />
+    <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_custom.css" />
+    <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_custom.js" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_flat.css" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler_glossy.css" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_active_links.js" />
@@ -2628,6 +2657,7 @@
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_limit.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_map_view.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_minical.js" />
+    <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_minical_custom.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_monthheight.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_multiselect.js" />
     <Content Include="Scripts\dhtmlxScheduler\ext\dhtmlxscheduler_multisource.js" />
@@ -3016,6 +3046,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\PixelAdmin\bootstrap.min.js" />
     <Content Include="Scripts\PixelAdmin\demo.js" />
+    <Content Include="Scripts\PixelAdmin\demo_bk.js" />
     <Content Include="Scripts\PixelAdmin\jquery.slimscroll.min.js" />
     <Content Include="Scripts\PixelAdmin\pixel-admin.min.js" />
     <Content Include="Scripts\respond.js" />
@@ -3097,8 +3128,14 @@
     <Content Include="Views\Test\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Design\MessageChat.cshtml" />
-    <Content Include="Views\Messages\Inbox.cshtml" />
+    <Content Include="Views\Messages\Inbox_bk2.cshtml" />
     <Content Include="Views\Design\ColorPicker.cshtml" />
+    <Content Include="Views\CodeStorm\Event.cshtml" />
+    <Content Include="Views\Calender\Index.cshtml" />
+    <Content Include="Views\Calender\Event.cshtml" />
+    <Content Include="Views\Design\MiniCalender.cshtml" />
+    <Content Include="Views\Design\Conversation.cshtml" />
+    <Content Include="Views\Messages\Inbox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3129,6 +3166,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507081850138_Events- New Column[Id].resx">
       <DependentUpon>201507081850138_Events- New Column[Id].cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507100731078_New Table - [EventDetail].resx">
+      <DependentUpon>201507100731078_New Table - [EventDetail].cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507101932312_alter lat lng data type.resx">
+      <DependentUpon>201507101932312_alter lat lng data type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507102026418_alter lat lng data type%28decimal%2810,7%29%29.resx">
+      <DependentUpon>201507102026418_alter lat lng data type%28decimal%2810,7%29%29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507102107334_alter lat lng data type%28string%29.resx">
+      <DependentUpon>201507102107334_alter lat lng data type%28string%29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507102127323_alter lat lng data type%28string[50]%29.resx">
+      <DependentUpon>201507102127323_alter lat lng data type%28string[50]%29.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
