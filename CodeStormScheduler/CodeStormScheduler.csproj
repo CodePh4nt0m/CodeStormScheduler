@@ -2477,6 +2477,11 @@
     <Content Include="plugins\ionslider\ion.rangeSlider.skinFlat.css" />
     <Content Include="plugins\ionslider\ion.rangeSlider.skinNice.css" />
     <Content Include="plugins\jquery-cookie\jquery.cookie.js" />
+    <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker-fontawesome.css" />
+    <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker-glyphicons.css" />
+    <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker-regularfont.css" />
+    <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker.css" />
+    <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker.js" />
     <Content Include="plugins\jquery-ui-1.11.4.custom\external\jquery\jquery.js" />
     <Content Include="plugins\jquery-ui-1.11.4.custom\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="plugins\jquery-ui-1.11.4.custom\images\ui-bg_flat_75_ffffff_40x100.png" />
