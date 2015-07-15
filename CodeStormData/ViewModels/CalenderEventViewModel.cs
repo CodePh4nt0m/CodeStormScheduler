@@ -14,8 +14,9 @@ namespace CodeStormData.ViewModels
         public string text { get; set; }
         public string rec_type { get; set; }
         public Int64 event_length { get; set; }
-        public int event_pid { get; set; }
+        public Int64 event_pid { get; set; }
         public string color { get; set; }
+        public string userid { get; set; }
     }
 
     public class EventDetailViewModel
@@ -26,12 +27,19 @@ namespace CodeStormData.ViewModels
         public string text { get; set; }
         public string rec_type { get; set; }
         public Int64 event_length { get; set; }
-        public int event_pid { get; set; }
+        public Int64 event_pid { get; set; }
         public string color { get; set; }
         public string description { get; set; }
         public string location { get; set; }
         public string longitude { get; set; }
         public string latitude { get; set; }
+        public bool shared { get; set; }
+        public List<SharedUserViewModel> sharedlist { get; set; }
+    }
+
+    public class SharedUserViewModel
+    {
+        public string userid { get; set; }
     }
 
 }

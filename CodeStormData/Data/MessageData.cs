@@ -36,5 +36,13 @@ namespace CodeStormData.Data
                 return msg.MessageId;
             }
         }
+
+        public int ChangeMessageStatus(string receiverid,string senderid,string status)
+        {
+            using (CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                return db.spChangeMessageStatus(receiverid, senderid, status);
+            }
+        }
     }
 }

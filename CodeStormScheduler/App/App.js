@@ -6,6 +6,53 @@ commonModule.factory('angularHelper', function ($http) { return CodeStorm.angula
 
 var commonHelper = function () { return CodeStorm.dataHelper() };
 
+var fileModule = angular.module("akFileUploader", []);
+
+fileModule.factory("akFileUploaderService", ["$q", "$http", function ($q, $http) {
+
+    var getModelAsFormData = function (data) {
+        var dataAsFormData = new FormData();
+        angular.forEach(data, function (value, key) {
+            dataAsFormData.append(key, value);
+        });
+        return dataAsFormData;
+    };
+
+    var saveModel = function (data, url,success) {
+        var deferred = $q.defer();
+        $http({
+            url: url,
+            method: "POST",
+            data: getModelAsFormData(data),
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
+        }).success(function (result) {
+            success(result);
+        }).error(function (result, status) {
+            deferred.reject(status);
+        });
+        return deferred.promise;
+    };
+
+    return {
+        saveModel: saveModel
+    }
+}])
+         .directive("akFileModel", ["$parse",
+                function ($parse) {
+                    return {
+                        restrict: "A",
+                        link: function (scope, element, attrs) {
+                            var model = $parse(attrs.akFileModel);
+                            var modelSetter = model.assign;
+                            element.bind("change", function () {
+                                scope.$apply(function () {
+                                    modelSetter(scope, element[0].files[0]);
+                                });
+                            });
+                        }
+                    };
+                }]);
 
 (function (codestorm) {
     var dataHelper = function () {
@@ -22,12 +69,12 @@ var commonHelper = function () { return CodeStorm.dataHelper() };
                     success(result);
                 },
                 error: function () {
-                    
+
                 }
             });
         }
 
-        self.showMe = function() {
+        self.showMe = function () {
             alert('I am working');
         }
 
@@ -41,8 +88,8 @@ var commonHelper = function () { return CodeStorm.dataHelper() };
                 success: function (result) {
                     success(result);
                 },
-                error : function() {
-                    
+                error: function () {
+
                 }
             });
         }
@@ -136,12 +183,17 @@ var commonHelper = function () { return CodeStorm.dataHelper() };
     codestorm.angularHelper = angularHelper;
 }(window.CodeStorm));
 
+
+var homescope;
+
 mainModule.controller('MainController', function ($scope, $cookies, angularHelper) {
+    homescope = $scope;
     $scope.user_name = $cookies.fname;
     $scope.user_pic = $cookies.imgurl;
 
     var initialize = function () {
         $scope.loadnames();
+        $scope.getNavMessages();
     }
 
     function nameFormatResult(name) {
@@ -151,7 +203,7 @@ mainModule.controller('MainController', function ($scope, $cookies, angularHelpe
         return $state;
     }
 
-    $scope.loadnames = function() {
+    $scope.loadnames = function () {
         $("#txt_navbar_search").select2("val", "");
         var userlist = null;
         angularHelper.getData('/UserData/GetAutoCompleteUserList', null,
@@ -166,5 +218,31 @@ mainModule.controller('MainController', function ($scope, $cookies, angularHelpe
             });
     }
 
+    function addNavMessage(msglist) {
+        $.each(msglist, function (i, msg) {
+            var element = '<div class="message">' +
+                        '<img src="/ImageBase/Users/' + msg.imgurl + '" alt="" class="message-avatar">' +
+                            '<a href="#" class="message-subject">' + msg.message + '</a>' +
+                                '<div class="message-description">' +
+                                    'from <a href="#">'+ msg.fullname +'</a>' +
+                                '</div>' +
+                                '<div class="message-time">' +
+                                    '<time class="timeago" datetime="' + msg.time + '">' + msg.time + '</time>'+
+                                '</div>'+
+                    '</div>';
+            $('.widget-messages-alt .messages-list').append(element);
+            $("time.timeago").timeago();
+            //$('#main-navbar-messages').slimScroll({ height: 230 });
+        });
+        
+    }
+
+    $scope.getNavMessages = function () {
+        angularHelper.getData('/MessageData/GetConversationList', null,
+        function (result) {
+            addNavMessage(result.data);
+        });
+    }
+
     initialize();
- });
+});

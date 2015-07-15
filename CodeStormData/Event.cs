@@ -20,9 +20,10 @@ namespace CodeStormData
         public string Text { get; set; }
         public string RecType { get; set; }
         public long EventLength { get; set; }
-        public int EventPid { get; set; }
+        public long EventPid { get; set; }
         public string UserId { get; set; }
         public string Color { get; set; }
         public long Id { get; set; }
+        public bool Shared { get; set; }
     }
 }

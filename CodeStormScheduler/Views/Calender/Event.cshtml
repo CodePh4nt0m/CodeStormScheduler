@@ -77,7 +77,7 @@
                                     <div class="col-sm-9">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" class="px"> <span class="lbl"> </span>
+                                                <input type="checkbox" class="px" id="cb_Shared" ng-model="shared"> <span class="lbl"> </span>
                                             </label>
                                         </div>
                                     </div>
@@ -86,7 +86,7 @@
                                     <label class="col-sm-3 control-label">Shared With</label>
                                     <div class="col-sm-9">
                                         <div class="select2-info">
-                                            <select multiple="multiple" id="input_shared_users"></select>
+                                            <select multiple="multiple" id="input_shared_users" disabled="disabled"></select>
                                         </div>
                                     </div>
                                 </div>
@@ -116,7 +116,8 @@
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-sm-6">
-                            <input type="button" value="Save Event Details" class="btn btn-primary" ng-click="GetLocation()" />
+                            <input type="button" value="Save Event Details" class="btn btn-primary" ng-click="SaveDetails()"/>
+                            <input type="button" value="Cancel" class="btn btn-primary" ng-click="Cancel()"/>
                         </div>
                     </div>
 
@@ -130,6 +131,16 @@
 
     <script src="~/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.js"></script>
     <script>
+        
+        $("#cb_Shared").change(function () {
+            if (!this.checked) {
+                $('#input_shared_users').val(null).trigger("change");
+                $("#input_shared_users").prop("disabled", true);
+            } else {
+                $("#input_shared_users").prop("disabled", false);
+            }
+        });
+
         $('select[name="colorpicker"]').simplecolorpicker();
 
         function nameFormatResult(name) {
@@ -140,6 +151,7 @@
         }
 
         $(document).ready(function () {
+            eventoutScope.outerFunction();
             var dataHelper = commonHelper();
             var userlist = null;
             dataHelper.getData('/UserData/GetAutoCompleteUserList', null,
@@ -154,7 +166,9 @@
                     $("#input_shared_users").select2({
                         placeholder: "Search Users"
                     });
+                    
                 });
+            
         });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>

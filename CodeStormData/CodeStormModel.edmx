@@ -87,10 +87,19 @@
           <Property Name="Text" Type="nvarchar" MaxLength="200" />
           <Property Name="RecType" Type="nvarchar" MaxLength="100" />
           <Property Name="EventLength" Type="bigint" Nullable="false" />
-          <Property Name="EventPid" Type="int" Nullable="false" />
+          <Property Name="EventPid" Type="bigint" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" />
           <Property Name="Color" Type="nvarchar" MaxLength="7" />
           <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="Shared" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SharedEvents">
+          <Key>
+            <PropertyRef Name="ShraredEventId" />
+          </Key>
+          <Property Name="ShraredEventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventId" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="UserMessages">
           <Key>
@@ -112,6 +121,15 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="150" />
           <Property Name="Id" Type="nvarchar" MaxLength="128" />
           <Property Name="ImageUrl" Type="nvarchar" MaxLength="128" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="DOB" Type="datetime" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="200" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="15" />
+          <Property Name="Profession" Type="nvarchar" MaxLength="150" />
+          <Property Name="Twitter" Type="nvarchar" MaxLength="100" />
+          <Property Name="Facebook" Type="nvarchar(max)" />
+          <Property Name="AboutMe" Type="nvarchar(max)" />
+          <Property Name="Interests" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -169,6 +187,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="spChangeMessageStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="receiverid" Type="nvarchar" Mode="In" />
+          <Parameter Name="senderid" Type="nvarchar" Mode="In" />
+          <Parameter Name="status" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spClearSharedEvent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="eventid" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="spGetConversation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="convid" Type="nvarchar" Mode="In" />
           <Parameter Name="userid" Type="nvarchar" Mode="In" />
@@ -185,6 +211,7 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventDetails" EntityType="Self.EventDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SharedEvents" EntityType="Self.SharedEvents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMessages" EntityType="Self.UserMessages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfiles" EntityType="Self.UserProfiles" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -300,7 +327,6 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <EntitySet Name="UserProfiles" EntityType="CodeStormDBModel.UserProfile" />
           <EntitySet Name="UserMessages" EntityType="CodeStormDBModel.UserMessage" />
           <FunctionImport Name="spGetConversationList" ReturnType="Collection(CodeStormDBModel.spGetConversationList_Result)">
           <Parameter Name="userid" Mode="In" Type="String" />
@@ -314,19 +340,19 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="Events" EntityType="CodeStormDBModel.Event" />
           <EntitySet Name="EventDetails" EntityType="CodeStormDBModel.EventDetail" />
+          <FunctionImport Name="spChangeMessageStatus">
+            <Parameter Name="receiverid" Mode="In" Type="String" />
+            <Parameter Name="senderid" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="SharedEvents" EntityType="CodeStormDBModel.SharedEvent" />
+          <FunctionImport Name="spClearSharedEvent">
+          <Parameter Name="eventid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="Events" EntityType="CodeStormDBModel.Event" />
+          <EntitySet Name="UserProfiles" EntityType="CodeStormDBModel.UserProfile" />
         </EntityContainer>
-        <EntityType Name="UserProfile">
-          <Key>
-            <PropertyRef Name="ProfileId" />
-          </Key>
-          <Property Name="ProfileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ImageUrl" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="UserMessage">
           <Key>
             <PropertyRef Name="MessageId" />
@@ -365,21 +391,6 @@
           <End Type="CodeStormDBModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="CodeStormDBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityType Name="Event">
-          <Key>
-            <PropertyRef Name="EventId" />
-          </Key>
-          <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Text" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="RecType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EventLength" Type="Int64" Nullable="false" />
-          <Property Name="EventPid" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Color" Type="String" MaxLength="7" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="None" />
-          <Property Name="Id" Type="Int64" Nullable="false" />
-        </EntityType>
         <EntityType Name="EventDetail">
           <Key>
             <PropertyRef Name="EventDetailId" />
@@ -390,6 +401,49 @@
           <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SharedEvent">
+          <Key>
+            <PropertyRef Name="ShraredEventId" />
+          </Key>
+          <Property Name="ShraredEventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Text" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RecType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EventLength" Type="Int64" Nullable="false" />
+          <Property Name="EventPid" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Shared" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="ProfileId" />
+          </Key>
+          <Property Name="ProfileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Location" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Profession" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Twitter" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AboutMe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Interests" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -444,17 +498,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserProfiles">
-            <EntityTypeMapping TypeName="CodeStormDBModel.UserProfile">
-              <MappingFragment StoreEntitySet="UserProfiles">
-                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UserMessages">
             <EntityTypeMapping TypeName="CodeStormDBModel.UserMessage">
               <MappingFragment StoreEntitySet="UserMessages">
@@ -506,9 +549,33 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="EventDetails">
+            <EntityTypeMapping TypeName="CodeStormDBModel.EventDetail">
+              <MappingFragment StoreEntitySet="EventDetails">
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EventDetailId" ColumnName="EventDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spChangeMessageStatus" FunctionName="CodeStormDBModel.Store.spChangeMessageStatus" />
+          <EntitySetMapping Name="SharedEvents">
+            <EntityTypeMapping TypeName="CodeStormDBModel.SharedEvent">
+              <MappingFragment StoreEntitySet="SharedEvents">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="ShraredEventId" ColumnName="ShraredEventId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spClearSharedEvent" FunctionName="CodeStormDBModel.Store.spClearSharedEvent" />
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="CodeStormDBModel.Event">
               <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="Shared" ColumnName="Shared" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -522,15 +589,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="EventDetails">
-            <EntityTypeMapping TypeName="CodeStormDBModel.EventDetail">
-              <MappingFragment StoreEntitySet="EventDetails">
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="CodeStormDBModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfiles">
+                <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="Profession" ColumnName="Profession" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="EventDetailId" ColumnName="EventDetailId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

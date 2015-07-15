@@ -33,5 +33,13 @@ namespace CodeStormScheduler.DataControllers
             userlist.Remove(userlist.Where(u => u.id == User.Identity.GetUserId()).First());
             return Json(userlist, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public JsonResult GetUserEditDetails()
+        {
+            UserData userData = new UserData();
+            var user = userData.GetUserEditDetails(User.Identity.GetUserId());
+            return Json(user, JsonRequestBehavior.AllowGet);
+        }
     }
 }

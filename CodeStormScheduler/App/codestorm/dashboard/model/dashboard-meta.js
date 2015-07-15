@@ -2,7 +2,7 @@
     mainModule.meta = {};
 }
 
-var dashboardModule = angular.module('dashboardModule', []);
+var dashboardModule = angular.module('dashboardModule', ['ngCookies']);
 
 dashboardModule.config(function ($locationProvider) {
     $locationProvider.html5Mode(true);

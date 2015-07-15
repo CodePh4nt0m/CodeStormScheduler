@@ -32,5 +32,31 @@ namespace CodeStormData.Data
                 return db.UserProfiles.ToList();
             }
         }
+
+        public UserProfileEditViewModel GetUserEditDetails(string userid)
+        {
+            using (CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                var user = from u in db.AspNetUsers.AsEnumerable()
+                    join p in db.UserProfiles.AsEnumerable() on u.Id equals p.Id
+                    where p.Id == userid
+                    select new UserProfileEditViewModel()
+                    {
+                        userid = u.Id,
+                        fname = p.FirstName,
+                        lname = p.LastName,
+                        dob = p.DOB.ToString(),
+                        gender = p.Gender,
+                        location = p.Location,
+                        mobile = p.Mobile,
+                        profession = p.Profession,
+                        aboutme = p.AboutMe,
+                        twitter = p.Twitter,
+                        facebook = p.Facebook,
+                        interests = p.Interests
+                    };
+                return user.FirstOrDefault();
+            }
+        }
     }
 }

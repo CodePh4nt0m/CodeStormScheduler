@@ -82,20 +82,29 @@
 
 
     <script>
-
+        function moreoption(e) {
+            alert(e.getAttribute("event_id"));
+        }
         $(document).ready(function () {
-
+            var e_id;
             var dataHelper = commonHelper();
             scheduler.config.include_end_by = true;
             scheduler.init('scheduler_here', new Date(), "month");
+            scheduler.config.buttons_left = ["dhx_save_btn", "dhx_cancel_btn", "btn_more_options"];
+            scheduler.locale.labels["btn_more_options"] = "Event Options";
 
+            scheduler.attachEvent("onLightboxButton", function (button_id, node, e) {
+                if (button_id == "btn_more_options") {
+                    var ev = scheduler.getEvent(e_id);
+                    window.location.href = "/calender/event?id=" + e_id;
+                    //alert(JSON.stringify(ev));
+                }
+            });
+            
             $('select[name="colorpicker"]').simplecolorpicker();
-            scheduler.attachEvent("onBeforeLightbox", function (id) {
-                //$('select[name="colorpicker"]').simplecolorpicker();
-                $('#colorpicker').on('change', function () {
-                    alert(); // or $(this).val()
-                });
-                return true;
+            
+            scheduler.attachEvent("onLightbox", function (id) {
+                e_id = id;
             });
 
             //Load Existing Events
@@ -115,11 +124,13 @@
                     rec_type: ev.rec_type,
                     event_length: ev.event_length,
                     event_pid: ev.event_pid,
-                    color: '#FF0000'
+                    color: '#FF0000',
+                    userid : ""
                 };
                 dataHelper.postData('/EventsData/AddEvent', newEvent,
                 function (result) {
-                    window.location.href = "/calender/event?id=" + id;
+                    if (ev.rec_type != "none")
+                        window.location.href = "/calender/event?id=" + id;
                     //dataHelper.replaceValue(scheduler.getEvents(), "id", ev.id, "id", result);
                 });
             });
@@ -163,7 +174,8 @@
                     rec_type: ev.rec_type,
                     event_length: ev.event_length,
                     event_pid: ev.event_pid,
-                    color: ""
+                    color: "",
+                    userid : ""
                 };
                 dataHelper.postData('/EventsData/UpdateEvent', newEvent,
                 function (result) {
@@ -177,17 +189,11 @@
                 function (result) {
                 });
             });
-            scheduler.attachEvent("onClick", function (id, e) {
-                window.location.href = "/calender/event?id=" + id;
-                return true;
-            });
-            scheduler.attachEvent("onDblClick", function (id, e) {
-                //any custom logic here
-            });
-            //scheduler.attachEvent("onClick", function (id, e) {
-            //    alert(JSON.stringify(e));
-            //    return true;
-            //});
+            function allow_own(id) {
+                var ev = this.getEvent(id);
+                return ev.userid == $.cookie("userid");
+            }
+            scheduler.attachEvent("onDblClick", allow_own);
             $('#btnGet').click(function () {
                 $('select[name="colorpicker"]').simplecolorpicker();
             });

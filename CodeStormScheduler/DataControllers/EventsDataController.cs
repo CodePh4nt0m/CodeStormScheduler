@@ -7,6 +7,7 @@ using CodeStormData;
 using CodeStormData.Data;
 using CodeStormData.ViewModels;
 using Microsoft.AspNet.Identity;
+using EntityFramework.BulkInsert.Extensions;
 
 namespace CodeStormScheduler.DataControllers
 {
@@ -19,6 +20,8 @@ namespace CodeStormScheduler.DataControllers
             string userid = User.Identity.GetUserId();
             EventsData eventsData = new EventsData();
             var events = eventsData.GetUserEvents(userid);
+            var sharedevents = eventsData.GetUserSharedEvents(userid);
+            events.AddRange(sharedevents);
             var modeldata = events.Select(x => new CalenderEventViewModel()
             {
                 id = x.Id,
@@ -28,7 +31,8 @@ namespace CodeStormScheduler.DataControllers
                 rec_type = x.RecType,
                 event_length = x.EventLength,
                 event_pid = x.EventPid,
-                color = x.Color
+                color = x.Color,
+                userid = x.UserId
             }).ToList();
             return Json(modeldata, JsonRequestBehavior.AllowGet);
         }
@@ -46,7 +50,9 @@ namespace CodeStormScheduler.DataControllers
                 EventLength = model.event_length,
                 EventPid = model.event_pid,
                 Color = "#5484ed",
-                UserId = User.Identity.GetUserId()
+                UserId = User.Identity.GetUserId(),
+                Shared = false
+                
             };
             EventsData eventsData = new EventsData();
             var res = eventsData.AddEvent(evnt);
@@ -90,6 +96,14 @@ namespace CodeStormScheduler.DataControllers
         {
             EventsData eventsData = new EventsData();
             var ed = eventsData.GetEventDetails(id);
+
+            SharedEventsData sharedEventsData = new SharedEventsData();
+            var sharedusers = sharedEventsData.GetSharedUsers(id);
+            var usermodel = sharedusers.Select(x => new SharedUserViewModel()
+            {
+                userid = x.UserId
+            }).ToList();
+            ed.sharedlist = usermodel;
             return Json(ed, JsonRequestBehavior.AllowGet);
         }
 
@@ -100,7 +114,8 @@ namespace CodeStormScheduler.DataControllers
             {
                 Id = model.id,
                 Text = model.text,
-                Color = model.color
+                Color = model.color,
+                Shared = model.shared
             };
             EventDetail eventDetail = new EventDetail()
             {
@@ -116,6 +131,32 @@ namespace CodeStormScheduler.DataControllers
 
             EventDetailData eventDetailData = new EventDetailData();
             eventDetailData.UdateEventDetail(eventDetail);
+
+            SharedEventsData sharedEventsData = new SharedEventsData();
+            if (model.shared)
+            {
+                if (model.sharedlist != null)
+                {
+                    string userid = User.Identity.GetUserId();
+                    sharedEventsData.ClearEventSharedData(model.id);
+                    List<SharedEvent> sharedEvents = new List<SharedEvent>();
+
+                    foreach (var e in model.sharedlist)
+                    {
+                        var se = new SharedEvent()
+                        {
+                            UserId = e.userid,
+                            EventId = model.id
+                        };
+                        sharedEvents.Add(se);
+                    }
+                    sharedEventsData.AddSharedEvents(sharedEvents);
+                }
+            }
+            else
+            {
+                sharedEventsData.ClearEventSharedData(model.id);
+            }
         }
     }
 }

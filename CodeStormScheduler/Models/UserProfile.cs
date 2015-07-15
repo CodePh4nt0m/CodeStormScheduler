@@ -27,5 +27,29 @@ namespace CodeStormScheduler.Models
         [Column(TypeName = "NVARCHAR")]
         [StringLength(128)]
         public string Id { get; set; }
+
+        [Column(TypeName = "NVARCHAR")]
+        [StringLength(10)]
+        public string Gender { get; set; }
+        public DateTime DOB { get; set; }
+        [Column(TypeName = "NVARCHAR")]
+        [StringLength(200)]
+        public string Location { get; set; }
+
+        [Column(TypeName = "NVARCHAR")]
+        [StringLength(15)]
+        public string Mobile { get; set; }
+
+        [Column(TypeName = "NVARCHAR")]
+        [StringLength(150)]
+        public string Profession { get; set; }
+
+        [Column(TypeName = "NVARCHAR")]
+        [StringLength(100)]
+        public string Twitter { get; set; }
+        public string Facebook { get; set; }
+        public string AboutMe { get; set; }
+        public string Interests { get; set; }
+
     }
 }

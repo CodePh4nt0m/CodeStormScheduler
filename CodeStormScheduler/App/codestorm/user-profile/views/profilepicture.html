@@ -1,0 +1,53 @@
+﻿<div class="panel colourable">
+    <div class="panel-body">
+
+        <form action="#" role="form" id="pic_form">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <p>
+                        Please upload a profile picture to shown in your account. The photo which you will upload , will be able to seen by any CodeStorm user.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <div class="fileinput-new thumbnail" style="max-width: 200px">
+                            <img src="/ImageBase/Users/blank_photo.png" alt="" id="profile_photo" style="display: none" />
+                            <img src="/ImageBase/Users/{{user_pic}}" alt="" id="profile_blank_photo" />
+                        </div>
+                        <div style="padding-bottom: 20px;">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input type="file" id="styled-finputs-example" data-ak-file-model="picture.attachment">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix margin-top-10">
+                        <span class="label label-danger">NOTE! </span>
+                        <span>Recomended size is 200px X 200px and file size should be less than 500KB</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <div class="pic-upload-progress" style="display:none">
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar" style="width: 100%;"></div>
+                        </div>
+                        <span class="help-block">Upload in progress please wait...</span>
+                    </div>
+                    <div class="pic-upload-success" style="display:none">
+                        <div class="alert alert-success alert-dark">
+                            successfuly uploaded
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer">
+        <input type="button" class="btn btn-primary btn-sm" value="Save Picture" ng-click="savePicture(picture)" />
+    </div>
+</div>

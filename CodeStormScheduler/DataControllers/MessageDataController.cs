@@ -87,6 +87,14 @@ namespace CodeStormScheduler.DataControllers
             msgData.AddMessage(msg);
             return 1;
         }
+
+        [HttpPost]
+        public int ChangeMessageReadStatus(string userid)
+        {
+            MessageData msgData = new MessageData();
+            string receiverid = User.Identity.GetUserId();
+            return msgData.ChangeMessageStatus(receiverid, userid, "Read");
+        }
     }
 
 

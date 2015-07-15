@@ -31,11 +31,12 @@ namespace CodeStormData
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<UserMessage> UserMessages { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<EventDetail> EventDetails { get; set; }
+        public virtual DbSet<SharedEvent> SharedEvents { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<UserProfile> UserProfiles { get; set; }
     
         public virtual ObjectResult<spGetConversationList_Result> spGetConversationList(string userid)
         {
@@ -57,6 +58,32 @@ namespace CodeStormData
                 new ObjectParameter("userid", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetConversation_Result>("spGetConversation", convidParameter, useridParameter);
+        }
+    
+        public virtual int spChangeMessageStatus(string receiverid, string senderid, string status)
+        {
+            var receiveridParameter = receiverid != null ?
+                new ObjectParameter("receiverid", receiverid) :
+                new ObjectParameter("receiverid", typeof(string));
+    
+            var senderidParameter = senderid != null ?
+                new ObjectParameter("senderid", senderid) :
+                new ObjectParameter("senderid", typeof(string));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spChangeMessageStatus", receiveridParameter, senderidParameter, statusParameter);
+        }
+    
+        public virtual int spClearSharedEvent(Nullable<long> eventid)
+        {
+            var eventidParameter = eventid.HasValue ?
+                new ObjectParameter("eventid", eventid) :
+                new ObjectParameter("eventid", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spClearSharedEvent", eventidParameter);
         }
     }
 }

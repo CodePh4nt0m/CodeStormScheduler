@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using CodeStormData.ViewModels;
@@ -22,6 +23,18 @@ namespace CodeStormData.Data
             using (CodeStormDBEntities db = new CodeStormDBEntities())
             {
                 return db.Events.Where(e => e.UserId == userId).ToList();
+            }
+        }
+
+        public List<Event> GetUserSharedEvents(string userId)
+        {
+            using (CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                var events = from e in db.Events
+                    join s in db.SharedEvents on e.Id equals s.EventId
+                    where s.UserId == userId
+                    select e;
+                return events.ToList();
             }
         }
 
@@ -70,6 +83,7 @@ namespace CodeStormData.Data
                 {
                     e.Text = evnt.Text;
                     e.Color = evnt.Color;
+                    e.Shared = evnt.Shared;
                     db.SaveChanges();
                 }
             }
@@ -105,7 +119,8 @@ namespace CodeStormData.Data
                         color = e.Color,
                         location = ed.Location,
                         longitude = ed.Longitude,
-                        latitude = ed.Latitude
+                        latitude = ed.Latitude,
+                        shared = e.Shared
                     };
 
                 return evnt.FirstOrDefault();

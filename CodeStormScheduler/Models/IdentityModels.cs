@@ -35,6 +35,7 @@ namespace CodeStormScheduler.Models
         public DbSet<Event> Events { get; set; }
         public DbSet<UserMessage> UserMessages { get; set; }
         public DbSet<EventDetail> EventDetails { get; set; }
+        public DbSet<SharedEvent> SharedEvents { get; set; }
 
     }
 }

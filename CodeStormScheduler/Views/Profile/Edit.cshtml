@@ -1,0 +1,57 @@
+﻿@section styles{
+
+    <style>
+        .page-profile-edit .list-group {
+        }
+        .pic-upload-success .alert {
+            padding: 5px 15px;
+        }
+    </style>
+}
+
+@section headscripts{
+
+}
+
+@section jsCode {
+    angular.bootstrap(document.getElementById("user_profile_edit_container"), ['userProfileModule']);
+}
+
+<div class="page-profile-edit" div id="user_profile_edit_container" ng-app="userProfileModule" ng-controller="profilePictureController">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a href="/profile/edit" class="list-group-item active">
+                    Profile Picture
+                </a>
+                <a href="/profile/edit/general" class="list-group-item">
+                    General Details
+                </a>
+                <a href="/profile/edit/social" class="list-group-item">
+                    Other
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div ng-view></div>
+        </div>
+    </div>
+
+</div>
+
+
+@section scripts{
+    <script src="~/App/codestorm/user-profile/model/profile-meta.js"></script>
+    <script src="~/App/codestorm/user-profile/controllers/profilePictureController.js"></script>
+    <script src="~/App/codestorm/user-profile/controllers/generalController.js"></script>
+    <script src="~/App/codestorm/user-profile/controllers/otherController.js"></script>
+    <script>
+        $(document).ready(function() {
+
+        });
+        $('.page-profile-edit .list-group .list-group-item').click(function () {
+            $(this).siblings().removeClass('active');
+            $(this).addClass('active');
+        });
+    </script>
+}

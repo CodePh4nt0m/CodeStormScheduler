@@ -19,5 +19,14 @@ namespace CodeStormData
         public string LastName { get; set; }
         public string Id { get; set; }
         public string ImageUrl { get; set; }
+        public string Gender { get; set; }
+        public System.DateTime DOB { get; set; }
+        public string Location { get; set; }
+        public string Mobile { get; set; }
+        public string Profession { get; set; }
+        public string Twitter { get; set; }
+        public string Facebook { get; set; }
+        public string AboutMe { get; set; }
+        public string Interests { get; set; }
     }
 }
