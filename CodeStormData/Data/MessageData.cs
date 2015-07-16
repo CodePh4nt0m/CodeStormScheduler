@@ -44,5 +44,13 @@ namespace CodeStormData.Data
                 return db.spChangeMessageStatus(receiverid, senderid, status);
             }
         }
+
+        public UserMessage GetLatestMessage()
+        {
+            using (CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                return db.UserMessages.ToList().OrderByDescending(m => m.MessageId).First();
+            }
+        }
     }
 }

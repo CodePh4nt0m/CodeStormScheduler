@@ -150,13 +150,13 @@
             scheduler.config.include_end_by = true;
             scheduler.init('scheduler_here', new Date(), "month");
             dataHelper.getData('/EventsData/GetEvents', null,
-                function (result) {
+                function(result) {
                     scheduler.parse(result, "json");
                     scheduler.renderCalendar({
                         container: "mini_here",
                         date: scheduler._date,
                         navigation: true,
-                        handler: function (date, calendar) {
+                        handler: function(date, calendar) {
                             alert(date);
                         }
                     });
@@ -165,7 +165,7 @@
 
         }
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             init();
         });
 
@@ -194,7 +194,7 @@
                 draggable: true,
                 title: 'location'
             });
-            google.maps.event.addListener(marker, 'dragend', function () {
+            google.maps.event.addListener(marker, 'dragend', function() {
                 setGeoLocation(marker.getPosition());
             });
 
@@ -204,7 +204,7 @@
         var input = document.getElementById('txt_location');
         var autocomplete = new google.maps.places.Autocomplete(input);
 
-        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
             var place = autocomplete.getPlace();
             setMapLocation(place.geometry.location.lat(), place.geometry.location.lng());
             $('#txt_map_lat').val(place.geometry.location.lat());
@@ -212,6 +212,22 @@
         });
 
         //endregion
+    </script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+
+        $(function () {
+
+            var messagehub = $.connection.messageHub;
+
+            messagehub.client.refreshNotification = function (msg) {
+                alert(msg);
+            }
+
+            $.connection.hub.start().done(function () {
+                alert('connected');
+            });
+        });
     </script>
 }
 

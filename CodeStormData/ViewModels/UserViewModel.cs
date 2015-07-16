@@ -38,4 +38,15 @@ namespace CodeStormData.ViewModels
         public string facebook { get; set; }
 
     }
+
+    public class UserGeneralDetailsViewModel
+    {
+        public string fname { get; set; }
+        public string lname { get; set; }
+        public bool gender { get; set; }
+        public DateTime dob { get; set; }
+        public string location { get; set; }
+        public string mobile { get; set; }
+        public string profession { get; set; }
+    }
 }

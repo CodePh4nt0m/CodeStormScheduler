@@ -9,10 +9,9 @@
             $('.pic-upload-progress').hide();
             $('.pic-upload-success').show();
             setTimeout(function () { $('.pic-upload-success').hide(); }, 2000);
+            $scope.clearFileUpload($('#styled-finputs-example'));
         });
-
-        $scope.clearFileUpload($('#styled-finputs-example'));
-        
+              
     };
 
     $scope.updateProfileCookies = function() {
@@ -54,4 +53,10 @@
             tags: true
         });
     });
+
+    $scope.clearFileUpload = function (element) {
+        element.siblings('.pfi-filename').addClass('pfi-placeholder').text('No file selected...');
+        element.siblings('.pfi-actions').children('.pfi-clear').css('display', 'none');
+        $scope.picture.attachment = null;
+    }
 });

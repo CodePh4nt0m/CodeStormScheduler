@@ -3,6 +3,8 @@
 }
 
 @section styles{
+    <link href="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_custom.css" rel="stylesheet" />
+    <link href="~/Content/Calender/calender.css" rel="stylesheet" />
     <style>
         .ibox {
             clear: both;
@@ -182,13 +184,30 @@
                     <div class="form-group">
                         <textarea class="form-control" placeholder="Message" id="chat_message"></textarea>
                     </div>
+
                     <div class="text-right">
+                        <label class="checkbox-inline" style="float: left">
+                            <input type="checkbox" class="px" ng-model="enterpress" id="cb_enterpress">
+                            <span class="lbl text-sm">Press enter to send message</span>
+                        </label>
                         <button type="button" class="btn btn-sm btn-primary m-t-n-xs" id="btnSendMessage"><strong>Send message</strong></button>
                     </div>
                 </form> <!-- / .panel-footer -->
             </div>
         </div>
-
+        <div class="col-lg-3">
+            <div id="mini_here" style="width:100%"></div>
+            <div id="scheduler_here" class="dhx_cal_container" style='width:300px; height:300px; display:none;'>
+                <div class="dhx_cal_navline">
+                    <div class="dhx_cal_date"></div>
+                    <div class="dhx_cal_tab" name="day_tab" style="right:76px;"></div>
+                </div>
+                <div class="dhx_cal_header">
+                </div>
+                <div class="dhx_cal_data">
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -230,17 +249,46 @@
 </div>
 
 @section scripts{
-    
-<script src="~/plugins/autolink-js/autolink.js"></script>
+<script src="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_custom.js"></script>
+<script src="~/Scripts/dhtmlxScheduler/ext/dhtmlxscheduler_minical_custom.js"></script>
+    <script src="~/App/codestorm/messages/model/messages-meta.js"></script>
+    <script src="~/App/codestorm/messages/controllers/messagesController.js"></script>
+    <script src="~/plugins/autolink-js/autolink.js"></script>
     <script src="~/plugins/moment/moment.js"></script>
     <script src="~/signalr/hubs"></script>
     <script>
-        
+        $.fn.enterKey = function (fnc) {
+            return this.each(function () {
+                $(this).keypress(function (ev) {
+                    var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+                    if (keycode == '13') {
+                        fnc.call(this, ev);
+                    }
+                });
+            });
+        }
 
+        var pressenter;
         $(document).ready(function () {
             getConversationlist();
             $('.widget-chat .panel-body').slimScroll({ height: 372, alwaysVisible: false, color: '#888', allowPageScroll: true, start: 'bottom' });
+            var enter = $.cookie('enter_press');
+            if (enter == undefined) {
+                $.cookie('enter_press', false);
+                $('#cb_enterpress').prop('checked', false);
+                pressenter = false;
+            } else {
+                $('#cb_enterpress').prop('checked', enter === 'true');
+                pressenter = enter === 'true';
+            }
         });
+
+        $('#cb_enterpress').on('change', function () {
+            $.cookie('enter_press', $('#cb_enterpress').is(":checked"));
+            pressenter = $('#cb_enterpress').is(":checked");
+        });
+
+
 
         function replaceLinks(text) {
 
@@ -284,7 +332,7 @@
                 '<time class="timeago pull-right" datetime="' + c.time + '">' + c.time + '</time>' +
                 '</div>' +
                 '<div class="message-text">' +
-                c.message.autoLink({ target: "_blank"}) +
+                c.message.autoLink({ target: "_blank" }) +
                 '</div>' +
                 '</div>' +
                 '</div>';
@@ -342,7 +390,11 @@
             $('.widget-chat .panel-body').slimScroll({ height: 397, scrollTo: chatheight });
         }
 
-        
+        function addSelfMessage(message) {
+            var name = $.cookie('fname') + ' ' + $.cookie('lname');
+            var msg = { messageid: '0', fullname: name, message: message, imgurl: $.cookie('imgurl'), time: moment().format(), self: true };
+            addChatMessageLeft(msg);
+        }
 
         $('#conversation_container').on('click', '.thread', function () {
             $('.thread').css("background-color", "#fff");
@@ -352,7 +404,7 @@
         });
 
         $(function () {
-            var chat = $.connection.messageHub;
+            var chat = $.connection.chatHub;
             chat.client.addChatMessage = function (name, message, imgurl, self) {
                 var msg = { messageid: '0', fullname: name, message: message, imgurl: imgurl, time: moment().format(), self: self };
                 if (msg.self)
@@ -365,16 +417,23 @@
             $.connection.hub.start().done(function () {
                 $('#btnSendMessage').click(function () {
                     chat.server.send($('#current_conv_id').val(), $('#chat_message').val());
-                    chat.server.send($.cookie('userid'), $('#chat_message').val());
+                    addSelfMessage($('#chat_message').val());
                     $('#chat_message').val('');
+                });
+                $("#chat_message").enterKey(function () {
+                    if (pressenter) {
+                        event.preventDefault();
+                        chat.server.send($('#current_conv_id').val(), $('#chat_message').val());
+                        addSelfMessage($('#chat_message').val());
+                        $('#chat_message').val('');
+                    }
                 });
             });
 
 
         });
     </script>
-    <script src="~/App/codestorm/messages/model/messages-meta.js"></script>
-    <script src="~/App/codestorm/messages/controllers/messagesController.js"></script>
+
 
     <script>
         //$('.chat-activity-list').slimScroll({ height: 300, start: 'bottom' });
@@ -388,17 +447,17 @@
             return $state;
         }
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             $("time.timeago").timeago();
 
         });
 
-        $('#btnNewMessage').click(function () {
+        $('#btnNewMessage').click(function() {
             $("#message_name_list").select2("val", "");
             var dataHelper = commonHelper();
             var userlist = null;
             dataHelper.getData('/UserData/GetAutoCompleteUserList', null,
-                function (result) {
+                function(result) {
                     userlist = result;
                     $("#message_name_list").select2({
                         data: userlist,
@@ -410,13 +469,13 @@
                 });
 
         });
-        $('#model_SendMessage').click(function () {
+        $('#model_SendMessage').click(function() {
             var user = $("#message_name_list").select2("data");
             var msg = $('#txtModalMessage').val();
             var dataHelper = commonHelper();
             var message = { messageid: "0", message: msg, sender: null, receiver: user.id };
             dataHelper.postAsyncData('/MessageData/SendUserMessage', message,
-                function (result) {
+                function(result) {
                     $("#message_name_list").select2("val", "");
                     $('#txtModalMessage').val("");
                     $('#conversation-list .panel-body').empty();
@@ -425,7 +484,30 @@
                 });
         });
     </script>
+    <script type="text/javascript" charset="utf-8">
+        function init() {
+            var dataHelper = commonHelper();
+            scheduler.config.include_end_by = true;
+            scheduler.init('scheduler_here', new Date(), "month");
+            dataHelper.getData('/EventsData/GetEvents', null,
+                function (result) {
+                    scheduler.parse(result, "json");
+                    scheduler.renderCalendar({
+                        container: "mini_here",
+                        date: scheduler._date,
+                        navigation: true,
+                        handler: function (date, calendar) {
+                            alert(date);
+                        }
+                    });
+                });
 
+
+        }
+        $(document).ready(function () {
+            init();
+        });
+    </script>
 }
 
 

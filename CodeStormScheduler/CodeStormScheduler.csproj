@@ -201,7 +201,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="JsonNetResult.cs" />
+    <Compile Include="ChatHub.cs" />
     <Compile Include="MessageHub.cs" />
+    <Compile Include="MessagesRepository.cs" />
     <Compile Include="Migrations\201507071820151_initial.cs" />
     <Compile Include="Migrations\201507071820151_initial.Designer.cs">
       <DependentUpon>201507071820151_initial.cs</DependentUpon>

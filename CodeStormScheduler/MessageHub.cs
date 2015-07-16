@@ -1,28 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
-using CodeStormData.Data;
+using System.Web;
 using Microsoft.AspNet.Identity;
-using CodeStormScheduler.Models;
+using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Hubs;
 
 namespace CodeStormScheduler
 {
     public class MessageHub : Hub
     {
-        public void Send(string who, string message)
+        public void SendNotification(string message, string user)
         {
-            string name = Context.User.Identity.GetUserName();
-            string userid = Context.User.Identity.GetUserId();
-            UserData userData = new UserData();
-            var user = userData.GetUserProfileData(userid);
-            bool self = (userid == who ? true : false);
-            if (userid != who)
-                SaveMessage(message, userid, who);
-            string img = user.ImageUrl == null ? "blank_photo.png" : user.ImageUrl;
-            Clients.Group(who).addChatMessage(user.FirstName + " " + user.LastName, message, img, self);
         }
 
         public override Task OnConnected()
@@ -32,17 +22,10 @@ namespace CodeStormScheduler
             return base.OnConnected();
         }
 
-        private void SaveMessage(string message, string sender, string receiver)
+        public static void SendMessages()
         {
-            var msg = new CodeStormData.UserMessage()
-            {
-                Message = message,
-                SenderId = sender,
-                ReceiverId = receiver,
-                Status = "Unread"
-            };
-            MessageData msgData = new MessageData();
-            msgData.AddMessage(msg);
+            //IHubContext context = GlobalHost.ConnectionManager.GetHubContext<MessageHub>();
+            //Clients.Group(who).refreshNotification();
         }
     }
 }
