@@ -14,7 +14,12 @@ namespace CodeStormScheduler.Controllers
             return View();
         }
 
-        public ActionResult Edit()
+        public ActionResult General()
+        {
+            return View();
+        }
+
+        public ActionResult Social()
         {
             return View();
         }

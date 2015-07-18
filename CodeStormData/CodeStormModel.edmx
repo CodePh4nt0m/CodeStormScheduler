@@ -100,6 +100,7 @@
           <Property Name="ShraredEventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventId" Type="bigint" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="Status" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="UserMessages">
           <Key>
@@ -200,6 +201,9 @@
           <Parameter Name="userid" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="spGetConversationList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spGetUserMessageCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userid" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="CodeStormDBModelStoreContainer">
@@ -346,12 +350,15 @@
             <Parameter Name="senderid" Mode="In" Type="String" />
             <Parameter Name="status" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="SharedEvents" EntityType="CodeStormDBModel.SharedEvent" />
           <FunctionImport Name="spClearSharedEvent">
           <Parameter Name="eventid" Mode="In" Type="Int64" />
           </FunctionImport>
           <EntitySet Name="Events" EntityType="CodeStormDBModel.Event" />
           <EntitySet Name="UserProfiles" EntityType="CodeStormDBModel.UserProfile" />
+          <EntitySet Name="SharedEvents" EntityType="CodeStormDBModel.SharedEvent" />
+          <FunctionImport Name="spGetUserMessageCount" ReturnType="Collection(Int32)">
+            <Parameter Name="userid" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="UserMessage">
           <Key>
@@ -402,14 +409,6 @@
           <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="SharedEvent">
-          <Key>
-            <PropertyRef Name="ShraredEventId" />
-          </Key>
-          <Property Name="ShraredEventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventId" Type="Int64" Nullable="false" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="EventId" />
@@ -444,6 +443,15 @@
           <Property Name="Facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AboutMe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Interests" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SharedEvent">
+          <Key>
+            <PropertyRef Name="ShraredEventId" />
+          </Key>
+          <Property Name="ShraredEventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -562,15 +570,6 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="spChangeMessageStatus" FunctionName="CodeStormDBModel.Store.spChangeMessageStatus" />
-          <EntitySetMapping Name="SharedEvents">
-            <EntityTypeMapping TypeName="CodeStormDBModel.SharedEvent">
-              <MappingFragment StoreEntitySet="SharedEvents">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="EventId" ColumnName="EventId" />
-                <ScalarProperty Name="ShraredEventId" ColumnName="ShraredEventId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="spClearSharedEvent" FunctionName="CodeStormDBModel.Store.spClearSharedEvent" />
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="CodeStormDBModel.Event">
@@ -609,6 +608,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SharedEvents">
+            <EntityTypeMapping TypeName="CodeStormDBModel.SharedEvent">
+              <MappingFragment StoreEntitySet="SharedEvents">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="ShraredEventId" ColumnName="ShraredEventId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetUserMessageCount" FunctionName="CodeStormDBModel.Store.spGetUserMessageCount" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

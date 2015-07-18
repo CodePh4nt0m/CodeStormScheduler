@@ -32,7 +32,7 @@ namespace CodeStormData.Data
             {
                 var events = from e in db.Events
                     join s in db.SharedEvents on e.Id equals s.EventId
-                    where s.UserId == userId
+                    where s.UserId == userId && s.Status=="Accept"
                     select e;
                 return events.ToList();
             }

@@ -1,0 +1,101 @@
+﻿@section styles{
+
+    <style>
+        .page-profile-edit .alert-dark {
+            padding: 10px;
+        }
+
+        .pic-upload-success .alert {
+            padding: 5px 15px;
+        }
+    </style>
+}
+
+@section headscripts{
+
+}
+
+@section jsCode {
+    angular.bootstrap(document.getElementById("user_profile_edit_container"), ['userProfileModule']);
+}
+
+<div class="page-profile-edit" id="user_profile_edit_container" ng-app="userProfileModule" ng-controller="otherController">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a href="/profile" class="list-group-item">
+                    Profile Picture
+                </a>
+                <a href="/profile/general" class="list-group-item">
+                    General Details
+                </a>
+                <a href="/profile/social" class="list-group-item active">
+                    Other
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-9">
+
+            <div class="panel colourable">
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">About Me</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="5" ng-model="about_me"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Interests</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="js-example-tags" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><i class="profile-list-icon fa fa-twitter" style="color: #4ab6d5"></i>&nbsp;&nbsp;Twitter</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" placeholder="Twitter Username" ng-model="twitter">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><i class="profile-list-icon fa fa-facebook-square" style="color: #1a7ab9"></i>&nbsp;&nbsp;Facebook</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" placeholder="Facebook URL" ng-model="facebook">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <div class="alert alert-info alert-dark" style="display: none" id="alert-general-success">
+                                    Details successfuly updated.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <input type="button" value="Save Details" class="btn btn-primary btn-sm" ng-click="saveSocialDetails()" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section scripts{
+    <script src="~/App/codestorm/user-profile/model/profile-meta.js"></script>
+    <script src="~/App/codestorm/user-profile/controllers/otherController.js"></script>
+    <script>
+        $(document).ready(function () {
+
+        });
+        $('.page-profile-edit .list-group .list-group-item').click(function () {
+            $(this).siblings().removeClass('active');
+            $(this).addClass('active');
+        });
+        $("#js-example-tags").select2({
+            tags: true
+        });
+    </script>
+}

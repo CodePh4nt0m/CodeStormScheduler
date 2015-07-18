@@ -34,9 +34,9 @@ namespace CodeStormData
         public virtual DbSet<UserMessage> UserMessages { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<EventDetail> EventDetails { get; set; }
-        public virtual DbSet<SharedEvent> SharedEvents { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
+        public virtual DbSet<SharedEvent> SharedEvents { get; set; }
     
         public virtual ObjectResult<spGetConversationList_Result> spGetConversationList(string userid)
         {
@@ -84,6 +84,15 @@ namespace CodeStormData
                 new ObjectParameter("eventid", typeof(long));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spClearSharedEvent", eventidParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> spGetUserMessageCount(string userid)
+        {
+            var useridParameter = userid != null ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spGetUserMessageCount", useridParameter);
         }
     }
 }

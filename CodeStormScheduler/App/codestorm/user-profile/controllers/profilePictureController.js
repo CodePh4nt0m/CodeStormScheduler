@@ -27,31 +27,31 @@
     };
 
     $scope.$on('$viewContentLoaded', function () {
-        $('#styled-finputs-example').pixelFileInput({ placeholder: 'No file selected...' });
-        $('#styled-finputs-example').on('change', function () {
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
+        //$('#styled-finputs-example').pixelFileInput({ placeholder: 'No file selected...' });
+        //$('#styled-finputs-example').on('change', function () {
+        //    if (this.files && this.files[0]) {
+        //        var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#profile_photo').show();
-                    $('#profile_photo').attr('src', e.target.result);
-                    $('#profile_blank_photo').hide();
-                }
+        //        reader.onload = function (e) {
+        //            $('#profile_photo').show();
+        //            $('#profile_photo').attr('src', e.target.result);
+        //            $('#profile_blank_photo').hide();
+        //        }
 
-                reader.readAsDataURL(this.files[0]);
-            } else {
-                $('#profile_photo').hide();
-                $('#profile_blank_photo').show();
-            }
-        });
-        $('.pfi-actions .pfi-clear').click(function() {
-            $('#profile_photo').hide();
-            $('#profile_blank_photo').show();
-        });
-        $('#txt_dob').datepicker();
-        $("#js-example-tags").select2({
-            tags: true
-        });
+        //        reader.readAsDataURL(this.files[0]);
+        //    } else {
+        //        $('#profile_photo').hide();
+        //        $('#profile_blank_photo').show();
+        //    }
+        //});
+        //$('.pfi-actions .pfi-clear').click(function() {
+        //    $('#profile_photo').hide();
+        //    $('#profile_blank_photo').show();
+        //});
+        //$('#txt_dob').datepicker();
+        //$("#js-example-tags").select2({
+        //    tags: true
+        //});
     });
 
     $scope.clearFileUpload = function (element) {

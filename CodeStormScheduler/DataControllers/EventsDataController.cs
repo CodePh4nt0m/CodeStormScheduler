@@ -133,30 +133,71 @@ namespace CodeStormScheduler.DataControllers
             eventDetailData.UdateEventDetail(eventDetail);
 
             SharedEventsData sharedEventsData = new SharedEventsData();
+            var modellist = model.sharedlist;
+            var acceptlist = sharedEventsData.GetAcceptedEventUsers(model.id);
+            var insertlist = modellist.Where(x => !acceptlist.Select(y=> y.userid).Contains(x.userid)).ToList();
+            var deletelist = acceptlist.Where(x => !modellist.Select(y => y.userid).Contains(x.userid)).ToList();
+
             if (model.shared)
             {
-                if (model.sharedlist != null)
+                if (insertlist != null)
                 {
                     string userid = User.Identity.GetUserId();
-                    sharedEventsData.ClearEventSharedData(model.id);
-                    List<SharedEvent> sharedEvents = new List<SharedEvent>();
+                    //sharedEventsData.ClearEventSharedData(model.id);
+                    List<SharedEvent> insertEvents = new List<SharedEvent>();
 
-                    foreach (var e in model.sharedlist)
+                    foreach (var e in insertlist)
                     {
                         var se = new SharedEvent()
                         {
                             UserId = e.userid,
-                            EventId = model.id
+                            EventId = model.id,
+                            Status = "Pending"
                         };
-                        sharedEvents.Add(se);
+                        insertEvents.Add(se);
                     }
-                    sharedEventsData.AddSharedEvents(sharedEvents);
+                    sharedEventsData.AddSharedEvents(insertEvents);
+
+                    List<SharedEvent> deleteEvents = new List<SharedEvent>();
+                    foreach (var e in deletelist)
+                    {
+                        var se = new SharedEvent()
+                        {
+                            UserId = e.userid,
+                            EventId = model.id,
+                            Status = "Delete"
+                        };
+                        deleteEvents.Add(se);
+                    }
+                    sharedEventsData.DeleteSharedEvents(deleteEvents);
                 }
             }
             else
             {
                 sharedEventsData.ClearEventSharedData(model.id);
             }
+        }
+
+        [HttpGet]
+        public JsonResult GetPendingSharedEvents()
+        {
+            SharedEventsData sharedEventsData = new SharedEventsData();
+            var model = sharedEventsData.GetNotificationDetails(User.Identity.GetUserId());
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public dynamic AcceptEvent(Int64 eventid)
+        {
+            SharedEventsData sharedEventsData = new SharedEventsData();
+            return sharedEventsData.UpdateSharedEventStatus(eventid, User.Identity.GetUserId(), "Accept");
+        }
+
+        [HttpPost]
+        public dynamic RejectEvent(Int64 eventid)
+        {
+            SharedEventsData sharedEventsData = new SharedEventsData();
+            return sharedEventsData.UpdateSharedEventStatus(eventid, User.Identity.GetUserId(), "Reject");
         }
     }
 }

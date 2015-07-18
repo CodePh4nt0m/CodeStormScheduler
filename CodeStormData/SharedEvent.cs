@@ -17,5 +17,6 @@ namespace CodeStormData
         public int ShraredEventId { get; set; }
         public long EventId { get; set; }
         public string UserId { get; set; }
+        public string Status { get; set; }
     }
 }

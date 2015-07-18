@@ -38,6 +38,7 @@ Use search to find needed section.
     @Styles.Render("~/Content/PixelAdmin")
     @Styles.Render("~/Content/Plugins")
     @Styles.Render("~/Content/Custom")
+    <link href="~/plugins/boostrap-notify/custom-bootstrap-notify.css" rel="stylesheet" />
     @RenderSection("headscripts", required: false)
     @RenderSection("styles", required: false)
     <style>
@@ -46,15 +47,29 @@ Use search to find needed section.
             border: none;
             color: #999;
         }
+
         .message-subject {
             font-size: 12px;
         }
+
         .message-time {
             display: block;
             padding-left: 42px;
             font-size: 10px;
             color: #aaa;
             height: auto !important;
+        }
+
+        .select2-results::-webkit-scrollbar {
+            width: 0.5em;
+        }
+
+        .select2-results::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        }
+
+        .select2-results::-webkit-scrollbar-thumb {
+            background-color: darkgrey;
         }
     </style>
     <!--[if lt IE 9]>
@@ -110,20 +125,7 @@ Use search to find needed section.
 
                 <div id="main-navbar-collapse" class="collapse navbar-collapse main-navbar-collapse">
                     <div>
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <a href="#">Home</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">First item</a></li>
-                                    <li><a href="#">Second item</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Third item</a></li>
-                                </ul>
-                            </li>
-                        </ul> <!-- / .navbar-nav -->
+                        <ul class="nav navbar-nav"></ul> <!-- / .navbar-nav -->
 
                         <div class="right clearfix">
                             <ul class="nav navbar-nav pull-right right-navbar-nav">
@@ -200,7 +202,7 @@ Use search to find needed section.
                                 </li>
                                 <li class="nav-icon-btn nav-icon-btn-success dropdown">
                                     <a href="mail.ru" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="label">10</span>
+                                        <span class="label ng-cloak" ng-show="message_count>0">{{message_count}}</span>
                                         <i class="nav-icon fa fa-envelope"></i>
                                         <span class="small-screen-text">Income messages</span>
                                     </a>
@@ -230,14 +232,12 @@ Use search to find needed section.
                                 </li>
 
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
+                                    <a href="#" class="dropdown-toggle user-menu ng-cloak" data-toggle="dropdown">
                                         <img src="/ImageBase/Users/{{user_pic}}" alt="">
                                         <span>{{user_name}}</span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#"><span class="label label-warning pull-right">New</span>Profile</a></li>
-                                        <li><a href="#"><span class="badge badge-primary pull-right">New</span>Account</a></li>
-                                        <li><a href="#"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li>
+                                        <li><a href="/user">Profile</a></li>
                                         <li class="divider"></li>
                                         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "form_logoff" }))
                                         {@Html.AntiForgeryToken()}
@@ -250,6 +250,8 @@ Use search to find needed section.
                 </div> <!-- / #main-navbar-collapse -->
             </div> <!-- / .navbar-inner -->
         </div> <!-- / #main-navbar -->
+        @using (Html.BeginForm("Public", "User", FormMethod.Post, new { id = "form_publicprofile" }))
+        {@Html.AntiForgeryToken()}
         <!-- /2. $END_MAIN_NAVIGATION -->
         <!-- 4. $MAIN_MENU =================================================================================
 
@@ -282,9 +284,9 @@ Use search to find needed section.
                          Javascript: html/assets/demo/demo.js
                      -->
                     <div>
-                        <div class="text-bg"><span class="text-slim">{{user_name}}</span></div>
+                        <div class="text-bg"><span class="text-slim ng-cloak">{{user_name}}</span></div>
 
-                        <img src="/ImageBase/Users/{{user_pic}}" alt="" class="">
+                        <img src="/ImageBase/Users/{{user_pic}}" alt="" class="ng-cloak">
                         <div class="btn-group">
                             <a href="/messages/inbox" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-envelope"></i></a>
                             <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
@@ -302,10 +304,10 @@ Use search to find needed section.
                         <a href="/calender"><i class="menu-icon fa fa-calendar"></i><span class="mm-text">Calender</span></a>
                     </li>
                     <li>
-                        <a href="/messages/inbox"><i class="menu-icon fa fa-envelope-o"></i><span class="mm-text">Messages</span><span class="label label-danger">5</span></a>
+                        <a href="/messages/inbox"><i class="menu-icon fa fa-envelope-o"></i><span class="mm-text">Messages</span><span class="label label-danger ng-cloak" ng-show="message_count>0">{{message_count}}</span></a>
                     </li>
                     <li>
-                        <a href="/profile"><i class="menu-icon fa fa-user"></i><span class="mm-text">Profile</span></a>
+                        <a href="/user"><i class="menu-icon fa fa-user"></i><span class="mm-text">Profile</span></a>
                     </li>
                     <li>
                         <a href="#" id="skin-panel"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Custom Skins</span></a>
@@ -341,18 +343,18 @@ Use search to find needed section.
     @Scripts.Render("~/bundles/pixeladmin")
     @Scripts.Render("~/bundles/plugins")
     <script src="~/plugins/jquery-cookie/jquery.cookie.js"></script>
+    <script src="~/plugins/boostrap-notify/bootstrap-notify.js"></script>
     <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
     <script type="text/javascript">
         window.CodeStorm = {};
     </script>
-    <script src="~/Scripts/CodeStorm.js"></script>
     <script src="~/App/App.js"></script>
+    <script src="~/Scripts/CodeStorm.js"></script>
     <script type="text/javascript">
         init.push(function () {
-            // Javascript code here
         });
         window.PixelAdmin.start(init);
-
     </script>
     <script>
         $("time.timeago").timeago();

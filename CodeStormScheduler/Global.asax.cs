@@ -22,8 +22,14 @@ namespace CodeStormScheduler
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             SqlDependency.Start(connString);
+
+            //Register message hub
             MessagesRepository messagesRepository = new MessagesRepository();
             messagesRepository.RegisterNotification();
+
+            //Register Notification hub
+            NotificationRepositary notificationRepositary = new NotificationRepositary();
+            notificationRepositary.RegisterNotification();
         }
 
         protected void Application_End()

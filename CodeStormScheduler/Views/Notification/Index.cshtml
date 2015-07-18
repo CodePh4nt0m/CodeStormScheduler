@@ -1,0 +1,100 @@
+﻿@section styles{
+    <link href="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_custom.css" rel="stylesheet" />
+    <link href="~/Content/Calender/calender.css" rel="stylesheet" />
+    <style>
+        .widget-followers .follower-avatar {
+            border-radius: 0 !important;
+            margin-bottom: 20px !important;
+        }
+        .widget-followers .follower-username {
+            display: block;
+        }
+        .text-dates {
+            font-size: 11px !important;
+        }
+        .hide-notification {
+            display: none !important;
+        }
+    </style>
+}
+
+@section jsCode {
+    angular.bootstrap(document.getElementById("notification_container"), ['sharedEventsModule']);
+}
+
+<div id="notification_container" ng-app="sharedEventsModule" ng-controller="sharedEventController">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel colourable">
+                <div class="panel-body">
+                    <div class="tab-pane fade widget-followers active in" id="div-pending-events">
+                        <div ng-repeat="s in eventlist" class="follower">
+                            <img src="assets/images/new-event.png" alt="" class="follower-avatar">
+                            <div class="body">
+                                <div class="follower-controls">
+                                    <a href="" class="btn btn-sm btn-success" ng-click="acceptEvent(s.eventid)"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Accept</span></a>
+                                    <a href="" class="btn btn-sm btn-warning" ng-click="rejectEvent(s.eventid)"><i class="fa fa-times"></i><span>&nbsp;&nbsp;Reject</span></a>
+                                </div>
+                                <a href="#" class="follower-name">{{s.eventname}}</a><br>
+                                <a href="#" class="follower-username">Owner : {{s.owner}}</a>
+                                <a href="#" class="text-dates follower-username ">{{s.startdate}}  to  {{s.enddate}}</a>
+                                <a href="#" class="follower-username">Location : {{s.location}}</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-3 col-lg-offset-1">
+            <div id="mini_here" style="width: 100%"></div>
+            <div id="scheduler_here" class="dhx_cal_container" style='width: 300px; height: 300px; display: none;'>
+                <div class="dhx_cal_navline">
+                    <div class="dhx_cal_date"></div>
+                    <div class="dhx_cal_tab" name="day_tab" style="right: 76px;"></div>
+                </div>
+                <div class="dhx_cal_header">
+                </div>
+                <div class="dhx_cal_data">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+<script src="~/App/codestorm/sharedevents/model/sharedevents-meta.js"></script>
+<script src="~/App/codestorm/sharedevents/controllers/sharedEventController.js"></script>
+    <script src="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_custom.js"></script>
+    <script src="~/Scripts/dhtmlxScheduler/ext/dhtmlxscheduler_minical_custom.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function init() {
+            var dataHelper = commonHelper();
+            scheduler.config.include_end_by = true;
+            scheduler.init('scheduler_here', new Date(), "month");
+            dataHelper.getData('/EventsData/GetEvents', null,
+                function (result) {
+                    scheduler.parse(result, "json");
+                    scheduler.renderCalendar({
+                        container: "mini_here",
+                        date: scheduler._date,
+                        navigation: true,
+                        handler: function (date, calendar) {
+                            alert(date);
+                        }
+                    });
+                });
+
+
+        }
+
+        $(document).ready(function () {
+            init();
+        });
+        $('.follower-controls .btn-success').click(function () {
+            alert();
+        });
+    </script>
+}
+

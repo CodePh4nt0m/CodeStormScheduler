@@ -16,5 +16,9 @@ namespace CodeStormScheduler.Models
         [Column(TypeName = "NVARCHAR")]
         [StringLength(128)]
         public string UserId { get; set; }
+
+        [Column(TypeName = "NVARCHAR")]
+        [StringLength(10)]
+        public string Status { get; set; }
     }
 }

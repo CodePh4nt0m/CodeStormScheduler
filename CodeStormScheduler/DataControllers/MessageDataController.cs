@@ -95,6 +95,14 @@ namespace CodeStormScheduler.DataControllers
             string receiverid = User.Identity.GetUserId();
             return msgData.ChangeMessageStatus(receiverid, userid, "Read");
         }
+
+        [HttpGet]
+        public int GetUserUnreadMessageCount()
+        {
+            MessageData messageData = new MessageData();
+            int count = messageData.GetUserUnreadMessageCount(User.Identity.GetUserId());
+            return count;
+        }
     }
 
 

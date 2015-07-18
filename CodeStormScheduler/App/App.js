@@ -18,7 +18,7 @@ fileModule.factory("akFileUploaderService", ["$q", "$http", function ($q, $http)
         return dataAsFormData;
     };
 
-    var saveModel = function (data, url,success) {
+    var saveModel = function (data, url, success) {
         var deferred = $q.defer();
         $http({
             url: url,
@@ -190,6 +190,7 @@ mainModule.controller('MainController', function ($scope, $cookies, angularHelpe
     homescope = $scope;
     $scope.user_name = $cookies.fname;
     $scope.user_pic = $cookies.imgurl;
+    $scope.message_count = 0;
 
     var initialize = function () {
         $scope.loadnames();
@@ -219,22 +220,23 @@ mainModule.controller('MainController', function ($scope, $cookies, angularHelpe
     }
 
     function addNavMessage(msglist) {
+        $('.widget-messages-alt .messages-list').empty();
         $.each(msglist, function (i, msg) {
             var element = '<div class="message">' +
                         '<img src="/ImageBase/Users/' + msg.imgurl + '" alt="" class="message-avatar">' +
                             '<a href="#" class="message-subject">' + msg.message + '</a>' +
                                 '<div class="message-description">' +
-                                    'from <a href="#">'+ msg.fullname +'</a>' +
+                                    'from <a href="#">' + msg.fullname + '</a>' +
                                 '</div>' +
                                 '<div class="message-time">' +
-                                    '<time class="timeago" datetime="' + msg.time + '">' + msg.time + '</time>'+
-                                '</div>'+
+                                    '<time class="timeago" datetime="' + msg.time + '">' + msg.time + '</time>' +
+                                '</div>' +
                     '</div>';
             $('.widget-messages-alt .messages-list').append(element);
             $("time.timeago").timeago();
             //$('#main-navbar-messages').slimScroll({ height: 230 });
         });
-        
+
     }
 
     $scope.getNavMessages = function () {
@@ -246,3 +248,4 @@ mainModule.controller('MainController', function ($scope, $cookies, angularHelpe
 
     initialize();
 });
+

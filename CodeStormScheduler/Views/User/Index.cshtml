@@ -1,0 +1,192 @@
+﻿@section styles{
+    <link href="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_custom.css" rel="stylesheet" />
+    <link href="~/Content/Calender/calender.css" rel="stylesheet" />
+    <style>
+        .page-profile .profile-photo img {
+            border-radius: 0px !important;
+        }
+
+        .page-profile .profile-photo {
+            border-radius: 0px !important;
+        }
+
+        @@media( min-width: 768px ) {
+            .page-profile .profile-block {
+                margin-top: -45px;
+            }
+        }
+
+        .page-profile .social-group .list-group-item {
+            border: none !important;
+        }
+
+        .panel-social {
+            margin-bottom: 0 !important;
+        }
+    </style>
+}
+
+@section headscripts{
+
+}
+
+@section jsCode {
+    angular.bootstrap(document.getElementById("user_profile_container"), ['userProfileModule']);
+}
+
+
+<div id="user_profile_container" ng-app="userProfileModule" ng-controller="userProfileController">
+    <div class="profile-full-name">
+        <span class="text-semibold">{{user_name}}</span> s' Profile
+    </div>
+    <div class="profile-row">
+        <div class="left-col">
+            <div class="profile-block">
+                <div class="panel profile-photo">
+                    <img src="/ImageBase/Users/{{user_pic}}" alt="">
+                </div>
+            </div>
+
+            <div class="panel panel-transparent">
+                <div class="panel-heading">
+                    <span class="panel-title text-info text-bold">About me</span>
+                </div>
+                <div class="panel-body">
+                    {{about_me}}
+                </div>
+            </div>
+
+            <div class="panel panel-transparent profile-skills">
+                <div class="panel-heading">
+                    <span class="panel-title text-info text-bold">Interests</span>
+                </div>
+                <div class="panel-body">
+                    <span class="label label-primary" ng-repeat="n in interests">{{n.interest}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="right-col">
+
+            <hr class="profile-content-hr no-grid-gutter-h">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="panel colourable">
+                        <div class="panel-heading">
+                            <span class="panel-title text-bold text-sm">USER DETAILS</span>
+                            <div class="panel-heading-controls">
+                                <button class="btn btn-xs btn-info" id="btn_edit_profile"><span class="fa fa-refresh"></span>&nbsp;&nbsp;Edit Details</button>
+                            </div> <!-- / .panel-heading-controls -->
+                        </div> <!-- / .panel-heading -->
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="inputEmail2" class="col-sm-3 control-label">Full Name</label>
+                                <div class="col-sm-9">
+                                    {{full_name}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail2" class="col-sm-3 control-label">Gender</label>
+                                <div class="col-sm-9">
+                                    {{gender}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail2" class="col-sm-3 control-label">Date of Birth</label>
+                                <div class="col-sm-9">
+                                    {{dob}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail2" class="col-sm-3 control-label">Location</label>
+                                <div class="col-sm-9">
+                                    {{location}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail2" class="col-sm-3 control-label">Mobile</label>
+                                <div class="col-sm-9">
+                                    {{mobile}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail2" class="col-sm-3 control-label">Profession</label>
+                                <div class="col-sm-9">
+                                    {{profession}}
+                                </div>
+                            </div>
+                            <div class="form-group social-group">
+                                <div class="col-sm-8">
+                                    <div class="panel panel-transparent panel-social">
+                                        <div class="panel-heading">
+                                            <span class="panel-title text-info text-bold">Social</span>
+                                        </div>
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item"><i class="profile-list-icon fa fa-twitter" style="color: #4ab6d5"></i> {{twitter}}</a>
+                                            <a href={{facebook}} class="list-group-item"><i class="profile-list-icon fa fa-facebook-square" style="color: #1a7ab9"></i> {{full_name}}</a>
+                                            <a href="#" class="list-group-item"><i class="profile-list-icon fa fa-envelope" style="color: #888"></i> {{email}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div id="mini_here" style="width: 100%"></div>
+                    <div id="scheduler_here" class="dhx_cal_container" style='width: 300px; height: 300px; display: none;'>
+                        <div class="dhx_cal_navline">
+                            <div class="dhx_cal_date"></div>
+                            <div class="dhx_cal_tab" name="day_tab" style="right: 76px;"></div>
+                        </div>
+                        <div class="dhx_cal_header">
+                        </div>
+                        <div class="dhx_cal_data">
+                        </div>
+                    </div>
+                </div>
+                @using (Html.BeginForm("index", "profile", FormMethod.Post, new { id = "form_edit_profile" }))
+                {@Html.AntiForgeryToken()}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/App/codestorm/user-profile/model/profile-meta.js"></script>
+    <script src="~/App/codestorm/user-profile/controllers/profileController.js"></script>
+    <script src="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_custom.js"></script>
+    <script src="~/Scripts/dhtmlxScheduler/ext/dhtmlxscheduler_minical_custom.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function init() {
+            var dataHelper = commonHelper();
+            scheduler.config.include_end_by = true;
+            scheduler.init('scheduler_here', new Date(), "month");
+            dataHelper.getData('/EventsData/GetEvents', null,
+                function (result) {
+                    scheduler.parse(result, "json");
+                    scheduler.renderCalendar({
+                        container: "mini_here",
+                        date: scheduler._date,
+                        navigation: true,
+                        handler: function (date, calendar) {
+                            alert(date);
+                        }
+                    });
+                });
+        }
+
+        $(document).ready(function () {
+            init();
+        });
+        $('#btn_edit_profile').click(function (event) {
+            event.preventDefault();
+            var form = $('#form_edit_profile');
+            form.submit();
+        });
+    </script>
+
+    <script>
+        $('body').addClass("page-profile");
+    </script>
+}

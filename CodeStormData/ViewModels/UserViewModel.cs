@@ -21,6 +21,42 @@ namespace CodeStormData.ViewModels
         public string imgurl { get; set; }
     }
 
+    public class UserProfileViewModel
+    {
+        public string userid { get; set; }
+        public string fullname { get; set; }
+        public string gender { get; set; }
+        public string dob { get; set; }
+        public string location { get; set; }
+        public string mobile { get; set; }
+        public string profession { get; set; }
+
+        public string aboutme { get; set; }
+        public string interests { get; set; }
+        public string twitter { get; set; }
+        public string facebook { get; set; }
+
+    }
+
+    public class UserPublicProfileViewModel
+    {
+        public string userid { get; set; }
+        public string fname { get; set; }
+        public string photo { get; set; }
+        public string fullname { get; set; }
+        public string gender { get; set; }
+        public string dob { get; set; }
+        public string location { get; set; }
+        public string mobile { get; set; }
+        public string profession { get; set; }
+
+        public string aboutme { get; set; }
+        public string interests { get; set; }
+        public string twitter { get; set; }
+        public string facebook { get; set; }
+
+    }
+
     public class UserProfileEditViewModel
     {
         public string userid { get; set; }
@@ -43,10 +79,18 @@ namespace CodeStormData.ViewModels
     {
         public string fname { get; set; }
         public string lname { get; set; }
-        public bool gender { get; set; }
-        public DateTime dob { get; set; }
+        public string gender { get; set; }
+        public string dob { get; set; }
         public string location { get; set; }
         public string mobile { get; set; }
         public string profession { get; set; }
+    }
+
+    public class UserSocialViewModel
+    {
+        public string aboutme { get; set; }
+        public string interests { get; set; }
+        public string twitter { get; set; }
+        public string facebook { get; set; }
     }
 }

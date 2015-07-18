@@ -45,12 +45,32 @@ namespace CodeStormData.Data
             }
         }
 
-        public UserMessage GetLatestMessage()
+        public MessageNotificationViewModel GetLatestMessage()
         {
             using (CodeStormDBEntities db = new CodeStormDBEntities())
             {
-                return db.UserMessages.ToList().OrderByDescending(m => m.MessageId).First();
+                var msg = (from m in db.UserMessages
+                    join s in db.UserProfiles on m.SenderId equals s.Id
+                    where m.Status == "Unread"
+                    orderby m.MessageId descending
+                    select new MessageNotificationViewModel()
+                    {
+                        receiver = m.ReceiverId,
+                        message = m.Message,
+                        sender = s.FirstName + " " + s.LastName
+                    }).First();
+                return msg;
             }
         }
+
+        public int GetUserUnreadMessageCount(string userid)
+        {
+            using (CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                var count = db.spGetUserMessageCount(userid).First();
+                return Convert.ToInt32(count.Value);
+            }
+        }
+
     }
 }

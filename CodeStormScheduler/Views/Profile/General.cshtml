@@ -1,0 +1,123 @@
+﻿@section styles{
+
+    <style>
+        .page-profile-edit .alert-dark {
+            padding: 10px;
+        }
+
+        .pic-upload-success .alert {
+            padding: 5px 15px;
+        }
+    </style>
+}
+
+@section headscripts{
+
+}
+
+@section jsCode {
+    angular.bootstrap(document.getElementById("user_profile_edit_container"), ['userProfileModule']);
+}
+
+<div class="page-profile-edit" id="user_profile_edit_container" ng-app="userProfileModule" ng-controller="generalController">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a href="/profile" class="list-group-item">
+                    Profile Picture
+                </a>
+                <a href="/profile/general" class="list-group-item active">
+                    General Details
+                </a>
+                <a href="/profile/social" class="list-group-item">
+                    Other
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="panel colourable">
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">First Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" placeholder="First Name" data-ng-model="fname">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Last Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" placeholder="Last Name" data-ng-model="lname">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Gender</label>
+                            <div class="col-sm-2">
+                                <select class="form-control input-sm" ng-model="gender">
+                                    <option value=""></option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">DOB</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="txt_dob" ng-model="dob">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Location</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" placeholder="Location" ng-model="location">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Mobile</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="Mobile" ng-model="mobile">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Profession</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" placeholder="Profession" ng-model="profession">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <div class="alert alert-info alert-dark" style="display: none" id="alert-general-success">
+                                    General details successfuly updated.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <input type="button" value="Save Details" class="btn btn-primary btn-sm" ng-click="saveGeneralDetails()" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+@section scripts{
+    <script src="~/App/codestorm/user-profile/model/profile-meta.js"></script>
+    <script src="~/App/codestorm/user-profile/controllers/generalController.js"></script>
+    <script>
+        $(document).ready(function () {
+
+        });
+        $('.page-profile-edit .list-group .list-group-item').click(function () {
+            $(this).siblings().removeClass('active');
+            $(this).addClass('active');
+        });
+        $('#txt_dob').datepicker({
+            format: 'dd/mm/yyyy',
+            autoclose: true
+        });
+    </script>
+}

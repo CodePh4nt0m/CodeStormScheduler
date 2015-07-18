@@ -56,7 +56,7 @@ namespace CodeStormScheduler
                 var context = GlobalHost.ConnectionManager.GetHubContext<MessageHub>();
                 MessageData messageData = new MessageData();
                 var msg = messageData.GetLatestMessage();
-                context.Clients.Group(msg.ReceiverId).refreshNotification(msg.Message);
+                context.Clients.Group(msg.receiver).showMessageNotification(msg.message, msg.sender);
             }
             //Call the RegisterNotification method again
             RegisterNotification();

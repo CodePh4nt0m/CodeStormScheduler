@@ -1,0 +1,240 @@
+﻿@section styles{
+    <link href="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_custom.css" rel="stylesheet" />
+    <link href="~/Content/Calender/calender.css" rel="stylesheet" />
+    <style>
+        .page-profile .profile-photo img {
+            border-radius: 0px !important;
+        }
+
+        .page-profile .profile-photo {
+            border-radius: 0px !important;
+        }
+
+        @@media( min-width: 768px ) {
+            .page-profile .profile-block {
+                margin-top: -60px;
+            }
+        }
+
+        .page-profile .social-group .list-group-item {
+            border: none !important;
+        }
+
+        .panel-social {
+            margin-bottom: 0 !important;
+        }
+    </style>
+}
+
+@section headscripts{
+
+}
+
+@section jsCode {
+    angular.bootstrap(document.getElementById("user_profile_container"), ['userProfileModule']);
+}
+
+
+<div id="user_profile_container" ng-app="userProfileModule" ng-controller="publicProfileController">
+    <div class="profile-full-name">
+        <span class="text-semibold">{{fname}}</span> s' Profile
+        <input type="hidden" value="{{userid}}" id="public_userid"/>
+    </div>
+    <div class="profile-row">
+        <div class="left-col">
+            <div class="profile-block">
+                <div class="panel profile-photo">
+                    <img src="/ImageBase/Users/{{photo}}" alt="">
+
+                </div>
+                <a href="" class="btn btn-success btn-sm" id="btnUserMessage"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;Message</a>
+            </div>
+
+            <div class="panel panel-transparent">
+                <div class="panel-heading">
+                    <span class="panel-title text-info text-bold">About me</span>
+                </div>
+                <div class="panel-body">
+                    {{about_me}}
+                </div>
+            </div>
+
+            <div class="panel panel-transparent profile-skills">
+                <div class="panel-heading">
+                    <span class="panel-title text-info text-bold">Interests</span>
+                </div>
+                <div class="panel-body">
+                    <span class="label label-primary" ng-repeat="n in interests">{{n.interest}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="right-col">
+
+            <hr class="profile-content-hr no-grid-gutter-h">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="panel colourable">
+                        <div class="panel-heading">
+                            <span class="panel-title text-bold text-sm">USER DETAILS</span>
+                            <div class="panel-heading-controls">
+
+                            </div> <!-- / .panel-heading-controls -->
+                        </div> <!-- / .panel-heading -->
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="inputEmail2" class="col-sm-3 control-label">Full Name</label>
+                                <div class="col-sm-9">
+                                    {{full_name}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail2" class="col-sm-3 control-label">Gender</label>
+                                <div class="col-sm-9">
+                                    {{gender}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail2" class="col-sm-3 control-label">Date of Birth</label>
+                                <div class="col-sm-9">
+                                    {{dob}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail2" class="col-sm-3 control-label">Location</label>
+                                <div class="col-sm-9">
+                                    {{location}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail2" class="col-sm-3 control-label">Mobile</label>
+                                <div class="col-sm-9">
+                                    {{mobile}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail2" class="col-sm-3 control-label">Profession</label>
+                                <div class="col-sm-9">
+                                    {{profession}}
+                                </div>
+                            </div>
+                            <div class="form-group social-group">
+                                <div class="col-sm-8">
+                                    <div class="panel panel-transparent panel-social">
+                                        <div class="panel-heading">
+                                            <span class="panel-title text-info text-bold">Social</span>
+                                        </div>
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item"><i class="profile-list-icon fa fa-twitter" style="color: #4ab6d5"></i> {{twitter}}</a>
+                                            <a href={{facebook}} class="list-group-item"><i class="profile-list-icon fa fa-facebook-square" style="color: #1a7ab9"></i> {{full_name}}</a>
+                                            <a href="#" class="list-group-item"><i class="profile-list-icon fa fa-envelope" style="color: #888"></i> {{email}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div id="mini_here" style="width: 100%"></div>
+                    <div id="scheduler_here" class="dhx_cal_container" style='width: 300px; height: 300px; display: none;'>
+                        <div class="dhx_cal_navline">
+                            <div class="dhx_cal_date"></div>
+                            <div class="dhx_cal_tab" name="day_tab" style="right: 76px;"></div>
+                        </div>
+                        <div class="dhx_cal_header">
+                        </div>
+                        <div class="dhx_cal_data">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="newMessageModal" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    @*<h4 class="modal-title" id="myModalLabel">New Message</h4>*@
+                    <a href="#" class="badge badge-primary">New Message</a>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">To</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="txt_username" class="form-control" disabled="disabled" ng-model="full_name">
+                                    </div>
+                                </div> <!-- / .form-group -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Message</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="4" id="txtModalMessage"></textarea>
+                                    </div>
+                                </div> <!-- / .form-group -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    <input type="button" class="btn btn-primary btn-sm" value="Send Message" id="model_SendMessage" ng-click="sendModelMessage()" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/App/codestorm/user-profile/model/profile-meta.js"></script>
+    <script src="~/App/codestorm/user-profile/controllers/publicProfileController.js"></script>
+    <script src="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_custom.js"></script>
+    <script src="~/Scripts/dhtmlxScheduler/ext/dhtmlxscheduler_minical_custom.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function init() {
+            var dataHelper = commonHelper();
+            scheduler.config.include_end_by = true;
+            scheduler.init('scheduler_here', new Date(), "month");
+            dataHelper.getData('/EventsData/GetEvents', null,
+                function (result) {
+                    scheduler.parse(result, "json");
+                    scheduler.renderCalendar({
+                        container: "mini_here",
+                        date: scheduler._date,
+                        navigation: true,
+                        handler: function (date, calendar) {
+                            alert(date);
+                        }
+                    });
+                });
+
+
+        }
+
+        $(document).ready(function () {
+            init();
+        });
+        $('#btnUserMessage').click(function () {
+            $('#newMessageModal').modal();
+        });
+        $('#model_SendMessage').click(function () {
+            var user = $("#public_userid").val();
+            var msg = $('#txtModalMessage').val();
+            var dataHelper = commonHelper();
+            var message = { messageid: "0", message: msg, sender: null, receiver: user };
+            dataHelper.postAsyncData('/MessageData/SendUserMessage', message,
+                function (result) {
+                    $('#txtModalMessage').val("");
+                    $('#newMessageModal').modal('toggle');
+                });
+        });
+    </script>
+
+    <script>
+        $('body').addClass("page-profile");
+    </script>
+}

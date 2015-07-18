@@ -11,21 +11,11 @@ namespace CodeStormScheduler
 {
     public class MessageHub : Hub
     {
-        public void SendNotification(string message, string user)
-        {
-        }
-
         public override Task OnConnected()
         {
             string name = Context.User.Identity.GetUserId();
             Groups.Add(Context.ConnectionId, name);
             return base.OnConnected();
-        }
-
-        public static void SendMessages()
-        {
-            //IHubContext context = GlobalHost.ConnectionManager.GetHubContext<MessageHub>();
-            //Clients.Group(who).refreshNotification();
         }
     }
 }

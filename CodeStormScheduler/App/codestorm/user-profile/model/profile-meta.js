@@ -4,20 +4,23 @@ if (mainModule.meta === undefined) {
 
 var userProfileModule = angular.module('userProfileModule', ['ngCookies', 'ngRoute', 'akFileUploader', 'common']);
 
-userProfileModule.config(function ($routeProvider, $locationProvider) {
-    $routeProvider
-        .when('/profile/edit', {
-            templateUrl: '/App/codestorm/user-profile/views/profilepicture.html',
-            controller: 'profilePictureController'
-        })
-        .when('/profile/edit/general', {
-            templateUrl: '/App/codestorm/user-profile/views/generaldetails.html',
-            controller: 'generalController'
-        })
-        .when('/profile/edit/social', {
-            templateUrl: '/App/codestorm/user-profile/views/social.html',
-            controller: 'otherController'
-        });
+//userProfileModule.config(function ($routeProvider, $locationProvider) {
+//    $routeProvider
+//        .when('/profile', {
+//            templateUrl: '/App/codestorm/user-profile/views/profilepicture.html',
+//            controller: 'profilePictureController'
+//        })
+//        .when('/profile/general', {
+//            templateUrl: '/App/codestorm/user-profile/views/generaldetails.html',
+//            controller: 'generalController'
+//        })
+//        .when('/profile/social', {
+//            templateUrl: '/App/codestorm/user-profile/views/social.html',
+//            controller: 'otherController'
+//        });
+//    $locationProvider.html5Mode(true);
+//});
+userProfileModule.config(function ($locationProvider) {
     $locationProvider.html5Mode(true);
 });
 
