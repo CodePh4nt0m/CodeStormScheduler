@@ -199,5 +199,23 @@ namespace CodeStormScheduler.DataControllers
             SharedEventsData sharedEventsData = new SharedEventsData();
             return sharedEventsData.UpdateSharedEventStatus(eventid, User.Identity.GetUserId(), "Reject");
         }
+
+        [HttpGet]
+        public JsonResult GetAutoCompleteEventSearchList()
+        {
+            EventsData eventsData = new EventsData();
+            string userid = User.Identity.GetUserId();
+            var events = eventsData.GetUserEvents(userid);
+            var sharedevents = eventsData.GetUserSharedEvents(userid);
+
+            events.AddRange(sharedevents);
+
+            var model = events.AsEnumerable().Select(m => new EventAutoCompleteViewModel()
+            {
+                id = m.Id.ToString(),
+                text = m.Text
+            });
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -42,4 +42,10 @@ namespace CodeStormData.ViewModels
         public string userid { get; set; }
     }
 
+    public class EventAutoCompleteViewModel
+    {
+        public string id { get; set; }
+        public string text { get; set; }
+    }
+
 }

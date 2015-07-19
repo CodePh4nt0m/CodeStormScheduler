@@ -9,6 +9,15 @@ namespace CodeStormData.Data
 {
     public class UserProfileData
     {
+        public void CreateUserProfile(UserProfile userProfile)
+        {
+            using (CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                db.UserProfiles.Add(userProfile);
+                db.SaveChanges();
+            }
+        }
+
         public void UpdateUserPhoto(string userid,string imgurl)
         {
             using (CodeStormDBEntities db = new CodeStormDBEntities())
@@ -64,6 +73,20 @@ namespace CodeStormData.Data
                     return db.SaveChanges();
                 }
                 return null;
+            }
+        }
+
+        public void UpdateFacebookSignUpDetails(string userid, string fname, string lname)
+        {
+            using (CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                var user = db.UserProfiles.Where(u => u.Id == userid).FirstOrDefault();
+                if (user != null)
+                {
+                    user.FirstName = fname;
+                    user.LastName = lname;
+                    db.SaveChanges();
+                }
             }
         }
     }

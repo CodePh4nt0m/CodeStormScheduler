@@ -8,6 +8,9 @@
             height: 237px;
             border: 4px solid #67c5f5;
         }
+        .page-header .user-sal {
+            padding-left: 20px;
+        }
     </style>
 }
 
@@ -21,11 +24,36 @@
 }
 
 <div class="row" id="dashboard" ng-app="dashboardModule" ng-controller="dashboardController">
+    <div class="page-header">
+
+        <div class="row">
+            <!-- Page header, center on small screens -->
+            <div class="col-xs-12 col-sm-4 text-center text-left-sm">
+                <span class="panel-title user-sal ng-cloak"><strong>Hi {{userName}} ,</strong>@ViewBag.fname</span>
+            </div>
+
+            <div class="col-xs-12 col-sm-8">
+                <div class="row">
+                    <hr class="visible-xs no-grid-gutter-h">
+                    <!-- "Create project" button, width=auto on desktops -->
+                    <div class="pull-right col-xs-12 col-sm-auto"><a href="#" class="btn btn-primary btn-labeled" style="width: 100%;"><span class="btn-label icon fa fa-search"></span>Search Event</a></div>
+
+                    <!-- Margin -->
+                    <div class="visible-xs clearfix form-group-margin"></div>
+
+                    <!-- Search field -->
+                    <form action="" class="pull-right col-xs-12 col-sm-6">
+                        <div class="input-group no-margin">
+                            <span class="input-group-addon" style="border:none;background: #fff;background: rgba(0,0,0,.05);"><i class="fa fa-search"></i></span>
+                            <input type="text" placeholder="Search Event" id="txt_home_eventsearch" class="form-control no-padding-hr" style="border:none;background: #fff;background: rgba(0,0,0,.05);">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-xs-12">
         <div class="panel">
-            <div class="panel-heading">
-                <span class="panel-title ng-cloak"><strong>Hi {{userName}} ,</strong></span>
-            </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-6">
@@ -38,74 +66,86 @@
                                     <div class="notification">
                                         <a href="#">
                                             <div class="notification-title text-default">Meeting</div>
-                                            <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                            <div class="notification-description"><strong>Meeting with college friends</strong>
+                                            </div>
                                             <div class="notification-description">NSBM, Nugegoda</div>
                                             <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
                                         </a>
                                     </div>
                                     <div class="notification">
                                         <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong>
+                                        </div>
                                         <div class="notification-description">NSBM, Nugegoda</div>
                                         <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
                                     </div>
                                     <div class="notification">
                                         <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong>
+                                        </div>
                                         <div class="notification-description">NSBM, Nugegoda</div>
                                         <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
                                     </div>
                                     <div class="notification">
                                         <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong>
+                                        </div>
                                         <div class="notification-description">NSBM, Nugegoda</div>
                                         <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
                                     </div>
                                     <div class="notification">
                                         <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong>
+                                        </div>
                                         <div class="notification-description">NSBM, Nugegoda</div>
                                         <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
                                     </div>
                                     <div class="notification">
                                         <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong>
+                                        </div>
                                         <div class="notification-description">NSBM, Nugegoda</div>
                                         <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
                                     </div>
                                     <div class="notification">
                                         <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong>
+                                        </div>
                                         <div class="notification-description">NSBM, Nugegoda</div>
                                         <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
                                     </div>
                                     <div class="notification">
                                         <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong>
+                                        </div>
                                         <div class="notification-description">NSBM, Nugegoda</div>
                                         <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
                                     </div>
                                     <div class="notification">
                                         <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong>
+                                        </div>
                                         <div class="notification-description">NSBM, Nugegoda</div>
                                         <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
                                     </div>
                                     <div class="notification">
                                         <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong>
+                                        </div>
                                         <div class="notification-description">NSBM, Nugegoda</div>
                                         <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
                                     </div>
                                     <div class="notification">
                                         <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong>
+                                        </div>
                                         <div class="notification-description">NSBM, Nugegoda</div>
                                         <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
                                     </div>
                                     <div class="notification">
                                         <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong></div>
+                                        <div class="notification-description"><strong>Meeting with college friends</strong>
+                                        </div>
                                         <div class="notification-description">NSBM, Nugegoda</div>
                                         <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
                                     </div>
@@ -119,11 +159,11 @@
                         <input type="hidden" id="txt_map_lng" ng-model="map_lng">
                     </div>
                     <div class="col-xs-3">
-                        <div id="mini_here" style="width:100%"></div>
-                        <div id="scheduler_here" class="dhx_cal_container" style='width:300px; height:300px; display:none;'>
+                        <div id="mini_here" style="width: 100%"></div>
+                        <div id="scheduler_here" class="dhx_cal_container" style='width: 300px; height: 300px; display: none;'>
                             <div class="dhx_cal_navline">
                                 <div class="dhx_cal_date"></div>
-                                <div class="dhx_cal_tab" name="day_tab" style="right:76px;"></div>
+                                <div class="dhx_cal_tab" name="day_tab" style="right: 76px;"></div>
                             </div>
                             <div class="dhx_cal_header">
                             </div>

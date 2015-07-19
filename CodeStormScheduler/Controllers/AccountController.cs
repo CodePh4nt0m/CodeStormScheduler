@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using CodeStormData.Data;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -91,27 +92,7 @@ namespace CodeStormScheduler.Controllers
                             return View("ConfirmEmail");
                         }
                     }
-                    using (CodeStormDbContext db = new CodeStormDbContext())
-                    {
-                        var profile = db.UserProfiles.Where(u => u.Id == user.Id).FirstOrDefault();
-                        if (profile != null)
-                        {
-                            HttpCookie userid = new HttpCookie("userid");
-                            HttpCookie fname = new HttpCookie("fname");
-                            HttpCookie lname = new HttpCookie("lname");
-                            HttpCookie imgurl = new HttpCookie("imgurl");
-
-                            userid.Value = profile.Id;
-                            fname.Value = profile.FirstName;
-                            lname.Value = profile.LastName;
-                            imgurl.Value = (profile.ImageUrl == null ? "blank_photo.png" : profile.ImageUrl);
-
-                            this.ControllerContext.HttpContext.Response.Cookies.Add(userid);
-                            this.ControllerContext.HttpContext.Response.Cookies.Add(fname);
-                            this.ControllerContext.HttpContext.Response.Cookies.Add(lname);
-                            this.ControllerContext.HttpContext.Response.Cookies.Add(imgurl);
-                        }
-                    }
+                    CreateLoginCookies(user.Id);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -191,8 +172,8 @@ namespace CodeStormScheduler.Controllers
                 {
 
                     //Create custom user profile
-                    UserProfile userProfile = new UserProfile() { FirstName = model.FirstName, LastName = model.LastName, Id = user.Id };
-                    CreateUserProfile(userProfile);
+                    //UserProfile userProfile = new UserProfile() { FirstName = model.FirstName, LastName = model.LastName, Id = user.Id, };
+                    CreateUserProfile(model.FirstName,model.LastName,user.Id);
 
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
@@ -397,6 +378,8 @@ namespace CodeStormScheduler.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    var user = await UserManager.FindAsync(loginInfo.Login);
+                    CreateLoginCookies(user.Id);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -431,15 +414,38 @@ namespace CodeStormScheduler.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
+                
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+                   
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
+                        string name = info.ExternalIdentity.Claims.First(c => c.Type == "urn:facebook:name").Value.ToString();
+                        string fname = name.Substring(0, name.IndexOf(' ')).Trim();
+                        string lname = name.Substring(name.IndexOf(' ')).Trim();
+
+                        //update useremailconfirm
+                        UserData userData = new UserData();
+                        userData.UpdateEmailConfirmation(user.Id);
+
+                        //Insert User Details
+                        CreateUserProfile(fname, lname, user.Id);
+
+                        CreateLoginCookies(user.Id);
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
+                    }
+                }
+                else
+                {
+                    foreach (var s in result.Errors)
+                    {
+                        if (s.StartsWith("Email"))
+                            ViewBag.ErrorMessage = "Email";
                     }
                 }
                 AddErrors(result);
@@ -492,13 +498,17 @@ namespace CodeStormScheduler.Controllers
         }
 
         [Authorize]
-        public void CreateUserProfile(UserProfile userProfile)
+        public void CreateUserProfile(string fname ,string lname ,string userid)
         {
-            using (CodeStormDbContext db = new CodeStormDbContext())
+            UserProfileData userProfileData = new UserProfileData();
+            var userProfile = new CodeStormData.UserProfile()
             {
-                db.UserProfiles.Add(userProfile);
-                db.SaveChanges();
-            }
+                Id = userid,
+                FirstName = fname,
+                LastName = lname,
+                DOB = DateTime.Now
+            };
+            userProfileData.CreateUserProfile(userProfile);
         }
 
         [HttpPost]
@@ -561,6 +571,31 @@ namespace CodeStormScheduler.Controllers
             foreach (var error in result.Errors)
             {
                 ModelState.AddModelError("", error);
+            }
+        }
+
+        public void CreateLoginCookies(string uid)
+        {
+            using (CodeStormDbContext db = new CodeStormDbContext())
+            {
+                var profile = db.UserProfiles.Where(u => u.Id == uid).FirstOrDefault();
+                if (profile != null)
+                {
+                    HttpCookie userid = new HttpCookie("userid");
+                    HttpCookie fname = new HttpCookie("fname");
+                    HttpCookie lname = new HttpCookie("lname");
+                    HttpCookie imgurl = new HttpCookie("imgurl");
+
+                    userid.Value = profile.Id;
+                    fname.Value = profile.FirstName;
+                    lname.Value = profile.LastName;
+                    imgurl.Value = (profile.ImageUrl == null ? "blank_photo.png" : profile.ImageUrl);
+
+                    this.ControllerContext.HttpContext.Response.Cookies.Add(userid);
+                    this.ControllerContext.HttpContext.Response.Cookies.Add(fname);
+                    this.ControllerContext.HttpContext.Response.Cookies.Add(lname);
+                    this.ControllerContext.HttpContext.Response.Cookies.Add(imgurl);
+                }
             }
         }
 

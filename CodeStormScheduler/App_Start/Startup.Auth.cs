@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using CodeStormScheduler.Models;
+using Microsoft.Owin.Security.Facebook;
 
 namespace CodeStormScheduler
 {
@@ -58,10 +59,19 @@ namespace CodeStormScheduler
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
             //   consumerSecret: "");
+            var facebookAuthenticationOptions = new FacebookAuthenticationOptions()
+            {
+                AppId = "1408629229464493",
+                AppSecret = "1e57927d3e36ea5d8a88d416f61ba0da"
+            };
+            facebookAuthenticationOptions.Scope.Add("email");
+            facebookAuthenticationOptions.Scope.Add("public_profile");
 
-            app.UseFacebookAuthentication(
-               appId: "1408629229464493",
-               appSecret: "1e57927d3e36ea5d8a88d416f61ba0da");
+            app.UseFacebookAuthentication(facebookAuthenticationOptions);
+
+            //app.UseFacebookAuthentication(
+            //   appId: "1408629229464493",
+            //   appSecret: "1e57927d3e36ea5d8a88d416f61ba0da");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

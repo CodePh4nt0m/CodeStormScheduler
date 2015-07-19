@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CodeStormScheduler.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 
 namespace CodeStormScheduler.Controllers
 {

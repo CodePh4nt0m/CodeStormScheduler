@@ -199,13 +199,21 @@ mainModule.controller('MainController', function ($scope, $cookies, angularHelpe
 
     function nameFormatResult(name) {
         var $state = $(
-          '<span><img src="/ImageBase/Users/' + name.imgurl + '" class="img-flag" /> ' + name.text + '</span>'
+          '<span><img src="/ImageBase/Users/' + name.imgurl + '?w=30&h=30&mode=max" class="img-flag" /> ' + name.text + '</span>'
+        );
+        return $state;
+    }
+
+    function eventFormatResult(event) {
+        var $state = $(
+          '<span><img src="/assets/images/new-event.png?w=30&h=30&mode=max" class="img-flag" style="width:15px"/> ' + event.text + '</span>'
         );
         return $state;
     }
 
     $scope.loadnames = function () {
         $("#txt_navbar_search").select2("val", "");
+        $('#txt_home_eventsearch').select2("val", "");
         var userlist = null;
         angularHelper.getData('/UserData/GetAutoCompleteUserList', null,
             function (result) {
@@ -216,7 +224,19 @@ mainModule.controller('MainController', function ($scope, $cookies, angularHelpe
                     placeholder: "Search",
                     allowClear: true
                 });
+                
             });
+        angularHelper.getData('/EventsData/GetAutoCompleteEventSearchList', null,
+            function (result) {
+                userlist = result.data;
+                $("#txt_home_eventsearch").select2({
+                    data: result.data,
+                    formatResult: eventFormatResult,
+                    placeholder: "Search Event",
+                    allowClear: true
+                });
+            });
+        
     }
 
     function addNavMessage(msglist) {

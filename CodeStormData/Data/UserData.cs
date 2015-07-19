@@ -58,5 +58,18 @@ namespace CodeStormData.Data
                 return user.FirstOrDefault();
             }
         }
+
+        public void UpdateEmailConfirmation(string userid)
+        {
+            using (CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                var user = db.AspNetUsers.Where(u => u.Id == userid).FirstOrDefault();
+                if (user != null)
+                {
+                    user.EmailConfirmed = true;
+                    db.SaveChanges();
+                }
+            }
+        }
     }
 }
