@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodeStormData.ViewModels;
 
 namespace CodeStormData.Data
 {
@@ -40,6 +41,27 @@ namespace CodeStormData.Data
                     return db.SaveChanges();
                 }
                 return 0;
+            }
+        }
+
+        public EventSearchViewModel GetEventDetails(Int64 eventid)
+        {
+            using (CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                var res = from e in db.Events.AsEnumerable()
+                    join d in db.EventDetails.AsEnumerable() on e.Id equals d.Id
+                    where e.Id == eventid
+                    select new EventSearchViewModel()
+                    {
+                        id = e.Id,
+                        text = e.Text,
+                        description = d.Description,
+                        startdate = e.StartDate.ToString("dd-MM-yyyy"),
+                        enddate = e.EndDate.ToString("dd-MM-yyyy"),
+                        starttime = e.StartDate.ToString("hh:mm tt"),
+                        endtime = e.EndDate.ToString("hh:mm tt")
+                    };
+                return res.FirstOrDefault();
             }
         }
     }

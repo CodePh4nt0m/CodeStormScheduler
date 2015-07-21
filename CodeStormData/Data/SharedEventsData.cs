@@ -70,6 +70,24 @@ namespace CodeStormData.Data
             }
         }
 
+        public NotificationViewModel GetNotificationUserDetails(Int64 eventid,string userid)
+        {
+            using (CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                var shevent = (from se in db.SharedEvents
+                               join e in db.Events on se.EventId equals e.Id
+                               join u in db.UserProfiles on e.UserId equals u.Id
+                               where se.EventId == eventid && u.Id == userid
+                               select new NotificationViewModel()
+                               {
+                                   eventname = e.Text,
+                                   owner = u.FirstName + " " + u.LastName,
+                                   sharable = se.UserId
+                               }).First();
+                return shevent;
+            }
+        }
+
         public List<SharedUserViewModel> GetAcceptedEventUsers(Int64 eventid)
         {
             using (CodeStormDBEntities db = new CodeStormDBEntities())

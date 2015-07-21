@@ -2551,6 +2551,8 @@
     <Content Include="plugins\ionslider\ion.rangeSlider.skinFlat.css" />
     <Content Include="plugins\ionslider\ion.rangeSlider.skinNice.css" />
     <Content Include="plugins\jquery-cookie\jquery.cookie.js" />
+    <Content Include="plugins\jquery-dateFormat\jquery-dateFormat.js" />
+    <Content Include="plugins\jquery-dateFormat\jquery-dateFormat.min.js" />
     <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker-fontawesome.css" />
     <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker-glyphicons.css" />
     <Content Include="plugins\jquery-simplecolorpicker\jquery.simplecolorpicker-regularfont.css" />
@@ -3157,7 +3159,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Design\Chat.cshtml" />
     <Content Include="Views\Design\FullCalender.cshtml" />
-    <Content Include="Views\Home\Landing.cshtml" />
+    <Content Include="Views\Home\Landing_bk.cshtml" />
     <Content Include="Views\Design\SignUp.cshtml" />
     <Content Include="Views\Design\SignUp2.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
@@ -3193,6 +3195,7 @@
     <Content Include="Views\User\Public.cshtml" />
     <Content Include="Views\Notification\Index.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Home\Landing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\codestorm\dashboard\directives\" />

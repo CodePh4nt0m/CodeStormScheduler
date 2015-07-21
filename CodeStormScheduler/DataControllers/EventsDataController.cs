@@ -8,6 +8,7 @@ using CodeStormData.Data;
 using CodeStormData.ViewModels;
 using Microsoft.AspNet.Identity;
 using EntityFramework.BulkInsert.Extensions;
+using Microsoft.AspNet.SignalR;
 
 namespace CodeStormScheduler.DataControllers
 {
@@ -158,6 +159,16 @@ namespace CodeStormScheduler.DataControllers
                     }
                     sharedEventsData.AddSharedEvents(insertEvents);
 
+                    var context = GlobalHost.ConnectionManager.GetHubContext<MessageHub>();
+                    SharedEventsData sharedEventData = new SharedEventsData();
+                    List<NotificationViewModel> notificationlist = new List<NotificationViewModel>();
+
+                    foreach (var e in insertEvents)
+                    {
+                        var shevent = sharedEventData.GetNotificationUserDetails(e.EventId,e.UserId);
+                        context.Clients.Group(shevent.sharable).showAlertNotification(shevent.eventname, shevent.owner);
+                    }
+
                     List<SharedEvent> deleteEvents = new List<SharedEvent>();
                     foreach (var e in deletelist)
                     {
@@ -215,6 +226,27 @@ namespace CodeStormScheduler.DataControllers
                 id = m.Id.ToString(),
                 text = m.Text
             });
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetEventLocation(Int64 eventid)
+        {
+            EventDetailData eventDetailData = new EventDetailData();
+            var evnt = eventDetailData.GetEventDetail(eventid);
+            var model = new LocationViewModel()
+            {
+                longitude = Convert.ToDouble(evnt.Longitude),
+                latitude = Convert.ToDouble(evnt.Latitude)
+            };
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetSearchEventResult(Int64 eventid)
+        {
+            EventDetailData eventDetailData = new EventDetailData();
+            var model = eventDetailData.GetEventDetails(eventid);           
             return Json(model, JsonRequestBehavior.AllowGet);
         }
     }

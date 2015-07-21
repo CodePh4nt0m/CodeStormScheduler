@@ -5,11 +5,49 @@
     <style>
         #map {
             width: 100%;
-            height: 237px;
+            height: 255px;
             border: 4px solid #67c5f5;
         }
+
         .page-header .user-sal {
             padding-left: 20px;
+            font-size: 18px;
+            color: #868686;
+        }
+
+        .widget-notifications .notification-icon {
+            margin-right: 20px;
+        }
+
+        .widget-notifications .notification-title {
+            font-size: 14px;
+            font-family: 'arial';
+            text-transform: uppercase;
+        }
+
+        .dash_event {
+            cursor: pointer;
+        }
+        .panel-heading-controls .input-group .btn {
+            height: 32px;
+        }
+        .panel-event-search .panel-heading {
+            padding-bottom: 15px;
+        }
+        .panel-event-search .panel-heading-controls .input-group .form-control {
+            padding: 0;
+        }
+        .panel-heading .panel-heading-controls>.btn {
+            margin-top: -1px;
+        }
+        .panel-search-controls{
+            width: 250px;
+        }
+        .widget-comments .comment-avatar {
+            border-radius: 0;
+        }
+        .event-search-body .help-block {
+            margin-top: 0px;
         }
     </style>
 }
@@ -23,151 +61,99 @@
     angular.bootstrap(document.getElementById("dashboard"), ['dashboardModule']);
 }
 
-<div class="row" id="dashboard" ng-app="dashboardModule" ng-controller="dashboardController">
-    <div class="page-header">
+<div id="dashboard" ng-app="dashboardModule" ng-controller="dashboardController">
+    @*<div class="page-header">
 
-        <div class="row">
-            <!-- Page header, center on small screens -->
-            <div class="col-xs-12 col-sm-4 text-center text-left-sm">
-                <span class="panel-title user-sal ng-cloak"><strong>Hi {{userName}} ,</strong>@ViewBag.fname</span>
-            </div>
+            <div class="row">
+                <!-- Page header, center on small screens -->
+                <div class="col-xs-12 col-sm-4 text-center text-left-sm">
+                    <span class="panel-title user-sal ng-cloak"><strong>Hi {{userName}} ,</strong></span>
+                </div>
 
-            <div class="col-xs-12 col-sm-8">
-                <div class="row">
-                    <hr class="visible-xs no-grid-gutter-h">
-                    <!-- "Create project" button, width=auto on desktops -->
-                    <div class="pull-right col-xs-12 col-sm-auto"><a href="#" class="btn btn-primary btn-labeled" style="width: 100%;"><span class="btn-label icon fa fa-search"></span>Search Event</a></div>
-
-                    <!-- Margin -->
-                    <div class="visible-xs clearfix form-group-margin"></div>
-
-                    <!-- Search field -->
-                    <form action="" class="pull-right col-xs-12 col-sm-6">
-                        <div class="input-group no-margin">
-                            <span class="input-group-addon" style="border:none;background: #fff;background: rgba(0,0,0,.05);"><i class="fa fa-search"></i></span>
-                            <input type="text" placeholder="Search Event" id="txt_home_eventsearch" class="form-control no-padding-hr" style="border:none;background: #fff;background: rgba(0,0,0,.05);">
+                <div class="col-xs-12 col-sm-8">
+                    <div class="row">
+                        <hr class="visible-xs no-grid-gutter-h">
+                        <!-- "Create project" button, width=auto on desktops -->
+                        <div class="pull-right col-xs-12 col-sm-auto">
+                            <a href="#" class="btn btn-primary btn-labeled" style="width: 100%;" id="btn_event_search"><span class="btn-label icon fa fa-search"></span>Search Event</a>
                         </div>
-                    </form>
+
+                        <!-- Margin -->
+                        <div class="visible-xs clearfix form-group-margin"></div>
+
+                        <!-- Search field -->
+                        <form action="" class="pull-right col-xs-12 col-sm-6">
+                            <div class="input-group no-margin">
+                                <span class="input-group-addon" style="border: none; background: #fff; background: rgba(0, 0, 0, .05);"><i class="fa fa-search"></i></span>
+                                <input type="text" placeholder="Search Event" id="txt_home_eventsearch" class="form-control no-padding-hr" style="border: none; background: #fff; background: rgba(0, 0, 0, .05);">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel colourable panel-event-search widget-comments">
+                <div class="panel-heading">
+                    <span class="panel-title">Search Event</span>
+                    <div class="panel-heading-controls">
+                        <div class="panel-search-controls">
+                            <input type="text" class="form-control" placeholder="Search..." name="s" id="txt_home_eventsearch">
+                        </div>
+                        <button class="btn btn-labeled btn-primary" id="btn_event_search"><span class="btn-label icon fa fa-search"></span>Search</button>
+                    </div> <!-- / .panel-heading-controls -->
+                </div> <!-- / .panel-heading -->
+                <div class="panel-body event-search-body">
+                    @*<div class="comment">
+                        <img src="/assets/images/new-event.png" alt="" class="comment-avatar">
+                        <div class="comment-body">
+                            <div class="comment-by">
+                                <a href="" title="">Project Submission</a>
+                            </div>
+                            <div class="comment-text">
+                                <span class="help-block text-sm">Final date of project submission</span>
+                                22-8-2015 to 28-08-2015 05.00 a.m to 08.00 p.m.
+                            </div>
+                            <div class="comment-actions">
+                                <a href=""><i class="fa fa-map-marker"></i>View Location</a>
+                            </div>
+                        </div>
+                    </div>*@
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-xs-12">
-        <div class="panel">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div class="panel widget-notifications">
-                            <div class="panel-heading">
-                                <span class="panel-title">Calender summery</span>
-                            </div>
-                            <div class="panel-body padding-sm">
-                                <div class="notifications-list" id="eventsTable">
-                                    <div class="notification">
-                                        <a href="#">
-                                            <div class="notification-title text-default">Meeting</div>
-                                            <div class="notification-description"><strong>Meeting with college friends</strong>
-                                            </div>
-                                            <div class="notification-description">NSBM, Nugegoda</div>
-                                            <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
-                                        </a>
-                                    </div>
-                                    <div class="notification">
-                                        <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong>
-                                        </div>
-                                        <div class="notification-description">NSBM, Nugegoda</div>
-                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
-                                    </div>
-                                    <div class="notification">
-                                        <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong>
-                                        </div>
-                                        <div class="notification-description">NSBM, Nugegoda</div>
-                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
-                                    </div>
-                                    <div class="notification">
-                                        <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong>
-                                        </div>
-                                        <div class="notification-description">NSBM, Nugegoda</div>
-                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
-                                    </div>
-                                    <div class="notification">
-                                        <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong>
-                                        </div>
-                                        <div class="notification-description">NSBM, Nugegoda</div>
-                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
-                                    </div>
-                                    <div class="notification">
-                                        <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong>
-                                        </div>
-                                        <div class="notification-description">NSBM, Nugegoda</div>
-                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
-                                    </div>
-                                    <div class="notification">
-                                        <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong>
-                                        </div>
-                                        <div class="notification-description">NSBM, Nugegoda</div>
-                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
-                                    </div>
-                                    <div class="notification">
-                                        <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong>
-                                        </div>
-                                        <div class="notification-description">NSBM, Nugegoda</div>
-                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
-                                    </div>
-                                    <div class="notification">
-                                        <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong>
-                                        </div>
-                                        <div class="notification-description">NSBM, Nugegoda</div>
-                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
-                                    </div>
-                                    <div class="notification">
-                                        <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong>
-                                        </div>
-                                        <div class="notification-description">NSBM, Nugegoda</div>
-                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
-                                    </div>
-                                    <div class="notification">
-                                        <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong>
-                                        </div>
-                                        <div class="notification-description">NSBM, Nugegoda</div>
-                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
-                                    </div>
-                                    <div class="notification">
-                                        <div class="notification-title text-default">Meeting</div>
-                                        <div class="notification-description"><strong>Meeting with college friends</strong>
-                                        </div>
-                                        <div class="notification-description">NSBM, Nugegoda</div>
-                                        <div class="notification-ago">06-10-2015, 8:00 - 15:30</div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div class="panel panel-theme widget-notifications">
+                                <div class="panel-heading">
+                                    <span class="panel-title">Upcoming Events</span>
+                                </div>
+                                <div class="panel-body padding-sm">
+                                    <div class="notifications-list" id="eventsTable">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xs-3">
-                        <div id="map"></div>
-                        <input type="hidden" id="txt_map_lat" ng-model="map_lat">
-                        <input type="hidden" id="txt_map_lng" ng-model="map_lng">
-                    </div>
-                    <div class="col-xs-3">
-                        <div id="mini_here" style="width: 100%"></div>
-                        <div id="scheduler_here" class="dhx_cal_container" style='width: 300px; height: 300px; display: none;'>
-                            <div class="dhx_cal_navline">
-                                <div class="dhx_cal_date"></div>
-                                <div class="dhx_cal_tab" name="day_tab" style="right: 76px;"></div>
-                            </div>
-                            <div class="dhx_cal_header">
-                            </div>
-                            <div class="dhx_cal_data">
+                        <div class="col-xs-5">
+                            <div id="map"></div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div id="mini_here" style="width: 100%"></div>
+                            <div id="scheduler_here" class="dhx_cal_container" style='width: 300px; height: 300px; display: none;'>
+                                <div class="dhx_cal_navline">
+                                    <div class="dhx_cal_date"></div>
+                                    <div class="dhx_cal_tab" name="day_tab" style="right: 76px;"></div>
+                                </div>
+                                <div class="dhx_cal_header">
+                                </div>
+                                <div class="dhx_cal_data">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -175,9 +161,11 @@
             </div>
         </div>
     </div>
+
 </div>
 
 @section scripts{
+    <script src="~/plugins/jquery-dateFormat/jquery-dateFormat.min.js"></script>
     <script src="~/App/codestorm/dashboard/model/dashboard-meta.js"></script>
     <script src="~/App/codestorm/dashboard/controllers/dashboard-controller.js"></script>
     <script src="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_custom.js"></script>
@@ -190,27 +178,115 @@
             scheduler.config.include_end_by = true;
             scheduler.init('scheduler_here', new Date(), "month");
             dataHelper.getData('/EventsData/GetEvents', null,
-                function(result) {
+                function (result) {
                     scheduler.parse(result, "json");
                     scheduler.renderCalendar({
                         container: "mini_here",
                         date: scheduler._date,
                         navigation: true,
-                        handler: function(date, calendar) {
+                        handler: function (date, calendar) {
                             alert(date);
                         }
+                    });
+                    $('#eventsTable').empty();
+                    var evs = scheduler.getEvents(new Date(), new Date(9999, 1, 1));
+                    evs.sort(function (a, b) { return (a.start_date > b.start_date ? 1 : -1); });
+                    $.each(evs, function (i, e) {
+                        addRecentEvent(e);
                     });
                 });
 
 
         }
+        var getEventLocation = function (eid) {
+            event.preventDefault();
+            var dataHelper = commonHelper();
+            dataHelper.getData('/EventsData/GetEventLocation', { eventid: eid },
+                function (result) {
+                    //alert(JSON.stringify(result));
+                    var location = result;
+                    setMapLocation(location.latitude, location.longitude);
+                });
+        }
 
-        $(document).ready(function() {
-            init();
+        var searchEvent = function (eid) {
+            var dataHelper = commonHelper();
+            dataHelper.getData('/EventsData/GetSearchEventResult', { eventid: eid },
+                function (result) {
+                    //alert(JSON.stringify(result));
+                    var event = result;
+                    addSearchEvent(event);
+                    //alert(JSON.stringify(event));
+                });
+        }
+
+        
+        
+
+        var addRecentEvent = function (event) {
+            var element = '<div class="notification">' +
+                                        '<div class="dash_event" onclick="getEventLocation(' + event.id + ')">' +
+                                            '<div class="notification-title text-default" style="color:' + event.color + '">' + event.text + '</div>' +
+                                            //'<div class="notification-description">' +
+                                            //    '<strong>Meeting with college friends</strong>' +
+                                            //'</div>' +
+                                            //'<div class="notification-description">NSBM, Nugegoda</div>' +
+                                            '<div class="notification-description" style="color:' + event.color + '">' + $.format.date(event.start_date, "dd-MM-yyyy") + ' to ' + $.format.date(event.end_date, "dd-MM-yyyy") + '</div>' +
+                                            '<div class="notification-description" style="color:' + event.color + '">' + $.format.date(event.start_date, "hh:mm p") + ' - ' + $.format.date(event.end_date, "hh:mm p") + '</div>' +
+                                            '<div class="notification-icon fa fa-clock-o" style="background:' + event.color + ';color:#fff"></div>' +
+                                        '</div>' +
+                            '</div>';
+            $('#eventsTable').append(element);
+        }
+
+        $('#btn_event_search').click(function () {
+            var id = $('#txt_home_eventsearch').val();
+            if (id != "")
+                searchEvent(id);
         });
 
-        $('#eventsTable').slimScroll({ height: 217 });
+        var addSearchEvent = function (event) {
+            $('.event-search-body').empty();
+            var element = '<div class="comment">' +
+                '<img src="/assets/images/new-event.png" alt="" class="comment-avatar">' +
+                '<div class="comment-body">' +
+                '<div class="comment-by">' +
+                '<a href="" title="">' + (event.text == null ? "" : event.text) + '</a>' +
+                '</div>' +
+                '<div class="comment-text">' +
+                '<span class="help-block text-sm">' + (event.description == null ? "" : event.description) + '</span>' +
+                event.startdate + ' to ' + event.enddate + ' ( ' + event.starttime + ' - '+ event.endtime + ' )' +
+                '</div>' +
+                '<div class="comment-actions">' +
+                '<a href="" onclick="getEventLocation(' + event.id + ')"><i class="fa fa-map-marker"></i>View Location</a>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+            $('.event-search-body').append(element);
+        }
 
+        $('#btn_recent_events').click(function () {
+            $('#eventsTable').empty();
+            var evs = scheduler.getEvents(new Date(), new Date(9999, 1, 1));
+            evs.sort(function (a, b) { return (a.start_date > b.start_date ? 1 : -1); });
+            $.each(evs, function (i, e) {
+                addRecentEvent(e);
+            });
+            //alert(JSON.stringify(evs));
+        });
+
+        $(document).ready(function () {
+            init();
+            $('#txt_home_eventsearch').on("change", function(e) {
+                var id = $('#txt_navbar_search').val();
+                if(id=="")
+                    $('.event-search-body').empty();
+            });
+        });
+
+        $('#eventsTable').slimScroll({ height: 192 });
+        $('.event-search-body').slimScroll({ height: 120 });
+        
         //region -- google map integration
         function setGeoLocation(pos) {
             $('#txt_location').val('');
@@ -234,23 +310,17 @@
                 draggable: true,
                 title: 'location'
             });
-            google.maps.event.addListener(marker, 'dragend', function() {
-                setGeoLocation(marker.getPosition());
-            });
-
-
         }
 
         var input = document.getElementById('txt_location');
         var autocomplete = new google.maps.places.Autocomplete(input);
 
-        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
             var place = autocomplete.getPlace();
             setMapLocation(place.geometry.location.lat(), place.geometry.location.lng());
             $('#txt_map_lat').val(place.geometry.location.lat());
             $('#txt_map_lng').val(place.geometry.location.lng());
         });
     </script>
-    
 }
 

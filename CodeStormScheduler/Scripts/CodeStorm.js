@@ -116,12 +116,13 @@ $(function () {
         if (mswitch) {
             updatemessagecount();
             showmessagealert(msg, sender);
+            loadUserNavMessages();
         }
             
     }
 
     messagehub.client.showAlertNotification = function (msg, sender) {
-        shownotifyalert(msg, sender);
+        shownotifyalert(msg, sender);        
     }
 
     $.connection.hub.start().done(function () {
@@ -134,9 +135,36 @@ $(document).ready(function() {
     $('#txt_navbar_search').on("change", function(e) {
         var id = $('#txt_navbar_search').val();
         if (id != "") {
-            $("#form_publicprofile").attr("action", "user/public?id="+id);
+            $("#form_publicprofile").attr("action", "user/public?id=" + id);
             $('#form_publicprofile').submit();
             //alert();
         }
     });
-})
+});
+
+function addNavMessage(msglist) {
+    $('.widget-messages-alt .messages-list').empty();
+    $.each(msglist, function (i, msg) {
+        var element = '<div class="message">' +
+                    '<img src="/ImageBase/Users/' + msg.imgurl + '" alt="" class="message-avatar">' +
+                        '<a href="#" class="message-subject">' + msg.message + '</a>' +
+                            '<div class="message-description">' +
+                                'from <a href="#">' + msg.fullname + '</a>' +
+                            '</div>' +
+                            '<div class="message-time">' +
+                                '<time class="timeago" datetime="' + msg.time + '">' + msg.time + '</time>' +
+                            '</div>' +
+                '</div>';
+        $('.widget-messages-alt .messages-list').append(element);
+        $("time.timeago").timeago();
+    });
+
+};
+
+var loadUserNavMessages = function () {
+    var dataHelper = commonHelper();
+    dataHelper.getData('/MessageData/GetConversationList', null,
+                function (result) {
+                    addNavMessage(result);
+                });
+}

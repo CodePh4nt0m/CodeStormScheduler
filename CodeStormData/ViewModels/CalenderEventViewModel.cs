@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,4 +49,21 @@ namespace CodeStormData.ViewModels
         public string text { get; set; }
     }
 
+    public class LocationViewModel
+    {
+        public double longitude { get; set; }
+        public double latitude { get; set; }
+    }
+
+    public class EventSearchViewModel
+    {
+        public Int64 id { get; set; }
+        public string text { get; set; }
+        public string description { get; set; }
+        public string startdate { get; set; }
+        public string enddate { get; set; }
+        public string starttime { get; set; }
+        public string endtime { get; set; }
+
+    }
 }

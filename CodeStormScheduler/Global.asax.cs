@@ -28,8 +28,8 @@ namespace CodeStormScheduler
             messagesRepository.RegisterNotification();
 
             //Register Notification hub
-            NotificationRepositary notificationRepositary = new NotificationRepositary();
-            notificationRepositary.RegisterNotification();
+            //NotificationRepositary notificationRepositary = new NotificationRepositary();
+            //notificationRepositary.RegisterNotification();
         }
 
         protected void Application_End()

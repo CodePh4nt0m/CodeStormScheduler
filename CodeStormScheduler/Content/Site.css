@@ -9,13 +9,13 @@
     transition: all .3s;
 }
 
-#btn-fb-signin:hover {
-    background: #444 !important;
-}
+    #btn-fb-signin:hover {
+        background: #444 !important;
+    }
 
-#btn-fb-signin span {
-    font-weight: 600;
-}
+    #btn-fb-signin span {
+        font-weight: 600;
+    }
 
 .signin-info a > img {
     width: 28px;
@@ -34,6 +34,7 @@
     .page-signup .signup-container {
         margin: 30px auto !important;
     }
+
     .page-signup .have-account {
         margin: -35px 0 20px;
     }
@@ -69,8 +70,8 @@
 }
 
 .select2-result-label img {
-            width: 30px;
-        }
+    width: 30px;
+}
 
 .settings-toggle-hide {
     display: none;
@@ -84,7 +85,6 @@
     #s2id_txt_navbar_search {
         background: transparent !important;
         margin-top: 2px !important;
-        
     }
 
     .navbar-nav .select2-chosen {
@@ -98,5 +98,108 @@
 }
 
 .ng-cloak, .x-ng-cloak {
-  display: none !important;
+    display: none !important;
 }
+
+/* Custom Themes */
+
+.panel-theme .panel-title {
+    color: #fff;
+}
+
+/* theme-default */
+.theme-default .panel-theme {
+    border-color: #1a7ab9;
+}
+
+    .theme-default .panel-theme .panel-heading {
+        border-color: #1a7ab9;
+        background: #1d89cf;
+        background-image: -webkit-linear-gradient(top, #1e8cd3 0, #1a7ab9 100%);
+        background-image: linear-gradient(to bottom, #1e8cd3 0, #1a7ab9 100%);
+    }
+
+/* theme-asphalt */
+.theme-asphalt .panel-theme {
+    border-color: #44b2a8;
+}
+
+    .theme-asphalt .panel-theme .panel-heading {
+        border-color: #44b2a8;
+        background: #52bdb4;
+        background-image: -webkit-linear-gradient(top, #56beb6 0, #44b2a8 100%);
+        background-image: linear-gradient(to bottom, #56beb6 0, #44b2a8 100%);
+    }
+
+
+/* theme-purple-hills */
+.theme-purple-hills .panel-theme {
+    border-color: #78658b;
+}
+
+    .theme-purple-hills .panel-theme .panel-heading {
+        border-color: #78658b;
+        background: #857198;
+        background-image: -webkit-linear-gradient(top, #88749a 0, #78658b 100%);
+        background-image: linear-gradient(to bottom, #88749a 0, #78658b 100%);
+    }
+
+/* theme-adminflare */
+.theme-adminflare .panel-theme {
+    border-color: #1f83e3;
+}
+
+    .theme-adminflare .panel-theme .panel-heading {
+        border-color: #1f83e3;
+        background: #3690e6;
+        background-image: -webkit-linear-gradient(top, #3b93e7 0, #1f83e3 100%);
+        background-image: linear-gradient(to bottom, #3b93e7 0, #1f83e3 100%);
+    }
+
+/* theme-dust */
+.theme-dust .panel-theme {
+    border-color: #6d6363;
+}
+
+    .theme-dust .panel-theme .panel-heading {
+        border-color: #6d6363;
+        background: #7a6f6f;
+        background-image: -webkit-linear-gradient(top, #7d7171 0, #6d6363 100%);
+        background-image: linear-gradient(to bottom, #7d7171 0, #6d6363 100%);
+    }
+
+/* theme-frost */
+.theme-frost .panel-theme {
+    border-color: #309dc2;
+}
+
+    .theme-frost .panel-theme .panel-heading {
+        border-color: #309dc2;
+        background: #3daacf;
+        background-image: -webkit-linear-gradient(top, #41acd0 0, #309dc2 100%);
+        background-image: linear-gradient(to bottom, #41acd0 0, #309dc2 100%);
+    }
+
+/* theme-fresh */
+.theme-fresh .panel-theme {
+    border-color: #50b5d3;
+}
+
+    .theme-fresh .panel-theme .panel-heading {
+        border-color: #50b5d3;
+        background: #64bed8;
+        background-image: -webkit-linear-gradient(top, #68c0d9 0, #50b5d3 100%);
+        background-image: linear-gradient(to bottom, #68c0d9 0, #50b5d3 100%);
+    }
+
+/* theme-silver */
+.theme-silver .panel-theme {
+    border-color: #50b5d3;
+}
+
+    .theme-silver .panel-theme .panel-heading {
+        border-color: #50b5d3;
+        background: #64bed8;
+        background-image: -webkit-linear-gradient(top, #68c0d9 0, #50b5d3 100%);
+        background-image: linear-gradient(to bottom, #68c0d9 0, #50b5d3 100%);
+    }
