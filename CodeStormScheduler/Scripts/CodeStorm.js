@@ -46,11 +46,11 @@
     });
 }
 
-function shownotifyalert(msg, sender) {
+function shownotifyalert(msg) {
     $.notify({
         // options
         icon: 'glyphicon glyphicon-warning-sign',
-        title: sender,
+        title: "Shared Event",
         message: msg,
         url: 'https://github.com/mouse0270/bootstrap-notify',
         target: '_blank'
@@ -69,7 +69,7 @@ function shownotifyalert(msg, sender) {
         spacing: 10,
         z_index: 1031,
         delay: 3000,
-        timer: 2000,
+        timer: 1000,
         url_target: '_blank',
         mouse_over: null,
         animate: {
@@ -105,10 +105,22 @@ var updatemessagecount = function() {
         });
 }
 
+var updatenotificationcount = function () {
+    var dataHelper = commonHelper();
+    dataHelper.getData('/EventsData/GetPendingSharedEventCount', null,
+        function (result) {
+            homescope.$apply(function () {
+                homescope.notification_count = result;
+            });
+        });
+}
+
 
 var mswitch = true;
 
 $(function () {
+    if (typeof chat_page == 'undefined')
+        mswitch = true;
 
     var messagehub = $.connection.messageHub;
 
@@ -122,12 +134,16 @@ $(function () {
     }
 
     messagehub.client.showAlertNotification = function (msg, sender) {
-        shownotifyalert(msg, sender);        
+        updatenotificationcount();
+        shownotifyalert(sender + ' has shared the "' + msg + '" with you');
+        loadUserNavNotifications();
     }
 
     $.connection.hub.start().done(function () {
         //alert('connected');
+        loadUserNavNotifications();
         updatemessagecount();
+        updatenotificationcount();
     });
 });
 
@@ -161,10 +177,33 @@ function addNavMessage(msglist) {
 
 };
 
+function addNavNotification(notifications) {
+    $('#main-navbar-notifications').empty();
+    $.each(notifications, function(i, n) {
+        var element = '<div class="notification">' +
+            '<div class="notification-title text-warning">' + n.text + '</div>' +
+            '<div class="notification-description"><strong>' + n.owner + '</strong></div>' +
+            '<div class="notification-ago">' + n.date + '</div>' +
+            '<div class="notification-icon fa fa-calendar bg-warning"></div>' +
+            '</div>';
+
+        $('#main-navbar-notifications').append(element);
+    });
+}
+
 var loadUserNavMessages = function () {
     var dataHelper = commonHelper();
     dataHelper.getData('/MessageData/GetConversationList', null,
                 function (result) {
                     addNavMessage(result);
+                });
+}
+
+var loadUserNavNotifications = function () {
+    var dataHelper = commonHelper();
+    dataHelper.getData('/EventsData/GetUserNotificationList', null,
+                function (result) {
+                    //alert();
+                    addNavNotification(result);
                 });
 }

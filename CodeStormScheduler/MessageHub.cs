@@ -17,11 +17,5 @@ namespace CodeStormScheduler
             Groups.Add(Context.ConnectionId, name);
             return base.OnConnected();
         }
-
-        public override Task OnDisconnected(bool stopCalled)
-        {
-            Groups.Remove(Context.ConnectionId,groupName:)
-            return base.OnDisconnected();
-        }
     }
 }

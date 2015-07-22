@@ -129,7 +129,7 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-xs-4">
+                        <div class="col-lg-4">
                             <div class="panel panel-theme widget-notifications">
                                 <div class="panel-heading">
                                     <span class="panel-title">Upcoming Events</span>
@@ -140,10 +140,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-5">
+                        <div class="col-lg-5">
                             <div id="map"></div>
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-lg-3">
                             <div id="mini_here" style="width: 100%"></div>
                             <div id="scheduler_here" class="dhx_cal_container" style='width: 300px; height: 300px; display: none;'>
                                 <div class="dhx_cal_navline">
@@ -284,8 +284,8 @@
             });
         });
 
-        $('#eventsTable').slimScroll({ height: 192 });
-        $('.event-search-body').slimScroll({ height: 120 });
+        $('#eventsTable').slimScroll({ height: 192, touchScrollStep : 400 });
+        $('.event-search-body').slimScroll({ height: 120, touchScrollStep: 400 });
         
         //region -- google map integration
         function setGeoLocation(pos) {
@@ -298,7 +298,12 @@
         var marker;
 
         function setMapLocation(lat, lng) {
-            var location = new google.maps.LatLng(lat, lng);
+            var location;
+            if (isNaN(lat) || isNaN(lng) || lat == null || lng == null || lat==0 || lng==0)
+                location = new google.maps.LatLng(6.872753, 79.88367);
+            else
+                location = new google.maps.LatLng(lat, lng);
+
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 17,
                 mapTypeId: google.maps.MapTypeId.HYBRID,
@@ -307,7 +312,6 @@
             marker = new google.maps.Marker({
                 position: location,
                 map: map,
-                draggable: true,
                 title: 'location'
             });
         }

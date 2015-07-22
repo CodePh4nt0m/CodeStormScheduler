@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using CodeStormData.ViewModels;
@@ -77,7 +78,7 @@ namespace CodeStormData.Data
                 var shevent = (from se in db.SharedEvents
                                join e in db.Events on se.EventId equals e.Id
                                join u in db.UserProfiles on e.UserId equals u.Id
-                               where se.EventId == eventid && u.Id == userid
+                               where se.EventId == eventid && se.UserId == userid
                                select new NotificationViewModel()
                                {
                                    eventname = e.Text,
@@ -132,6 +133,33 @@ namespace CodeStormData.Data
                     return db.SaveChanges();
                 }
                 return null;
+            }
+        }
+
+        public List<UserNotificationViewModel> GetUserNotificationList(string userid)
+        {
+            using (CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                var res = from se in db.SharedEvents.AsEnumerable()
+                    join e in db.Events.AsEnumerable() on se.EventId equals e.Id
+                    join u in db.UserProfiles.AsEnumerable() on e.UserId equals u.Id
+                    where se.UserId == userid && se.Status == "Pending"
+                    orderby se.ShraredEventId descending
+                    select new UserNotificationViewModel()
+                    {
+                        text = e.Text,
+                        owner = u.FirstName + " " + u.LastName,
+                        date = e.StartDate.ToString("dd-MM-yyyy") + " to " + e.EndDate.ToString("dd-MM-yyyy")
+                    };
+                return res.ToList();
+            }
+        }
+
+        public int GetPendingSharedEventCount(string userid)
+        {
+            using (CodeStormDBEntities db = new CodeStormDBEntities())
+            {
+                return db.SharedEvents.Where(e => e.UserId == userid && e.Status == "Pending").Count();
             }
         }
     }

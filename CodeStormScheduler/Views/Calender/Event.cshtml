@@ -202,7 +202,11 @@
         //}
 
         function setMapLocation(lat, lng) {
-            var location = new google.maps.LatLng(lat, lng);
+            var location;
+            if(isNaN(lat) || isNaN(lng) || lat==null || lng==null)
+                location = new google.maps.LatLng(6.872753, 79.88367);
+            else
+                location = new google.maps.LatLng(lat, lng);
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 17,
                 mapTypeId: google.maps.MapTypeId.HYBRID,
@@ -217,8 +221,6 @@
             google.maps.event.addListener(marker, 'dragend', function () {
                 setGeoLocation(marker.getPosition());
             });
-            
-            
         }
 
         var input = document.getElementById('txt_location');

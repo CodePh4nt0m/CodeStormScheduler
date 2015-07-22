@@ -191,6 +191,7 @@ mainModule.controller('MainController', function ($scope, $cookies, angularHelpe
     $scope.user_name = $cookies.fname;
     $scope.user_pic = $cookies.imgurl;
     $scope.message_count = 0;
+    $scope.notification_count = 0;
 
     var initialize = function () {
         $scope.loadnames();

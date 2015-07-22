@@ -136,8 +136,18 @@ namespace CodeStormScheduler.DataControllers
             SharedEventsData sharedEventsData = new SharedEventsData();
             var modellist = model.sharedlist;
             var acceptlist = sharedEventsData.GetAcceptedEventUsers(model.id);
-            var insertlist = modellist.Where(x => !acceptlist.Select(y=> y.userid).Contains(x.userid)).ToList();
-            var deletelist = acceptlist.Where(x => !modellist.Select(y => y.userid).Contains(x.userid)).ToList();
+            List<SharedUserViewModel> insertlist = null;
+            List<SharedUserViewModel> deletelist = null;
+
+            if (acceptlist != null && modellist != null)
+            {
+                insertlist = modellist.Where(x => !acceptlist.Select(y => y.userid).Contains(x.userid)).ToList();
+                deletelist = acceptlist.Where(x => !modellist.Select(y => y.userid).Contains(x.userid)).ToList();
+            } 
+            if(acceptlist == null)
+                insertlist = modellist;
+            if (modellist == null)
+                deletelist = acceptlist;
 
             if (model.shared)
             {
@@ -165,8 +175,13 @@ namespace CodeStormScheduler.DataControllers
 
                     foreach (var e in insertEvents)
                     {
-                        var shevent = sharedEventData.GetNotificationUserDetails(e.EventId,e.UserId);
-                        context.Clients.Group(shevent.sharable).showAlertNotification(shevent.eventname, shevent.owner);
+                        var shevent = sharedEventData.GetNotificationUserDetails(e.EventId, e.UserId);
+                        notificationlist.Add(shevent);
+                    }
+
+                    foreach (var n in notificationlist)
+                    {
+                        context.Clients.Group(n.sharable).showAlertNotification(n.eventname,n.owner);
                     }
 
                     List<SharedEvent> deleteEvents = new List<SharedEvent>();
@@ -248,6 +263,22 @@ namespace CodeStormScheduler.DataControllers
             EventDetailData eventDetailData = new EventDetailData();
             var model = eventDetailData.GetEventDetails(eventid);           
             return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetUserNotificationList()
+        {
+            SharedEventsData sharedEventsData = new SharedEventsData();
+            var model = sharedEventsData.GetUserNotificationList(User.Identity.GetUserId());
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public int GetPendingSharedEventCount()
+        {
+            SharedEventsData sharedEventsData = new SharedEventsData();
+            var model = sharedEventsData.GetPendingSharedEventCount(User.Identity.GetUserId());
+            return model;
         }
     }
 }

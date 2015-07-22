@@ -21,7 +21,6 @@
                     allowClear: true
                 });
                 $('#txt_home_eventsearch').on("select2:select", function (e) {
-                    alert();
                 });
             });
 });

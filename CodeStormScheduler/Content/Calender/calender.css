@@ -1,5 +1,26 @@
 ﻿
 /* Commmon Styles */
+.dhx_scale_bar {
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'calibri';
+    text-transform: uppercase;
+    padding: 4px;
+}
+
+.dhx_cal_header {
+    height: 25px !important;
+    top: 55px !important;
+    left: 0 !important;
+}
+
+.dhx_cal_container {
+    overflow: visible;
+}
+
+.dhx_cal_data{
+    border-left: 1px solid #CECECE;
+}
 
 .dhx_cal_event_clear {
     color: #fff !important;
@@ -45,9 +66,13 @@
     margin-left: 14px;
 }
 
-.dhx_mini_calendar .dhx_cal_prev_button:after, .dhx_cal_next_button:after {
+.dhx_mini_calendar .dhx_cal_prev_button:after, .dhx_mini_calendar .dhx_cal_next_button:after {
     color: #fcfcfc;
     padding-right: 20px;
+}
+
+.dhx_mini_calendar .dhx_now  .dhx_month_body {
+    background: #fff !important;
 }
 
 
@@ -60,12 +85,12 @@
     font-family: 'Open Sans';
 }
 
-.dhx_cal_tab.active {
-    background-repeat: repeat-x;
-    z-index: 2;
-    font-family: 'Open Sans';
-    font-weight: 600;
-}
+    .dhx_cal_tab.active {
+        background-repeat: repeat-x;
+        z-index: 2;
+        font-family: 'Open Sans';
+        font-weight: 600;
+    }
 
 .dhx_cal_tab_first, .dhx_cal_prev_button {
     border-top-left-radius: 2px;
@@ -129,19 +154,16 @@
     background-image: -webkit-linear-gradient(top,#1e8cd3 0,#1a7ab9 100%);
     background-image: linear-gradient(to bottom,#1e8cd3 0,#1a7ab9 100%);
     color: #ffffff;
-
 }
 
-.theme-default .dhx_cal_tab.active {
-    border-color: #1a7ab9;
-    border-bottom-color: #16689e;
-    background: #1d89cf;
-    background-image: -webkit-linear-gradient(top,#1e8cd3 0,#1a7ab9 100%);
-    background-image: linear-gradient(to bottom,#1e8cd3 0,#1a7ab9 100%);
-    color: #ffffff;
-    border-left-color: #16689e;
-    border-right-color: #16689e;
-}
+    .theme-default .dhx_cal_tab.active {
+        border-color: #1a7ab9;
+        border-bottom-color: #16689e;
+        background: #2090d9;
+        color: #ffffff;
+        border-left-color: #16689e;
+        border-right-color: #16689e;
+    }
 
 .theme-default .dhx_cal_today_button {
     border-color: #1a7ab9;
@@ -152,8 +174,8 @@
     color: #ffffff;
 }
 
-.theme-default .dhx_now .dhx_month_body, .dhx_now .dhx_month_head {
-    background-color: #d9edf7;
+.theme-default .dhx_now .dhx_month_body, .theme-default .dhx_now .dhx_month_head {
+    background-color: rgba(29, 137, 207, 0.44);
 }
 
 
@@ -195,19 +217,16 @@
     background-image: -webkit-linear-gradient(top,#3b93e7 0,#1f83e3 100%);
     background-image: linear-gradient(to bottom,#3b93e7 0,#1f83e3 100%);
     color: #ffffff;
-
 }
 
-.theme-adminflare .dhx_cal_tab.active {
-    border-color: #1f83e3;
-    border-bottom-color: #1974cb;
-    background: #3690e6;
-    background-image: -webkit-linear-gradient(top,#3b93e7 0,#1f83e3 100%);
-    background-image: linear-gradient(to bottom,#3b93e7 0,#1f83e3 100%);
-    color: #ffffff;
-    border-left-color: #1b7cd8;
-    border-right-color: #1b7cd8;
-}
+    .theme-adminflare .dhx_cal_tab.active {
+        border-color: #1f83e3;
+        border-bottom-color: #1974cb;
+        background: #3690e6;
+        color: #ffffff;
+        border-left-color: #1b7cd8;
+        border-right-color: #1b7cd8;
+    }
 
 .theme-adminflare .dhx_cal_today_button {
     border-color: #1f83e3;
@@ -218,8 +237,8 @@
     color: #ffffff;
 }
 
-.theme-adminflare .dhx_now .dhx_month_body, .dhx_now .dhx_month_head {
-    background-color: #d9edf7;
+.theme-adminflare .dhx_now .dhx_month_body, .theme-adminflare .dhx_now .dhx_month_head {
+    background-color: rgba(54, 144, 230, 0.54);
 }
 
 /* End Theme adminflare */
@@ -260,19 +279,16 @@
     background-image: -webkit-linear-gradient(top,#52bdb4 0,#44b2a8 100%);
     background-image: linear-gradient(to bottom,##52bdb4 0,#44b2a8 100%);
     color: #ffffff;
-
 }
 
-.theme-asphalt .dhx_cal_tab.active {
-    border-color: #52bdb4;
-    border-bottom-color: #44b2a8;
-    background: #52bdb4;
-    background-image: -webkit-linear-gradient(top,#52bdb4 0,#44b2a8 100%);
-    background-image: linear-gradient(to bottom,#52bdb4 0,##44b2a8 100%);
-    color: #ffffff;
-    border-left-color: #44b2a8;
-    border-right-color: #44b2a8;
-}
+    .theme-asphalt .dhx_cal_tab.active {
+        border-color: #52bdb4;
+        border-bottom-color: #44b2a8;
+        background: #52bdb4;
+        color: #ffffff;
+        border-left-color: #44b2a8;
+        border-right-color: #44b2a8;
+    }
 
 .theme-asphalt .dhx_cal_today_button {
     border-color: #52bdb4;
@@ -283,8 +299,8 @@
     color: #ffffff;
 }
 
-.theme-asphalt .dhx_now .dhx_month_body, .dhx_now .dhx_month_head {
-    background-color: #d9edf7;
+.theme-asphalt .dhx_now .dhx_month_body, .theme-asphalt .dhx_now .dhx_month_head {
+    background-color: rgba(82, 189, 180, 0.55);
 }
 
 /* End Theme asphalt */
@@ -326,19 +342,16 @@
     background-image: -webkit-linear-gradient(top,#695879 0,#857198 100%);
     background-image: linear-gradient(to bottom,#695879 0,#857198 100%);
     color: #ffffff;
-
 }
 
-.theme-purple-hills .dhx_cal_tab.active {
-    border-color: #78658b;
-    border-bottom-color: #695879;
-    background: #857198;
-    background-image: -webkit-linear-gradient(top,#695879 0,#857198 100%);
-    background-image: linear-gradient(to bottom,#695879 0,#857198 100%);
-    color: #ffffff;
-    border-left-color: #715e82;
-    border-right-color: #715e82;
-}
+    .theme-purple-hills .dhx_cal_tab.active {
+        border-color: #78658b;
+        border-bottom-color: #695879;
+        background: #857198;
+        color: #ffffff;
+        border-left-color: #715e82;
+        border-right-color: #715e82;
+    }
 
 .theme-purple-hills .dhx_cal_today_button {
     border-color: #78658b;
@@ -349,8 +362,8 @@
     color: #ffffff;
 }
 
-.theme-purple-hills .dhx_now .dhx_month_body, .dhx_now .dhx_month_head {
-    background-color: #d9edf7;
+.theme-purple-hills .dhx_now .dhx_month_body, .theme-purple-hills .dhx_now .dhx_month_head {
+    background-color: rgba(164, 138, 212, 0.57);
 }
 
 
@@ -392,19 +405,16 @@
     background-image: -webkit-linear-gradient(top,#7d7171 0,#6d6363 100%);
     background-image: linear-gradient(to bottom,#7d7171 0,#6d6363 100%);
     color: #ffffff;
-
 }
 
-.theme-dust .dhx_cal_tab.active {
-    border-color: #6d6363;
-    border-bottom-color: #5d5454;
-    background: #7a6f6f;
-    background-image: -webkit-linear-gradient(top,#7d7171 0,#6d6363 100%);
-    background-image: linear-gradient(to bottom,#7d7171 0,#6d6363 100%);
-    color: #ffffff;
-    border-left-color: #655c5c;
-    border-right-color: #655c5c;
-}
+    .theme-dust .dhx_cal_tab.active {
+        border-color: #6d6363;
+        border-bottom-color: #5d5454;
+        background: #7a6f6f;
+        color: #ffffff;
+        border-left-color: #655c5c;
+        border-right-color: #655c5c;
+    }
 
 .theme-dust .dhx_cal_today_button {
     border-color: #6d6363;
@@ -415,8 +425,8 @@
     color: #ffffff;
 }
 
-.theme-dust .dhx_now .dhx_month_body, .dhx_now .dhx_month_head {
-    background-color: #7a6f6f;
+.theme-dust .dhx_now .dhx_month_body, .theme-dust .dhx_now .dhx_month_head {
+    background-color: rgba(122, 111, 111, 0.73);
 }
 
 /* End Theme dust */
@@ -458,19 +468,16 @@
     background-image: -webkit-linear-gradient(top,#68c0d9 0,#50b5d3 100%);
     background-image: linear-gradient(to bottom,#68c0d9 0,#50b5d3 100%);
     color: #ffffff;
-
 }
 
-.theme-frost .dhx_cal_tab.active {
-    border-color: #50b5d3;
-    border-bottom-color: #37abcd;
-    background: #64bed8;
-    background-image: -webkit-linear-gradient(top,#68c0d9 0,#50b5d3 100%);
-    background-image: linear-gradient(to bottom,#68c0d9 0,#50b5d3 100%);
-    color: #ffffff;
-    border-left-color: #655c5c;
-    border-right-color: #655c5c;
-}
+    .theme-frost .dhx_cal_tab.active {
+        border-color: #50b5d3;
+        border-bottom-color: #37abcd;
+        background: #64bed8;
+        color: #ffffff;
+        border-left-color: #4fb2cf;
+        border-right-color: #4fb2cf;
+    }
 
 .theme-frost .dhx_cal_today_button {
     border-color: #50b5d3;
@@ -481,7 +488,7 @@
     color: #ffffff;
 }
 
-.theme-frost .dhx_now .dhx_month_body, .dhx_now .dhx_month_head {
+.theme-frost .dhx_now .dhx_month_body, .theme-frost .dhx_now .dhx_month_head {
     background-color: #50b5d3;
 }
 
@@ -524,19 +531,16 @@
     background-image: -webkit-linear-gradient(top,#68c0d9 0,#50b5d3 100%);
     background-image: linear-gradient(to bottom,#68c0d9 0,#50b5d3 100%);
     color: #ffffff;
-
 }
 
-.theme-fresh .dhx_cal_tab.active {
-    border-color: #64bed8;
-    border-bottom-color: #37abcd;
-    background: #50b5d3;
-    background-image: -webkit-linear-gradient(top,#68c0d9 0,#50b5d3 100%);
-    background-image: linear-gradient(to bottom,#68c0d9 0,#50b5d3 100%);
-    color: #ffffff;
-    border-left-color: #43b0d0;
-    border-right-color: #43b0d0;
-}
+    .theme-fresh .dhx_cal_tab.active {
+        border-color: #64bed8;
+        border-bottom-color: #37abcd;
+        background: #50b5d3;
+        color: #ffffff;
+        border-left-color: #43b0d0;
+        border-right-color: #43b0d0;
+    }
 
 .theme-fresh .dhx_cal_today_button {
     border-color: #64bed8;
@@ -547,8 +551,8 @@
     color: #ffffff;
 }
 
-.theme-fresh .dhx_now .dhx_month_body, .dhx_now .dhx_month_head {
-    background-color: #50b5d3;
+.theme-fresh .dhx_now .dhx_month_body, .theme-fresh .dhx_now .dhx_month_head {
+    background-color: rgba(161, 204, 61, 0.6);
 }
 /* End Theme theme-fresh */
 
@@ -588,19 +592,16 @@
     background-image: -webkit-linear-gradient(top,#68c0d9 0,#50b5d3 100%);
     background-image: linear-gradient(to bottom,#68c0d9 0,#50b5d3 100%);
     color: #ffffff;
-
 }
 
-.theme-silver .dhx_cal_tab.active {
-    border-color: #64bed8;
-    border-bottom-color: #37abcd;
-    background: #50b5d3;
-    background-image: -webkit-linear-gradient(top,#68c0d9 0,#50b5d3 100%);
-    background-image: linear-gradient(to bottom,#68c0d9 0,#50b5d3 100%);
-    color: #ffffff;
-    border-left-color: #43b0d0;
-    border-right-color: #43b0d0;
-}
+    .theme-silver .dhx_cal_tab.active {
+        border-color: #64bed8;
+        border-bottom-color: #37abcd;
+        background: #50b5d3;
+        color: #ffffff;
+        border-left-color: #43b0d0;
+        border-right-color: #43b0d0;
+    }
 
 .theme-silver .dhx_cal_today_button {
     border-color: #64bed8;
@@ -611,7 +612,7 @@
     color: #ffffff;
 }
 
-.theme-silver .dhx_now .dhx_month_body, .dhx_now .dhx_month_head {
+.theme-silver .dhx_now .dhx_month_body, .theme-silver .dhx_now .dhx_month_head {
     background-color: #50b5d3;
 }
 

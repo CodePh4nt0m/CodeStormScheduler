@@ -58,3 +58,70 @@
     font-style:normal;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+
+
+/* Notification styles */
+
+.dnot{
+    border-radius:0px;
+    border:1px solid #2c77ba !important;
+    background-color:#2c77ba !important;
+    box-shadow:0px 0px 10px rgba(0,0,0,0.28);
+    border-radius: 5px;
+
+
+}
+
+.dnot-msg{
+    /*font-family:'Open Sans', sans-serif !important;*/
+    color:#ffffff;
+    /*font-style:italic !important;*/
+    font-size:12px;
+}
+
+.dnot-img{
+    padding-right:0px;
+    padding-left:10px;
+}
+
+.dnot-msg{
+    padding-right:0px;
+    
+}
+
+.dnot-close{
+    padding-left:0px;
+}
+
+.img-msg{
+    border-radius: 50% 50% 50% 50%;
+}
+
+.btn-dnot-close{
+    float:left !important;
+    right:auto !important;
+    top:auto !important;
+    font-size:16px !important;
+}
+
+.dnot-not-container{
+    margin-bottom:-6px;
+    margin-top:-6px;
+}
+
+.dnot-fstyle1{
+    font-weight:bold;
+    color:#4387a5;
+    font-size:12px;
+    font-style:normal;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dnot-title{
+    font-weight:bold;
+    color:#ECEDC0 !important;
+    font-size:12px;
+    font-style:normal;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

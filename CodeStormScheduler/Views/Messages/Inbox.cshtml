@@ -271,7 +271,7 @@
         var pressenter;
         $(document).ready(function () {
             getConversationlist();
-            $('.widget-chat .panel-body').slimScroll({ height: 372, alwaysVisible: false, color: '#888', allowPageScroll: true, start: 'bottom' });
+            $('.widget-chat .panel-body').slimScroll({ height: 372, alwaysVisible: false, color: '#888', allowPageScroll: true, start: 'bottom', touchScrollStep: 400 });
             var enter = $.cookie('enter_press');
             if (enter == undefined) {
                 $.cookie('enter_press', false);
@@ -305,11 +305,27 @@
                     });
                 });
             $("time.timeago").timeago();
-            $('#conversation-list .panel-body').slimScroll({ height: 498, alwaysVisible: false, color: '#888', allowPageScroll: true });
+            $('#conversation-list .panel-body').slimScroll({ height: 498, alwaysVisible: false, color: '#888', allowPageScroll: true, touchScrollStep: 400 });
+        }
+
+        function getConversationlistongoing() {
+            var dataHelper = commonHelper();
+            dataHelper.getData('/MessageData/GetConversationList', null,
+                function (result) {
+                    $.each(result, function (i, msg) {
+                        addConversation(msg);
+                    });
+                    $('.thread').css("background-color", "#fff");
+                    var conv = $('#current_conv_id').val();
+                    var cid = '#conv_' + conv;
+                    $(cid).css("background-color", "rgb(214, 233, 238)");
+                });
+            $("time.timeago").timeago();
+            $('#conversation-list .panel-body').slimScroll({ height: 498, alwaysVisible: false, color: '#888', allowPageScroll: true, touchScrollStep: 400 });
         }
 
         function addConversation(c) {
-            var $conv = '<div class="thread" data-conv="' + c.convid + '">' +
+            var $conv = '<div class="thread" id="conv_' + c.convid + '" data-conv="' + c.convid + '">' +
                 '<img src="/ImageBase/Users/' + c.imgurl + '" alt="" class="thread-avatar">' +
                 '<div class="thread-body">' +
                 '<time class="timeago thread-time" datetime="' + c.time + '">' + c.time + '</time>' +
@@ -319,7 +335,7 @@
                 '</div>';
             $('#conversation-list .panel-body').append($conv);
             $("time.timeago").timeago();
-            $('#conversation-list .panel-body').slimScroll({ height: 450, alwaysVisible: false, color: '#888', allowPageScroll: true });
+            $('#conversation-list .panel-body').slimScroll({ height: 450, alwaysVisible: false, color: '#888', allowPageScroll: true, touchScrollStep: 400 });
 
         }
 
@@ -339,7 +355,7 @@
             $('.widget-chat .panel-body').append($msg);
             $("time.timeago").timeago();
             var chatheight = $('.widget-chat .panel-body').prop('scrollHeight') + 'px';
-            $('.widget-chat .panel-body').slimScroll({ height: 397, scrollTo: chatheight });
+            $('.widget-chat .panel-body').slimScroll({ height: 397, scrollTo: chatheight ,touchScrollStep : 400});
         }
 
         function addChatMessageRight(c) {
@@ -359,7 +375,7 @@
 
             $("time.timeago").timeago();
             var chatheight = $('.widget-chat .panel-body').prop('scrollHeight') + 'px';
-            $('.widget-chat .panel-body').slimScroll({ height: 397, scrollTo: chatheight });
+            $('.widget-chat .panel-body').slimScroll({ height: 397, scrollTo: chatheight,touchScrollStep : 400 });
         }
 
         function ChangeSeenStatus(userid) {
@@ -385,9 +401,9 @@
                 });
             $("time.timeago").timeago();
             $('.message-body .message-text').linkify({ target: "_blank" });
-            $('.widget-chat .panel-body').slimScroll({ height: 397, alwaysVisible: false, color: '#888', allowPageScroll: true, start: bottom });
+            $('.widget-chat .panel-body').slimScroll({ height: 397, alwaysVisible: false, color: '#888', allowPageScroll: true, start: bottom ,touchScrollStep : 400});
             var chatheight = $('.widget-chat .panel-body').prop('scrollHeight') + 'px';
-            $('.widget-chat .panel-body').slimScroll({ height: 397, scrollTo: chatheight });
+            $('.widget-chat .panel-body').slimScroll({ height: 397, scrollTo: chatheight,touchScrollStep : 400 });
         }
 
         function addSelfMessage(message) {
@@ -405,13 +421,20 @@
 
         $(function () {
             var chat = $.connection.chatHub;
-            chat.client.addChatMessage = function (name, message, imgurl, self) {
-                var msg = { messageid: '0', fullname: name, message: message, imgurl: imgurl, time: moment().format(), self: self };
-                if (msg.self)
-                    addChatMessageLeft(msg);
+            chat.client.addChatMessage = function (name, message, imgurl, self, sender) {
+                var conv = $('#current_conv_id').val();
+                if (conv == sender) {
+                    var msg = { messageid: '0', fullname: name, message: message, imgurl: imgurl, time: moment().format(), self: self };
+                    if (msg.self)
+                        addChatMessageLeft(msg);
 
-                else
-                    addChatMessageRight(msg);
+                    else
+                        addChatMessageRight(msg);
+                } else {
+                    $('#conversation-list .panel-body').empty();
+                    getConversationlistongoing();
+                    
+                }
             };
 
             $.connection.hub.start().done(function () {
@@ -486,7 +509,7 @@
     </script>
     <script type="text/javascript" charset="utf-8">
         mswitch = false;
-
+        var chat_page = true;
         function init() {
             var dataHelper = commonHelper();
             scheduler.config.include_end_by = true;

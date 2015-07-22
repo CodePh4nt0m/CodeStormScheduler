@@ -42,7 +42,7 @@ eventsModule.controller('eventsController', function ($scope, $location, angular
                     $("#input_shared_users").val(userlist).trigger("change");
                 }
                 $('select[name="colorpicker"]').simplecolorpicker('selectColor', event.color);
-                setMapLocation(parseFloat(event.latitude), parseFloat(event.longitude));
+                setMapLocation(event.latitude,event.longitude);
                 $('#txt_map_lat').val(event.latitude);
                 $('#txt_map_lng').val(event.longitude);
             });
