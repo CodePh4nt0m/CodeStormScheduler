@@ -28,26 +28,43 @@
         .dash_event {
             cursor: pointer;
         }
+
         .panel-heading-controls .input-group .btn {
             height: 32px;
         }
+
         .panel-event-search .panel-heading {
             padding-bottom: 15px;
         }
+
         .panel-event-search .panel-heading-controls .input-group .form-control {
             padding: 0;
         }
-        .panel-heading .panel-heading-controls>.btn {
-            margin-top: -1px;
+
+        .panel-heading .panel-heading-controls > .btn {
+            margin-top: 0px;
         }
-        .panel-search-controls{
+
+        .panel-search-controls {
             width: 250px;
         }
+
         .widget-comments .comment-avatar {
             border-radius: 0;
         }
+
         .event-search-body .help-block {
             margin-top: 0px;
+        }
+
+        .event_title {
+            color: #7C1723;
+            font-family: 'Calibri';
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .widget-comments .comment-text {
+            padding-top: 0;
         }
     </style>
 }
@@ -62,36 +79,6 @@
 }
 
 <div id="dashboard" ng-app="dashboardModule" ng-controller="dashboardController">
-    @*<div class="page-header">
-
-            <div class="row">
-                <!-- Page header, center on small screens -->
-                <div class="col-xs-12 col-sm-4 text-center text-left-sm">
-                    <span class="panel-title user-sal ng-cloak"><strong>Hi {{userName}} ,</strong></span>
-                </div>
-
-                <div class="col-xs-12 col-sm-8">
-                    <div class="row">
-                        <hr class="visible-xs no-grid-gutter-h">
-                        <!-- "Create project" button, width=auto on desktops -->
-                        <div class="pull-right col-xs-12 col-sm-auto">
-                            <a href="#" class="btn btn-primary btn-labeled" style="width: 100%;" id="btn_event_search"><span class="btn-label icon fa fa-search"></span>Search Event</a>
-                        </div>
-
-                        <!-- Margin -->
-                        <div class="visible-xs clearfix form-group-margin"></div>
-
-                        <!-- Search field -->
-                        <form action="" class="pull-right col-xs-12 col-sm-6">
-                            <div class="input-group no-margin">
-                                <span class="input-group-addon" style="border: none; background: #fff; background: rgba(0, 0, 0, .05);"><i class="fa fa-search"></i></span>
-                                <input type="text" placeholder="Search Event" id="txt_home_eventsearch" class="form-control no-padding-hr" style="border: none; background: #fff; background: rgba(0, 0, 0, .05);">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>*@
     <div class="row">
         <div class="col-xs-12">
             <div class="panel colourable panel-event-search widget-comments">
@@ -105,21 +92,6 @@
                     </div> <!-- / .panel-heading-controls -->
                 </div> <!-- / .panel-heading -->
                 <div class="panel-body event-search-body">
-                    @*<div class="comment">
-                        <img src="/assets/images/new-event.png" alt="" class="comment-avatar">
-                        <div class="comment-body">
-                            <div class="comment-by">
-                                <a href="" title="">Project Submission</a>
-                            </div>
-                            <div class="comment-text">
-                                <span class="help-block text-sm">Final date of project submission</span>
-                                22-8-2015 to 28-08-2015 05.00 a.m to 08.00 p.m.
-                            </div>
-                            <div class="comment-actions">
-                                <a href=""><i class="fa fa-map-marker"></i>View Location</a>
-                            </div>
-                        </div>
-                    </div>*@
                 </div>
             </div>
         </div>
@@ -185,7 +157,6 @@
                         date: scheduler._date,
                         navigation: true,
                         handler: function (date, calendar) {
-                            alert(date);
                         }
                     });
                     $('#eventsTable').empty();
@@ -213,24 +184,14 @@
             var dataHelper = commonHelper();
             dataHelper.getData('/EventsData/GetSearchEventResult', { eventid: eid },
                 function (result) {
-                    //alert(JSON.stringify(result));
                     var event = result;
                     addSearchEvent(event);
-                    //alert(JSON.stringify(event));
                 });
         }
-
-        
-        
-
         var addRecentEvent = function (event) {
             var element = '<div class="notification">' +
                                         '<div class="dash_event" onclick="getEventLocation(' + event.id + ')">' +
                                             '<div class="notification-title text-default" style="color:' + event.color + '">' + event.text + '</div>' +
-                                            //'<div class="notification-description">' +
-                                            //    '<strong>Meeting with college friends</strong>' +
-                                            //'</div>' +
-                                            //'<div class="notification-description">NSBM, Nugegoda</div>' +
                                             '<div class="notification-description" style="color:' + event.color + '">' + $.format.date(event.start_date, "dd-MM-yyyy") + ' to ' + $.format.date(event.end_date, "dd-MM-yyyy") + '</div>' +
                                             '<div class="notification-description" style="color:' + event.color + '">' + $.format.date(event.start_date, "hh:mm p") + ' - ' + $.format.date(event.end_date, "hh:mm p") + '</div>' +
                                             '<div class="notification-icon fa fa-clock-o" style="background:' + event.color + ';color:#fff"></div>' +
@@ -251,11 +212,11 @@
                 '<img src="/assets/images/new-event.png" alt="" class="comment-avatar">' +
                 '<div class="comment-body">' +
                 '<div class="comment-by">' +
-                '<a href="" title="">' + (event.text == null ? "" : event.text) + '</a>' +
+                '<a class="event_title">' + (event.text == null ? "" : event.text) + '</a>' +
                 '</div>' +
                 '<div class="comment-text">' +
                 '<span class="help-block text-sm">' + (event.description == null ? "" : event.description) + '</span>' +
-                event.startdate + ' to ' + event.enddate + ' ( ' + event.starttime + ' - '+ event.endtime + ' )' +
+                event.startdate + ' to ' + event.enddate + ' ( ' + event.starttime + ' - ' + event.endtime + ' )' +
                 '</div>' +
                 '<div class="comment-actions">' +
                 '<a href="" onclick="getEventLocation(' + event.id + ')"><i class="fa fa-map-marker"></i>View Location</a>' +
@@ -272,21 +233,21 @@
             $.each(evs, function (i, e) {
                 addRecentEvent(e);
             });
-            //alert(JSON.stringify(evs));
         });
 
         $(document).ready(function () {
             init();
-            $('#txt_home_eventsearch').on("change", function(e) {
+            $('#txt_home_eventsearch').on("change", function (e) {
                 var id = $('#txt_navbar_search').val();
-                if(id=="")
+                if (id == "")
                     $('.event-search-body').empty();
             });
+            initialize();
         });
 
-        $('#eventsTable').slimScroll({ height: 192, touchScrollStep : 400 });
+        $('#eventsTable').slimScroll({ height: 192, touchScrollStep: 400 });
         $('.event-search-body').slimScroll({ height: 120, touchScrollStep: 400 });
-        
+
         //region -- google map integration
         function setGeoLocation(pos) {
             $('#txt_location').val('');
@@ -294,13 +255,26 @@
             $('#txt_map_lng').val(pos.lng());
         }
 
+        
+
         var map;
         var marker;
 
+        function initialize() {
+            var location = new google.maps.LatLng(53.307261999999990000, -6.219076999999970000);
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                mapTypeId: google.maps.MapTypeId.HYBRID,
+                center: location
+            });
+        }
+
         function setMapLocation(lat, lng) {
             var location;
-            if (isNaN(lat) || isNaN(lng) || lat == null || lng == null || lat==0 || lng==0)
-                location = new google.maps.LatLng(6.872753, 79.88367);
+            if (isNaN(lat) || isNaN(lng) || lat == null || lng == null || lat == 0 || lng == 0) {
+                initialize();
+                return;
+            }
             else
                 location = new google.maps.LatLng(lat, lng);
 

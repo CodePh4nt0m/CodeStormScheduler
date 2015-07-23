@@ -183,28 +183,30 @@
         var map;
         var marker;
 
-        //function initialize() {
-        //    var location = new google.maps.LatLng(6.872753, 79.88367);
-        //    map = new google.maps.Map(document.getElementById('map'), {
-        //        zoom: 17,
-        //        mapTypeId: google.maps.MapTypeId.HYBRID,
-        //        center: location
-        //    });
-        //    marker = new google.maps.Marker({
-        //        position: location,
-        //        map: map,
-        //        draggable: true,
-        //        title: 'location'
-        //    });
-        //    google.maps.event.addListener(marker, 'dragend', function () {
-        //        setGeoLocation(marker.getPosition());
-        //    });
-        //}
+        function initialize() {
+            var location = new google.maps.LatLng(53.307261999999990000, -6.219076999999970000);
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                mapTypeId: google.maps.MapTypeId.HYBRID,
+                center: location
+            });
+            marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                draggable: true,
+                title: 'location'
+            });
+            google.maps.event.addListener(marker, 'dragend', function () {
+                setGeoLocation(marker.getPosition());
+            });
+        }
 
         function setMapLocation(lat, lng) {
             var location;
-            if(isNaN(lat) || isNaN(lng) || lat==null || lng==null)
-                location = new google.maps.LatLng(6.872753, 79.88367);
+            if (isNaN(lat) || isNaN(lng) || lat == null || lng == null || lat == 0 || lng == 0) {
+                initialize();
+                return;
+            }
             else
                 location = new google.maps.LatLng(lat, lng);
             map = new google.maps.Map(document.getElementById('map'), {

@@ -1,0 +1,14 @@
+D:\CodeStorm\Solution\CodeStormScheduler\CodeStormData\bin\Debug\CodeStormData.dll.config
+D:\CodeStorm\Solution\CodeStormScheduler\CodeStormData\bin\Debug\CodeStormData.dll
+D:\CodeStorm\Solution\CodeStormScheduler\CodeStormData\bin\Debug\CodeStormData.pdb
+D:\CodeStorm\Solution\CodeStormScheduler\CodeStormData\bin\Debug\EntityFramework.dll
+D:\CodeStorm\Solution\CodeStormScheduler\CodeStormData\bin\Debug\EntityFramework.SqlServer.dll
+D:\CodeStorm\Solution\CodeStormScheduler\CodeStormData\bin\Debug\EntityFramework.xml
+D:\CodeStorm\Solution\CodeStormScheduler\CodeStormData\bin\Debug\EntityFramework.SqlServer.xml
+D:\CodeStorm\Solution\CodeStormScheduler\CodeStormData\obj\Debug\CodeStormData.dll
+D:\CodeStorm\Solution\CodeStormScheduler\CodeStormData\obj\Debug\CodeStormData.pdb
+D:\CodeStorm\Solution\CodeStormScheduler\CodeStormData\obj\Debug\CodeStormData.csprojResolveAssemblyReference.cache
+D:\CodeStorm\Solution\CodeStormScheduler\CodeStormData\bin\Debug\EntityFramework.BulkInsert.dll
+D:\CodeStorm\Solution\CodeStormScheduler\CodeStormData\bin\Debug\EntityFramework.MappingAPI.dll
+D:\CodeStorm\Solution\CodeStormScheduler\CodeStormData\bin\Debug\EntityFramework.BulkInsert.pdb
+D:\CodeStorm\Solution\CodeStormScheduler\CodeStormData\bin\Debug\EntityFramework.MappingAPI.pdb

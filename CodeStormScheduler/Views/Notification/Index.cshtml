@@ -28,17 +28,17 @@
             <div class="panel colourable">
                 <div class="panel-body">
                     <div class="tab-pane fade widget-followers active in" id="div-pending-events">
-                        <div ng-repeat="s in eventlist" class="follower">
+                        <div ng-repeat="s in eventlist" class="follower ng-cloak">
                             <img src="assets/images/new-event.png" alt="" class="follower-avatar">
                             <div class="body">
                                 <div class="follower-controls">
                                     <a href="" class="btn btn-sm btn-success" ng-click="acceptEvent(s.eventid)"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Accept</span></a>
                                     <a href="" class="btn btn-sm btn-warning" ng-click="rejectEvent(s.eventid)"><i class="fa fa-times"></i><span>&nbsp;&nbsp;Reject</span></a>
                                 </div>
-                                <a href="#" class="follower-name">{{s.eventname}}</a><br>
-                                <a href="#" class="follower-username">Owner : {{s.owner}}</a>
-                                <a href="#" class="text-dates follower-username ">{{s.startdate}}  to  {{s.enddate}}</a>
-                                <a href="#" class="follower-username">Location : {{s.location}}</a>
+                                <a href="#" class="follower-name ng-cloak">{{s.eventname}}</a><br>
+                                <a href="#" class="follower-username ng-cloak">Owner : {{s.owner}}</a>
+                                <a href="#" class="text-dates follower-username ng-cloak">{{s.startdate}}  to  {{s.enddate}}</a>
+                                <a href="#" class="follower-username ng-cloak">Location : {{s.location}}</a>
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,6 @@
                         date: scheduler._date,
                         navigation: true,
                         handler: function (date, calendar) {
-                            alert(date);
                         }
                     });
                 });

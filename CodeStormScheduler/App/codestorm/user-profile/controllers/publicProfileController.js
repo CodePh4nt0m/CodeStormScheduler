@@ -1,4 +1,4 @@
-﻿userProfileModule.controller('publicProfileController', function ($scope, $cookies, angularHelper, $location) {
+﻿userPublicProfileModule.controller('publicProfileController', function ($scope, $cookies, angularHelper, $location) {
 
     var initialize = function () {
         $scope.getProfileData();
@@ -20,7 +20,7 @@
                 $scope.profession = user.profession;
                 $scope.about_me = user.aboutme;
                 $scope.twitter = user.twitter;
-
+                $scope.email = user.email;
                 var array = user.interests.split(',');
                 $scope.interests = [];
                 $.each(array, function (i, val) {

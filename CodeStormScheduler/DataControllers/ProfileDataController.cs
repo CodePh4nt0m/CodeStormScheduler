@@ -48,7 +48,9 @@ namespace CodeStormScheduler.DataControllers
         public JsonResult GetUserProfileDetails()
         {
             UserProfileData userProfileData = new UserProfileData();
+            UserData userData = new UserData();
             var u = userProfileData.GetUserProfile(User.Identity.GetUserId());
+            var up = userData.GetUserMasterData(User.Identity.GetUserId());
             var model = new UserProfileViewModel()
             {
                 fullname = u.FirstName + " " + u.LastName,
@@ -60,7 +62,8 @@ namespace CodeStormScheduler.DataControllers
                 aboutme = u.AboutMe,
                 interests = u.Interests,
                 twitter = u.Twitter,
-                facebook = u.Facebook
+                facebook = u.Facebook,
+                email = up.Email
             };
             return Json(model, JsonRequestBehavior.AllowGet);
         }
@@ -69,7 +72,9 @@ namespace CodeStormScheduler.DataControllers
         public JsonResult GetUserPublicProfileDetails(string id)
         {
             UserProfileData userProfileData = new UserProfileData();
+            UserData userData = new UserData();
             var u = userProfileData.GetUserProfile(id);
+            var up = userData.GetUserMasterData(id);
             var model = new UserPublicProfileViewModel()
             {
                 userid = u.Id,
@@ -84,7 +89,8 @@ namespace CodeStormScheduler.DataControllers
                 aboutme = u.AboutMe,
                 interests = u.Interests,
                 twitter = u.Twitter,
-                facebook = u.Facebook
+                facebook = u.Facebook,
+                email = up.Email
             };
             return Json(model, JsonRequestBehavior.AllowGet);
         }

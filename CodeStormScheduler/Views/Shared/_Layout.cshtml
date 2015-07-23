@@ -144,7 +144,7 @@ Use search to find needed section.
                                 -->
                                 <li class="nav-icon-btn nav-icon-btn-danger dropdown">
                                     <a href="#notifications" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="label" ng-show="notification_count>0">{{notification_count}}</span>
+                                        <span class="label ng-cloak" ng-show="notification_count>0">{{notification_count}}</span>
                                         <i class="nav-icon fa fa-bullhorn"></i>
                                         <span class="small-screen-text">Notifications</span>
                                     </a>
@@ -260,8 +260,7 @@ Use search to find needed section.
                         <img src="/ImageBase/Users/{{user_pic}}" alt="" class="ng-cloak">
                         <div class="btn-group">
                             <a href="/messages/inbox" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-envelope"></i></a>
-                            <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
-                            <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-cog"></i></a>
+                            <a href="/user" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
                             <a href="" class="btn btn-xs btn-danger btn-outline dark" id="panel_logoff"><i class="fa fa-power-off"></i></a>
                         </div>
                         <a href="#" class="close">&times;</a>

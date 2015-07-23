@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CodeStormDBModelStoreContainer" CdmEntityContainer="CodeStormDBEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="CodeStormDBModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="CodeStormDBModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="CodeStormDBModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="CodeStormDBModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserMessages">
+      <EntityTypeMapping TypeName="CodeStormDBModel.UserMessage">
+        <MappingFragment StoreEntitySet="UserMessages">
+          <ScalarProperty Name="CDate" ColumnName="CDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+          <ScalarProperty Name="ReceiverId" ColumnName="ReceiverId" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spGetConversationList" FunctionName="CodeStormDBModel.Store.spGetConversationList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CodeStormDBModel.spGetConversationList_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="CDate" ColumnName="CDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetConversation" FunctionName="CodeStormDBModel.Store.spGetConversation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CodeStormDBModel.spGetConversation_Result">
+          <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="CDate" ColumnName="CDate" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="Self" ColumnName="Self" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="CodeStormDBModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="CodeStormDBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="EventDetails">
+      <EntityTypeMapping TypeName="CodeStormDBModel.EventDetail">
+        <MappingFragment StoreEntitySet="EventDetails">
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EventDetailId" ColumnName="EventDetailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spChangeMessageStatus" FunctionName="CodeStormDBModel.Store.spChangeMessageStatus" />
+    <FunctionImportMapping FunctionImportName="spClearSharedEvent" FunctionName="CodeStormDBModel.Store.spClearSharedEvent" />
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="CodeStormDBModel.Event">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="Shared" ColumnName="Shared" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="EventPid" ColumnName="EventPid" />
+          <ScalarProperty Name="EventLength" ColumnName="EventLength" />
+          <ScalarProperty Name="RecType" ColumnName="RecType" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserProfiles">
+      <EntityTypeMapping TypeName="CodeStormDBModel.UserProfile">
+        <MappingFragment StoreEntitySet="UserProfiles">
+          <ScalarProperty Name="Interests" ColumnName="Interests" />
+          <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
+          <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+          <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SharedEvents">
+      <EntityTypeMapping TypeName="CodeStormDBModel.SharedEvent">
+        <MappingFragment StoreEntitySet="SharedEvents">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="ShraredEventId" ColumnName="ShraredEventId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spGetUserMessageCount" FunctionName="CodeStormDBModel.Store.spGetUserMessageCount" />
+  </EntityContainerMapping>
+</Mapping>

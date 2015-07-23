@@ -35,6 +35,7 @@ namespace CodeStormData.ViewModels
         public string interests { get; set; }
         public string twitter { get; set; }
         public string facebook { get; set; }
+        public string email { get; set; }
 
     }
 
@@ -54,6 +55,7 @@ namespace CodeStormData.ViewModels
         public string interests { get; set; }
         public string twitter { get; set; }
         public string facebook { get; set; }
+        public string email { get; set; }
 
     }
 

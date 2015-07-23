@@ -19,7 +19,7 @@ userProfileModule.controller('userProfileController', function ($scope, $cookies
                 $scope.profession = user.profession;
                 $scope.about_me = user.aboutme;
                 $scope.twitter = user.twitter;
-
+                $scope.email = user.email;
                 var array = user.interests.split(',');
                 $scope.interests = [];
                 $.each(array, function (i, val) {

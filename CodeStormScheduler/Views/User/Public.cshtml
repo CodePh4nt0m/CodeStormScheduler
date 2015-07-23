@@ -31,14 +31,14 @@
 }
 
 @section jsCode {
-    angular.bootstrap(document.getElementById("user_profile_container"), ['userProfileModule']);
+    angular.bootstrap(document.getElementById("user_profile_container"), ['userPublicProfileModule']);
 }
 
 
-<div id="user_profile_container" ng-app="userProfileModule" ng-controller="publicProfileController">
+<div id="user_profile_container" ng-app="userPublicProfileModule" ng-controller="publicProfileController">
     <div class="profile-full-name">
         <span class="text-semibold">{{fname}}</span> s' Profile
-        <input type="hidden" value="{{userid}}" id="public_userid"/>
+        <input type="hidden" value="{{userid}}" id="public_userid" />
     </div>
     <div class="profile-row">
         <div class="left-col">
@@ -190,7 +190,7 @@
 
 
 @section scripts{
-    <script src="~/App/codestorm/user-profile/model/profile-meta.js"></script>
+<script src="~/App/codestorm/user-profile/model/public-profile-meta.js"></script>
     <script src="~/App/codestorm/user-profile/controllers/publicProfileController.js"></script>
     <script src="~/Scripts/dhtmlxScheduler/dhtmlxscheduler_custom.js"></script>
     <script src="~/Scripts/dhtmlxScheduler/ext/dhtmlxscheduler_minical_custom.js"></script>
@@ -207,7 +207,6 @@
                         date: scheduler._date,
                         navigation: true,
                         handler: function (date, calendar) {
-                            alert(date);
                         }
                     });
                 });
