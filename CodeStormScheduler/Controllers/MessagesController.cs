@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace CodeStormScheduler.Controllers
 {
+    [Authorize]
     public class MessagesController : Controller
     {
         // GET: Messages

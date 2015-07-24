@@ -112,6 +112,7 @@
             var uid;
             var dataHelper = commonHelper();
             scheduler.config.include_end_by = true;
+            scheduler.config.server_utc = true;
             scheduler.init('scheduler_here', new Date(), "month");
             scheduler.config.buttons_left = ["dhx_save_btn", "dhx_cancel_btn", "btn_more_options"];
             scheduler.locale.labels["btn_more_options"] = "Event Options";

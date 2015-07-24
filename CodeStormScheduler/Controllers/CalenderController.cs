@@ -7,6 +7,7 @@ using CodeStormData.Data;
 
 namespace CodeStormScheduler.Controllers
 {
+    [Authorize]
     public class CalenderController : Controller
     {
         // GET: Calender
